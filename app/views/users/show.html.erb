@@ -26,11 +26,14 @@
   <% end %>
 </div>
 
-<% if !@posts.empty? %>
+<% if !@posts.first.content.nil? %>
   <ul>
     <% @posts.each do |post| %>
+      <% next if post.content.nil? %>
       <li>
-        <%= post %>
+        (<%= link_to "delete", user_post_path(@user, post), method: :delete %>)
+        <br>
+        <%= post.content %>
         <br>
         <%= post.created_at %>
       </li>

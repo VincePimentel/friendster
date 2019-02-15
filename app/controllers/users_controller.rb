@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def show
     # binding.pry
     @user = User.find(params[:id])
-    @post = Post.new
+    @post = @user.posts.build(link: "")
     @posts = @user.posts
   end
 

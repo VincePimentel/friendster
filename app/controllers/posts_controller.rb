@@ -5,11 +5,18 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
 
     @post.save
 
-    redirect_to user_path(@post.user_id)
+    redirect_to user_path(current_user)
+  end
+
+  def destroy
+    @post = current_user.posts.find(params[:id])
+    @post.destroy
+
+    redirect_to user_path(current_user)
   end
 
   private
