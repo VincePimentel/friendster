@@ -40,6 +40,9 @@ gem 'dotenv-rails'
 gem 'bootstrap'
 gem 'jquery-rails'
 
+# FontAwesome
+gem 'font-awesome-sass'
+
 # PostgreSQL
 # gem 'pg'
 

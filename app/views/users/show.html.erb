@@ -1,133 +1,50 @@
 <div class="row">
   <div class="col-12">
-    <%= image_tag "https://via.placeholder.com/850x315/000000/FFFFFF?text=HEADER IMAGE", class: "img-fluid" %>
-    <%= image_tag "https://via.placeholder.com/200/000000/FFFFFF?text=AVATAR", id: "profile-avatar", class: "img-fluid rounded-circle" %>
+    <%= image_tag "https://via.placeholder.com/1280x350/000000/FFFFFF?text=HEADER IMAGE", class: "img-fluid" %>
+    <%= image_tag "https://via.placeholder.com/175/000000/FFFFFF?text=AVATAR", id: "profile-avatar", class: "img-fluid border border-white rounded-circle" %>
     <h3 id="profile-name"><%= @user.full_name %></h3>
   </div>
 </div>
 
 <div class="row">
   <div class="col-12">
-    <p>
-
-    </p>
-
-    <%= link_to "Timeline", user_path(@user) %> |
-    <%= link_to "About" %> |
-    <%= link_to "Friends" %>
-  </div>
-</div>
-
-<div class="row">
-  <!-- LEFT COLUMN -->
-  <div class="col-4">
-    <div class="card mb-3">
-      <div class="card-header">
-        Intro
-      </div>
-      <div class="card-body">
-        <%= @user.bio %>
-
-        <hr>
-
-        <%= @user.location %>
-        <br>
-        <%= @user.website %>
-        <br>
-        <%= @user.instagram %>
-        <br>
-        <%= @user.twitter %>
-      </div>
-    </div>
-
-    <div class="card mb-3">
-      <div class="card-header">
-        Friends
-      </div>
-      <div class="card-body">
-        <ul>
-          <% @user.friendships.each do |friendship| %>
-            <li>
-              <%= friendship.user.full_name %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!-- /LEFT COLUMN -->
-
-  <!-- RIGHT COLUMN -->
-  <div class="col-8">
-    <div class="row">
-      <div class="col">
-        <%= form_for [@user, @post] do |f| %>
-          <div class="form-group">
-            <%= f.text_area :content,
-              placeholder: "What's up, #{@user.first_name}?",
-              class: "form-control" %>
+    <div id="profile-nav">
+      <ul class="nav nav-tabs justify-content-center" id="profileNav" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab">
+            Timeline
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab">
+            About
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="friends-tab" data-toggle="tab" href="#friends" role="tab">
+          Friends
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content" id="profileNavContent">
+        <div class="tab-pane fade show active" id="timeline" role="tabpanel">
+          <div class="row mt-3">
+            <%= render "timeline" %>
           </div>
+        </div>
 
-          <div class="form-row">
-            <div class="col-10">
-              <%= f.text_field :link,
-                placeholder: "Image URL",
-                class: "form-control" %>
-            </div>
-
-            <div class="col-2">
-              <%= f.submit "Share", class: "btn btn-primary" %>
-            </div>
+        <div class="tab-pane fade" id="about" role="tabpanel">
+          <div class="row mt-3">
+            <%= render "about" %>
           </div>
-        <% end %>
-      </div> <!-- col -->
-    </div> <!-- row -->
+        </div>
 
-    <div class="row">
-      <div class="col">
-        <h5 class="mt-4 mb-2">Posts</h5>
-
-        <% if @posts.size > 0 %>
-          <% @posts.reverse_each do |post| %>
-            <% next if post.content.nil? %>
-
-            <div class="card mb-3">
-              <div class="card-header">
-                <%= post.user.full_name %>
-                <span class="float-right">
-                  (<%= link_to "delete", user_post_path(@user, post), method: :delete %>)
-                </span>
-
-                <br>
-
-                <span class="text-muted" data-toggle="tooltip" data-placement="right" title="<%= time_ago_in_words(post.created_at) %> ago">
-                  <%= post.created_at.localtime.strftime("%A, %d %b %Y %l:%M %p") %>
-                </span>
-              </div>
-
-              <div class="card-body">
-                <%= post.content %>
-
-                <% if !post.link.empty? %>
-                  <%= image_tag post.link, class: "img-fluid" %>
-                <% end %>
-              </div>
-
-              <div class="card-footer text-muted py-0">
-                COMMENT HERE
-              </div>
-            </div>
-
-          <% end %>
-        <% else %>
-          <p>Nothing to see here!</p>
-        <% end %>
-      </div> <!-- col -->
-    </div> <!-- row -->
-
-  </div> <!-- col-8 -->
-  <!-- RIGHT COLUMN -->
-
+        <div class="tab-pane fade" id="friends" role="tabpanel">
+          <div class="row mt-3">
+            <%= render "friends" %>
+          </div>
+        </div>
+      </div>
+    </div> <!-- profile-nav -->
+  </div> <!-- col-12 -->
 </div> <!-- row -->
-
-

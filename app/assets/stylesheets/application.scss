@@ -13,11 +13,17 @@
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 #profile-avatar {
-  margin-top: -150px;
+  margin: -150px 0 0 15px;
 }
 
 #profile-name {
-  margin: -120px 0 0 210px;
+  margin: -105px 0 0 205px;
+}
+
+#profile-nav {
+  margin: 45px 0 0 0;
 }

@@ -29,3 +29,6 @@ TO-DO
     - Add header (str) attribute
     - Add avatar (str) attribute
     - Add username (str) attribute
+
+  Friendships
+    - Add relationship (str) attribute
