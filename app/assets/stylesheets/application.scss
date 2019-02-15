@@ -13,3 +13,11 @@
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+#profile-avatar {
+  margin-top: -150px;
+}
+
+#profile-name {
+  margin: -120px 0 0 210px;
+}

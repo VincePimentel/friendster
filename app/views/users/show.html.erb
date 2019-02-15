@@ -1,23 +1,15 @@
-<%= @user.gender %>
-<br>
-<%= @user.email %>
-<br>
-<%= @user.bio %>
-<br>
-<%= @user.location %>
-<br>
-
-
 <div class="row">
   <div class="col-12">
-    <img src="" class="img-fluid" width="100%" height="205px" alt="">
+    <%= image_tag "https://via.placeholder.com/850x315/000000/FFFFFF?text=HEADER IMAGE", class: "img-fluid" %>
+    <%= image_tag "https://via.placeholder.com/200/000000/FFFFFF?text=AVATAR", id: "profile-avatar", class: "img-fluid rounded-circle" %>
+    <h3 id="profile-name"><%= @user.full_name %></h3>
   </div>
 </div>
 
 <div class="row">
   <div class="col-12">
     <p>
-      <%= @user.full_name %>
+
     </p>
 
     <%= link_to "Timeline", user_path(@user) %> |
@@ -34,19 +26,17 @@
         Intro
       </div>
       <div class="card-body">
-        <p>
-          <%= @user.bio %>
-        </p>
+        <%= @user.bio %>
 
         <hr>
 
-        <p>
-          <%= @user.location %>
-          <br>
-          <%= @user.website %>
-          <%= @user.instagram %>
-          <%= @user.twitter %>
-        </p>
+        <%= @user.location %>
+        <br>
+        <%= @user.website %>
+        <br>
+        <%= @user.instagram %>
+        <br>
+        <%= @user.twitter %>
       </div>
     </div>
 
@@ -55,7 +45,13 @@
         Friends
       </div>
       <div class="card-body">
-        TEST
+        <ul>
+          <% @user.friendships.each do |friendship| %>
+            <li>
+              <%= friendship.user.full_name %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
@@ -89,12 +85,10 @@
 
     <div class="row">
       <div class="col">
-
         <h5 class="mt-4 mb-2">Posts</h5>
 
         <% if @posts.size > 0 %>
-          <% @posts.each do |post| %>
-
+          <% @posts.reverse_each do |post| %>
             <% next if post.content.nil? %>
 
             <div class="card mb-3">
@@ -106,11 +100,17 @@
 
                 <br>
 
-                <span class="text-muted" data-toggle="tooltip" data-placement="right" title="<%= time_ago_in_words(post.created_at) %> ago"><%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %></span>
+                <span class="text-muted" data-toggle="tooltip" data-placement="right" title="<%= time_ago_in_words(post.created_at) %> ago">
+                  <%= post.created_at.localtime.strftime("%A, %d %b %Y %l:%M %p") %>
+                </span>
               </div>
 
               <div class="card-body">
                 <%= post.content %>
+
+                <% if !post.link.empty? %>
+                  <%= image_tag post.link, class: "img-fluid" %>
+                <% end %>
               </div>
 
               <div class="card-footer text-muted py-0">

@@ -22,3 +22,10 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+TO-DO
+
+  User
+    - Add header (str) attribute
+    - Add avatar (str) attribute
+    - Add username (str) attribute
