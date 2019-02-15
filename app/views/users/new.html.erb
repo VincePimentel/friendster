@@ -1,22 +1,26 @@
-<%= form_for(@user) do |f| %>
-  <%= f.label :first_name, "Name" %>
-  <br>
-  <%= f.text_field :first_name, placeholder: "First" %>
-  <br>
-  <%= f.text_field :last_name, placeholder: "Last" %>
-  <br>
-  <%= f.label :email, "E-mail" %>
-  <br>
-  <%= f.email_field :email %>
-  <br>
-  <%= f.label :password %>
-  <br>
-  <%= f.password_field :password %>
-  <br>
-  <%= f.label :password_confirmation, "Password Confirmation" %>
-  <br>
-  <%= f.password_field :password_confirmation%>
-  <br>
-  <%= f.submit "Register" %>
-<% end %>
+<div class="row justify-content-center">
+  <div class="col-sm-4">
+    <%= form_for(@user) do |f| %>
+      <div class="form-group">
+        <%= f.label :first_name, "Name" %>
+        <%= f.text_field :first_name, placeholder: "First name", class: "form-control" %>
+        <%= f.text_field :last_name, placeholder: "Last name", class: "form-control" %>
+      </div>
 
+      <div class="form-group">
+        <%= f.label :email, "E-mail" %>
+        <%= f.email_field :email, placeholder: "name@example.com", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, placeholder: "Minimum 6 characters", class: "form-control" %>
+        <%= f.password_field :password_confirmation, placeholder: "Repeat password", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "Register", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>
