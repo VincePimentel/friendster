@@ -1,0 +1,41 @@
+<%= "#{@user.first_name} #{@user.last_name}" %>
+
+<%= @user.gender %>
+<br>
+<%= @user.email %>
+<br>
+<%= @user.bio %>
+<br>
+<%= @user.location %>
+<br>
+<%= @user.website %>
+<br>
+<%= @user.instagram %>
+<br>
+<%= @user.twitter %>
+
+<h2>Timeline | About | Friends</h2>
+
+<div class="form-control">
+  <%= form_for [@user, @post] do |f| %>
+    <%= f.text_area :content, placeholder: "What's up, #{@user.first_name}?" %>
+    <br>
+    <%= f.text_field :link, placeholder: "Image URL" %>
+    <br>
+    <%= f.submit "Share" %>
+  <% end %>
+</div>
+
+<% if !@posts.empty? %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <%= post %>
+        <br>
+        <%= post.created_at %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Nothing to see here!</p>
+<% end %>

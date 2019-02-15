@@ -1,0 +1,50 @@
+<%= form_for(@user) do |f| %>
+  <%= f.label :first_name, "Name" %>
+  <br>
+  <%= f.text_field :first_name, placeholder: "First" %>
+  <br>
+  <%= f.text_field :last_name, placeholder: "Last" %>
+  <br>
+  <%= f.label :email, "E-mail" %>
+  <br>
+  <%= f.email_field :email %>
+  <br>
+  <%= f.label :password %>
+  <br>
+  <%= f.password_field :password %>
+  <br>
+  <%= f.label :password_confirmation, "Password Confirmation" %>
+  <br>
+  <%= f.password_field :password_confirmation%>
+  <br>
+  <%= f.label :gender %>
+  <br>
+  <%= f.radio_button :gender, "male" %>
+  <%= f.label :gender, "Male", value: "male" %>
+  <%= f.radio_button :gender, "female" %>
+  <%= f.label :gender, "Female", value: "female" %>
+  <%= f.radio_button :gender, "other" %>
+  <%= f.label :gender, "Other", value: "other" %>
+  <%= f.radio_button :gender, "rather not say" %>
+  <%= f.label :gender, "Rather not say", value: "rather not say" %>
+  <br>
+  <%= f.label :bio %>
+  <br>
+  <%= f.text_area :bio %>
+  <br>
+  <%= f.label :website %>
+  <br>
+  <%= f.text_field :website %>
+  <br>
+  <%= f.label :instagram %>
+  <br>
+  <%= f.text_field :instagram %>
+  <br>
+  <%= f.label :twitter %>
+  <br>
+  <%= f.text_field :twitter %>
+  <br>
+  <%= f.submit "Save" %>
+<% end %>
+
+
