@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'home#index'
+
   resources :users do
     resources :posts, only: [:create, :destroy]
   end

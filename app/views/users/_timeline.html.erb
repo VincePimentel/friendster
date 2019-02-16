@@ -84,9 +84,9 @@
 
               <br>
 
-              <span class="text-muted" data-toggle="tooltip" data-placement="right" title="<%= time_ago_in_words(post.created_at) %> ago">
+              <small class="text-muted" data-toggle="tooltip" data-placement="right" title="<%= time_ago_in_words(post.created_at) %> ago">
                 <%= post.created_at.localtime.strftime("%A, %d %b %Y %l:%M %p") %>
-              </span>
+              </small>
             </div>
 
             <div class="card-body">
@@ -100,7 +100,7 @@
             <div class="card-footer text-muted py-0">
               COMMENT HERE
             </div>
-          </div>
+          </div> <!-- card mb-3 -->
 
         <% end %>
       <% else %>
