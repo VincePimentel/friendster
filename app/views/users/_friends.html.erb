@@ -1,13 +1,44 @@
 <div class="col-12">
-  <ul>
-    <% @user.friendships.each do |friendship| %>
-      <li>
-        <%= link_to friendship.friend.full_name, user_path(friendship.friend) %>
 
-        <% if current_user == @user %>
-          (<%= link_to "remove", friendship_path(friendship), method: :delete %>)
+  <% if current_user == @user && @requests.size > 0 %>
+    <h5>Friend Requests <%= "(#{@requests.size})" if @requests.size > 0 %></h5>
+
+    <ul>
+      <% @requests.each do |request| %>
+        <li>
+          <%= link_to request.user.full_name, user_path(request.user), target: "_blank" %>
+          (<%= link_to "Accept", friendships_path(friend_id: request.user), method: :post %>)
+        </li>
+      <% end %>
+    </ul>
+
+    <hr>
+  <% end %>
+
+  <h5>Friends <%= "(#{@user.friendships.size})" if @user.friendships.size > 0 %></h5>
+
+    <% if @user.friendships.size > 0 %>
+
+      <ul>
+        <% @user.friendships.each do |friendship| %>
+          <li>
+            <%= link_to friendship.friend.full_name, user_path(friendship.friend) %>
+
+            <% if current_user == @user %>
+
+              (<%= link_to "Unfriend", friendship_path(friendship), method: :delete %><span class="text-muted"> - <%= friendship.status == 0 ? "Pending" : friendship.relationship.capitalize %></span>)
+
+            <% end %>
+          </li>
         <% end %>
-      </li>
+      </ul>
+
+    <% else %>
+
+      <p>
+        You have not added any friends, yet! Find some <%= link_to "here", users_path %>.
+      </p>
+
     <% end %>
-  </ul>
+
 </div>
