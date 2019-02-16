@@ -8,10 +8,16 @@ class FriendshipsController < ApplicationController
     @referenced_friendship = Friendship.where(
       friend_id: @friendship.user.id,
       user_id: @friendship.friend.id
-      )
+      ).take
 
     if @friendship.save
+
+      # If other user has added current user then
+      # Set friendship status of both users to 1
+      # (both users have added each other)
+      # For use of users#show @requests variable
       if @referenced_friendship
+        @friendship.update(status: 1)
         @referenced_friendship.update(status: 1)
       end
     else
@@ -40,6 +46,6 @@ class FriendshipsController < ApplicationController
       @referenced_friendship.destroy
     end
 
-    redirect_to user_path(current_user)
+    redirect_to users_path
   end
 end
