@@ -1,3 +1,13 @@
 <div class="col-12">
-  <p>Nothing to see here!</p>
+  <ul>
+    <% @user.friendships.each do |friendship| %>
+      <li>
+        <%= link_to friendship.friend.full_name, user_path(friendship.friend) %>
+
+        <% if current_user == @user %>
+          (<%= link_to "remove", friendship_path(friendship), method: :delete %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
