@@ -11,6 +11,7 @@ User
   * DONE - Add username (str) attribute
   * Add edit view
   * Add settings?
+  * Add relationship
 
 Post
   * Add tags
@@ -30,3 +31,6 @@ Registration
 Friendship
   * DONE - Set up associations
   * DONE - Add relationship (str) attribute
+
+Navigation
+  * Change active link depending on current page

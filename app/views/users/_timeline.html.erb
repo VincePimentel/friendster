@@ -15,10 +15,9 @@
     </div>
     <div class="card-body">
       <ul>
-        <% @user.friendships.each do |friendship| %>
+        <% @user.friends.each do |friend| %>
           <li>
-            <%= friendship.friend.full_name %>
-            (<%= link_to "remove", friendship_path(friendship), method: :delete %>)
+            <%= link_to friend.full_name, user_path(friend) %>
           </li>
         <% end %>
       </ul>
