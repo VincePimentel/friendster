@@ -1,6 +1,6 @@
 <!-- LEFT COLUMN -->
 <div class="col-4">
-  <div class="card mb-3">
+  <div class="card mb-4">
     <div class="card-header">
       Intro
     </div>
@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <div class="card mb-3">
+  <div class="card mb-4">
     <div class="card-header">
       Friends
     </div>
@@ -54,7 +54,7 @@
 
   <div class="row">
     <div class="col">
-      <h5 class="mt-4 mb-2">Posts</h5>
+      <h5 class="mt-4 mb-3">Posts</h5>
 
       <% if @posts.size > 0 %>
         <% @posts.reverse_each do |post| %>
@@ -87,8 +87,10 @@
               <% end %>
             </div>
 
-            <div class="card-footer text-muted py-0">
-              COMMENT HERE
+            <div class="card-footer text-muted px-1 py-1">
+              <%= text_field_tag "comment[content]", nil,
+                placeholder: "Leave a comment",
+                class: "form-control form-control-sm" %>
             </div>
           </div> <!-- card mb-3 -->
 

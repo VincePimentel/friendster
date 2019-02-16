@@ -1,7 +1,13 @@
 <div class="row">
   <div class="col-12">
     <%= image_tag "https://via.placeholder.com/1280x350/000000/FFFFFF?text=HEADER IMAGE", class: "img-fluid" %>
-    <%= image_tag "https://via.placeholder.com/175/000000/FFFFFF?text=AVATAR", id: "profile-avatar", class: "img-fluid border border-white rounded-circle" %>
+
+    <% if @user.avatar.empty? %>
+      <%= image_tag "https://via.placeholder.com/175/000000/FFFFFF?text=AVATAR", id: "profile-avatar", class: "img-fluid border border-white rounded-circle" %>
+    <% else %>
+      <%= image_tag @user.avatar, id: "profile-avatar", class: "img-fluid border border-white rounded-circle" %>
+    <% end %>
+
     <h3 id="profile-name"><%= @user.full_name %></h3>
   </div>
 </div>
@@ -9,7 +15,7 @@
 <div class="row">
   <div class="col-12">
     <div id="profile-nav">
-      <ul class="nav nav-tabs justify-content-center" id="profileNav" role="tablist">
+      <ul class="nav nav-tabs justify-content-center mb-4" id="profileNav" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab">
             Timeline
@@ -28,19 +34,19 @@
       </ul>
       <div class="tab-content" id="profileNavContent">
         <div class="tab-pane fade show active" id="timeline" role="tabpanel">
-          <div class="row mt-3">
+          <div class="row">
             <%= render "timeline" %>
           </div>
         </div>
 
         <div class="tab-pane fade" id="about" role="tabpanel">
-          <div class="row mt-3">
+          <div class="row">
             <%= render "about" %>
           </div>
         </div>
 
         <div class="tab-pane fade" id="friends" role="tabpanel">
-          <div class="row mt-3">
+          <div class="row">
             <%= render "friends" %>
           </div>
         </div>

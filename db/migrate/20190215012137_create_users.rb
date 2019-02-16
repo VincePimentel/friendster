@@ -3,6 +3,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
     create_table :users do |t|
       t.string :first_name
       t.string :last_name
+      t.string :username
       t.string :email
       t.string :password_digest
       t.text :bio
@@ -11,6 +12,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :instagram
       t.string :twitter
       t.string :gender
+      t.string :header
+      t.string :avatar
 
       t.timestamps
     end
