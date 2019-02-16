@@ -6,14 +6,11 @@ Home
   * Build index
 
 User
-  * Add header (str) attribute
-  * Add avatar (str) attribute
-  * Add username (str) attribute
+  * DONE - Add header (str) attribute
+  * DONE - Add avatar (str) attribute
+  * DONE - Add username (str) attribute
   * Add edit view
   * Add settings?
-
-Friendship
-  * Set up associations
 
 Post
   * Add tags
@@ -30,5 +27,6 @@ Like
 Registration
   * Add @ to username field
 
-Friendships
-  * Add relationship (str) attribute
+Friendship
+  * DONE - Set up associations
+  * DONE - Add relationship (str) attribute

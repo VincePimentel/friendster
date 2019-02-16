@@ -2,10 +2,18 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(
       relationship: "friend",
-      friend_id: params[:friend_id])
+      friend_id: params[:friend_id]
+      )
+
+    @referenced_friendship = Friendship.where(
+      friend_id: @friendship.user.id,
+      user_id: @friendship.friend.id
+      )
 
     if @friendship.save
-      flash[:notice] = "Added friend."
+      if @referenced_friendship
+        @referenced_friendship.update(status: 1)
+      end
     else
       flash[:notice] = "Unable to add friend."
     end

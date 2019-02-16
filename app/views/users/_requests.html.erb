@@ -1,9 +1,9 @@
 <div class="col-12">
   <ul>
-    <% @user.referenced_friendships.each do |friendship| %>
+    <% @requests.each do |request| %>
       <li>
-        <%= friendship.user.full_name %>
-        (<%= link_to "Accept", friendships_path(friend_id: friendship.user), method: :post %>)
+        <%= request.user.full_name %>
+        (<%= link_to "Accept", friendships_path(friend_id: request.user), method: :post %>)
       </li>
     <% end %>
   </ul>

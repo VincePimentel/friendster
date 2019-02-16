@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = @user.posts.build(link: "")
     @posts = @user.posts.order("created_at desc")
+    @requests = current_user.referenced_friendships.where(status: 0)
   end
 
   def edit

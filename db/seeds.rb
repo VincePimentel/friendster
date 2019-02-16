@@ -9,6 +9,7 @@
 vince = User.create(
   first_name: "Vince",
   last_name: "Pimentel",
+  username: "vince",
   email: "vince@pimentel.com",
   password: "123456",
   location: "California",
@@ -23,6 +24,7 @@ vince = User.create(
 alice = User.create(
   first_name: "Alice",
   last_name: "Chan",
+  username: "alice",
   email: "alice@chan.com",
   password: "123456",
   location: "California",
