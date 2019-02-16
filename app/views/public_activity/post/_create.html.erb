@@ -1,0 +1,7 @@
+<% if activity.trackable %>
+  <%# link_to activity.trackable.content, activity.trackable %>
+  (<%= link_to "go", user_post_path(activity.trackable.user, activity.trackable.id) %>)
+  <%= activity.trackable.content %>
+<% else %>
+  <span class="text-muted">Removed.</span>
+<% end %>

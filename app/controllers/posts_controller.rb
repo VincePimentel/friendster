@@ -9,12 +9,18 @@ class PostsController < ApplicationController
 
     @post.save
 
+    @post.create_activity(:create, owner: current_user)
+
     redirect_to user_path(current_user)
   end
 
   def destroy
     @post = current_user.posts.find(params[:id])
+
+    # @post.create_activity(:destroy, owner: current_user)
+
     @post.destroy
+
 
     redirect_to user_path(current_user)
   end

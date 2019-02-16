@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  belongs_to :user
+  include PublicActivity::Common
 
-  validates :content, presence: true
+  belongs_to :user
 end

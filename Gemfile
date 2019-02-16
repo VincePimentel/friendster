@@ -43,6 +43,9 @@ gem 'jquery-rails'
 # FontAwesome
 gem 'font-awesome-sass'
 
+# PublicActivity
+gem 'public_activity'
+
 # PostgreSQL
 # gem 'pg'
 

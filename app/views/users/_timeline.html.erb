@@ -73,9 +73,14 @@
           <div class="card mb-3">
             <div class="card-header">
               <%= post.user.full_name %>
-              <span class="float-right">
-                <%= link_to icon("fas", "trash-alt"), user_post_path(@user, post), method: :delete %>
-              </span>
+
+              <% if post.user.id == session[:user_id] %>
+                <span class="float-right">
+                  <%= link_to icon("fas", "trash-alt"), user_post_path(@user, post),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %>
+                </span>
+              <% end %>
 
               <br>
 
