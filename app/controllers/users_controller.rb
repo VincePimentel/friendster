@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # binding.pry
     @user = User.find(params[:id])
     @post = @user.posts.build(link: "")
     @posts = @user.posts.order("created_at desc")

@@ -1,8 +1,10 @@
 <ul>
   <% @users.each do |user| %>
-    <li>
-      <%= user.full_name %>
-      (<%= link_to "Add", "" %>)
-    </li>
+
+    <% next if user.id == session[:user_id] %>
+      <li>
+        <%= user.full_name %>
+        (<%= link_to "Add", friendships_path(friend_id: user), method: :post  %>)
+      </li>
   <% end %>
 </ul>

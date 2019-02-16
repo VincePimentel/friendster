@@ -1,0 +1,10 @@
+<div class="col-12">
+  <ul>
+    <% @user.referenced_friendships.each do |friendship| %>
+      <li>
+        <%= friendship.user.full_name %>
+        (<%= link_to "Accept", friendships_path(friend_id: friendship.user), method: :post %>)
+      </li>
+    <% end %>
+  </ul>
+</div>

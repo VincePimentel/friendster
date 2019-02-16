@@ -1,0 +1,19 @@
+=> [32m#<User:0xb4b6259c[0m
+ id: [1;34m2[0m,
+ first_name: [31m[1;31m"[0m[31mAlice[1;31m"[0m[31m[0m,
+ last_name: [31m[1;31m"[0m[31mChan[1;31m"[0m[31m[0m,
+ username: [1;36mnil[0m,
+ email: [31m[1;31m"[0m[31malice@chan.com[1;31m"[0m[31m[0m,
+ password_digest:
+  [31m[1;31m"[0m[31m$2a$10$9QWY4/BDNDllIl9UOU8FdeI8h1kAOWKTIepyPcu07rohyxY5uSM8a[1;31m"[0m[31m[0m,
+ bio:
+  [31m[1;31m"[0m[31mIn finibus dui eget iaculis pulvinar. Nam ac ipsum maximus quam aliquet vehicula vitae sit amet est. Maecenas semper lectus diam, non egestas orci tincidunt et. Integer mollis, massa nec efficitur tincidunt, augue ipsum dignissim elit, vel lobortis est diam eget tortor. Nam gravida, risus ullamcorper interdum euismod, nulla ligula semper erat, eu pharetra enim libero at enim. Nulla lacinia molestie libero. Nullam vel erat finibus, fermentum felis et, viverra nulla. Integer nisl orci, blandit non posuere ut, laoreet in nisi.[1;31m"[0m[31m[0m,
+ location: [31m[1;31m"[0m[31mCalifornia[1;31m"[0m[31m[0m,
+ website: [31m[1;31m"[0m[31mhttps://alicechan.com[1;31m"[0m[31m[0m,
+ instagram: [31m[1;31m"[0m[31maliceinstagram[1;31m"[0m[31m[0m,
+ twitter: [31m[1;31m"[0m[31malicetwitter[1;31m"[0m[31m[0m,
+ gender: [31m[1;31m"[0m[31mfemale[1;31m"[0m[31m[0m,
+ header: [1;36mnil[0m,
+ avatar: [31m[1;31m"[0m[31mhttp://i.imgur.com/HIBZF4m.jpg[1;31m"[0m[31m[0m,
+ created_at: [1;34;4mSat[0m, [1;34m16[0m [1;34;4mFeb[0m [1;34m2019[0m [1;34m04[0m:[1;34m22[0m:[1;34m42[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+ updated_at: [1;34;4mSat[0m, [1;34m16[0m [1;34;4mFeb[0m [1;34m2019[0m [1;34m04[0m:[1;34m22[0m:[1;34m42[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m
