@@ -25,10 +25,13 @@ Things you may want to cover:
 
 TO-DO
 
-  User
-    - Add header (str) attribute
-    - Add avatar (str) attribute
-    - Add username (str) attribute
+User
+  * Add header (str) attribute
+  * Add avatar (str) attribute
+  * Add username (str) attribute
 
-  Friendships
-    - Add relationship (str) attribute
+Registration
+  * Add @ to username field
+
+Friendships
+  * Add relationship (str) attribute

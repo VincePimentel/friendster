@@ -16,11 +16,16 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+body {
+  font-size: 0.9em;
+}
+
 #profile-avatar {
   margin: -150px 0 0 15px;
 }
 
 #profile-name {
+  color: #fff;
   margin: -105px 0 0 205px;
 }
 

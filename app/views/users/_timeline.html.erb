@@ -6,16 +6,6 @@
     </div>
     <div class="card-body">
       <%= @user.bio %>
-
-      <hr>
-
-      <%= @user.location %>
-      <br>
-      <%= @user.website %>
-      <br>
-      <%= @user.instagram %>
-      <br>
-      <%= @user.twitter %>
     </div>
   </div>
 
@@ -55,7 +45,7 @@
           </div>
 
           <div class="col-2">
-            <%= f.submit "Share", class: "btn btn-primary" %>
+            <%= f.submit "Share", class: "btn btn-primary btn-block" %>
           </div>
         </div>
       <% end %>

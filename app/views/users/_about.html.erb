@@ -1,0 +1,45 @@
+<div class="col-3">
+  <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <a class="nav-link active" id="v-pills-bio-tab" data-toggle="pill" href="#v-pills-bio" role="tab">Bio</a>
+    <a class="nav-link" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab">Location and Contact</a>
+    <a class="nav-link" id="v-pills-social-tab" data-toggle="pill" href="#v-pills-social" role="tab">Social Media</a>
+  </div>
+</div>
+<div class="col-9">
+  <div class="tab-content" id="v-pills-tabContent">
+
+    <div class="tab-pane fade show active" id="v-pills-bio" role="tabpanel">
+      <dl class="row">
+        <dt class="col-2">Bio</dt>
+        <dd class="col-10 lead"><%= @user.bio %></dd>
+
+        <dt class="col-2">Gender</dt>
+        <dd class="col-10"><%= @user.gender %></dd>
+      </dl>
+    </div>
+
+    <div class="tab-pane fade" id="v-pills-contact" role="tabpanel">
+      <dl class="row">
+        <dt class="col-2">Location</dt>
+        <dd class="col-10"><%= @user.location %></dd>
+
+        <dt class="col-2">E-mail</dt>
+        <dd class="col-10"><%= @user.email %></dd>
+      </dl>
+    </div>
+
+    <div class="tab-pane fade" id="v-pills-social" role="tabpanel">
+      <dl class="row">
+        <dt class="col-2">Website</dt>
+        <dd class="col-10"><%= @user.website %></dd>
+
+        <dt class="col-2">Instagram</dt>
+        <dd class="col-10"><%= @user.instagram %></dd>
+
+        <dt class="col-2">Twitter</dt>
+        <dd class="col-10"><%= @user.twitter %></dd>
+      </dl>
+    </div>
+
+  </div>
+</div>
