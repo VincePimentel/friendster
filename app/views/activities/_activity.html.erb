@@ -1,0 +1,39 @@
+<% activities.each do |activity| %>
+  <% next if activity.trackable.nil? %>
+
+    <div class="card mb-3">
+
+      <div class="card-header">
+        <%= activity.owner.full_name if activity.owner %>
+
+        <% if activity.owner.id == session[:user_id] %>
+          <span class="float-right">
+            <%= link_to icon("fas", "trash-alt"),
+              user_post_path(activity.trackable.user, activity.trackable.id),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+          </span>
+        <% end %>
+
+        <br>
+
+        <small class="text-muted" data-toggle="tooltip" data-placement="right" title="<%= time_ago_in_words(activity.trackable.created_at) %> ago">
+          <%= activity.trackable.created_at.localtime.strftime("%A, %d %b %Y %l:%M %p") %>
+        </small>
+      </div> <!-- card-header -->
+
+      <div class="card-body">
+        <%= activity.trackable.content %>
+
+        <% if !activity.trackable.link.empty? %>
+          <%= image_tag activity.trackable.link, class: "img-fluid" %>
+        <% end %>
+      </div>
+
+      <div class="card-footer text-muted px-1 py-1">
+        <%= render partial: "comments/form", locals: { post: activity.trackable } %>
+      </div> <!-- card-footer -->
+
+    </div> <!-- card mb-3 -->
+
+<% end %>
