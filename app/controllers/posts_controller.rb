@@ -17,7 +17,6 @@ class PostsController < ApplicationController
 
     @post.destroy
 
-
     redirect_to user_path(current_user)
   end
 

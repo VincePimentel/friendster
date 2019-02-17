@@ -3,15 +3,25 @@ class CommentsController < ApplicationController
   def create
     post = Post.find(params[:post_id])
 
-    @comment = post.comments.build(comment_params)
+    @post_comment = post.comments.build(comment_params)
+    @user_comment = current_user.comments.build(comment_params)
 
-    @comment.save
+    # Add activity
+
+    @post_comment.save
+    @user_comment.save
 
     redirect_to root_path
   end
 
   def destroy
+    post = Post.find(params[:post_id])
 
+    @comment = post.comments.find(params[:id])
+
+    @comment.destroy
+
+    redirect_to root_path
   end
 
   private

@@ -7,12 +7,13 @@
         <%= activity.owner.full_name if activity.owner %>
 
         <% if activity.owner.id == session[:user_id] %>
-          <span class="float-right">
+          <!-- <span class="float-right"> -->
             <%= link_to icon("fas", "trash-alt"),
               user_post_path(activity.trackable.user, activity.trackable.id),
               method: :delete,
-              data: { confirm: "Are you sure?" } %>
-          </span>
+              data: { confirm: "Are you sure?" },
+              class: "float-right" %>
+          <!-- </span> -->
         <% end %>
 
         <br>

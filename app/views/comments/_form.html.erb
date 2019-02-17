@@ -15,7 +15,7 @@
     <div class="card">
 
       <div class="card-header p-0" id="heading_<%= post.id %>">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_<%= post.id %>">
+        <button class="btn btn-link py-0" type="button" data-toggle="collapse" data-target="#collapse_<%= post.id %>">
           <small>show comments (<%= post.comments.size %>)</small>
         </button>
       </div>
@@ -23,9 +23,16 @@
       <div id="collapse_<%= post.id %>" class="collapse" data-parent="#accordion">
         <div class="card-body p-1">
           <ul class="list-group">
-            <% post.comments.each do |comment, i| %>
+            <% post.comments.each do |comment| %>
               <li class="list-group-item">
                 <%= link_to comment.commentable.user.full_name, user_path(comment.commentable.user) %> <%= comment.content %>
+                <span class="float-right">
+                  <%= link_to icon("fas", "trash-alt"),
+                    post_comment_path(post, comment),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %>
+                </span>
+                <% binding.pry %>
               </li>
             <% end %>
           </ul>
