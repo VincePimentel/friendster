@@ -21,6 +21,39 @@ vince = User.create(
   bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget metus eros. Duis pellentesque in odio eu lacinia. Etiam et elit non lorem semper vulputate. Curabitur justo augue, lacinia sed felis in, placerat feugiat arcu. Integer interdum tincidunt finibus. Maecenas et risus maximus, vestibulum lectus ut, viverra arcu."
   )
 
+10.times do |i|
+  nancy = User.create(
+    first_name: "Nancy #{i + 1}",
+    last_name: "Tran",
+    username: "nancy_#{i + 1}",
+    email: "nancy_#{i + 1}@tran.com",
+    password: "123456",
+    location: "California",
+    website: "https://nancy#{i + 1}tran.com",
+    instagram: "nancy#{i + 1}instagram",
+    twitter: "nancy#{i + 1}twitter",
+    gender: "female",
+    avatar: "https://via.placeholder.com/175.png/09f/fff?text=#{i + 1}",
+    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget metus eros. Duis pellentesque in odio eu lacinia. Etiam et elit non lorem semper vulputate. Curabitur justo augue, lacinia sed felis in, placerat feugiat arcu. Integer interdum tincidunt finibus. Maecenas et risus maximus, vestibulum lectus ut, viverra arcu."
+    )
+
+  vince_friendship = vince.friendships.build(
+    relationship: "friends",
+    friend_id: nancy.id,
+    status: 1
+    )
+
+  vince_friendship.save
+
+  nancy_friendship = nancy.friendships.build(
+    relationship: "friends",
+    friend_id: vince.id,
+    status: 1
+    )
+
+  nancy_friendship.save
+end
+
 alice = User.create(
   first_name: "Alice",
   last_name: "Chan",

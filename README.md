@@ -12,6 +12,7 @@ User
   * Add edit view
   * Add settings?
   * Add relationship
+  * Show - fix avatar cropping
 
 Post
   * Add tags

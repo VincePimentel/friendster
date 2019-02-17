@@ -16,6 +16,10 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-size: 0.9em;
 }
@@ -33,4 +37,15 @@ body {
 
 #profile-nav {
   margin: 26px 0 0 0;
+}
+
+#friends-avatar {
+  width: 100px;
+  height: 100px;
+}
+
+#friends-name {
+  margin-top: -25px;
+  text-shadow: 2px 2px 5px #000;
+  color: #fff;
 }
