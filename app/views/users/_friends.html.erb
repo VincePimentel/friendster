@@ -19,19 +19,34 @@
 
     <% if @user.friendships.size > 0 %>
 
-      <ul>
+      <div class="row">
+
         <% @user.friendships.each do |friendship| %>
-          <li>
-            <%= link_to friendship.friend.full_name, user_path(friendship.friend) %>
 
-            <% if current_user == @user %>
+            <div class="col-6 mb-4">
+              <div class="card">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <%= image_tag friendship.friend.avatar, class: "img-fluid" %>
+                  </div>
 
-              (<%= link_to "Unfriend", friendship_path(friendship), method: :delete %><span class="text-muted"> - <%= friendship.status == 0 ? "Pending" : friendship.relationship.capitalize %></span>)
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= link_to friendship.friend.full_name, user_path(friendship.friend) %></h5>
+                      <p class="card-text">
+                        <% if current_user == @user %>
+                          (<%= link_to "Unfriend", friendship_path(friendship), method: :delete, data: { confirm: "Are you sure?" } %><span class="text-muted"> - <%= friendship.status == 0 ? "Pending" : friendship.relationship.capitalize %></span>)
+                        <% end %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <% end %>
-          </li>
         <% end %>
-      </ul>
+
+      </div>
 
     <% else %>
 
@@ -42,3 +57,5 @@
     <% end %>
 
 </div>
+
+

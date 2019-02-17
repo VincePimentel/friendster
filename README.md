@@ -35,3 +35,4 @@ Friendship
 
 Navigation
   * Change active link depending on current page
+  * Add badge for friend request count
