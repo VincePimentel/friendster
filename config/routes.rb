@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :posts, only: [:create, :destroy]
   end
 
+  resources :posts do
+    resources :comments, except: [:show, :new]
+  end
+
   resources :friendships, only: [:create, :destroy]
   resources :activities, only: [:create, :destroy]
 

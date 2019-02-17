@@ -14,14 +14,18 @@ User
   * Add relationship
   * Show - fix avatar cropping
 
+Tags (or Hashtags?)
+  * Add tag model for posts
+
 Post
-  * Add tags
   * Add dropdown for tags
   * Add edit feature
+  * Add location (bool) attribute (where user posted the post)
 
 Comment
   * Set up
   * Add comment box to users show and home index
+  * Comments index (latest comments)
 
 Like
   * Set up
