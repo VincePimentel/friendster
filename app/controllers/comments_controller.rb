@@ -3,13 +3,11 @@ class CommentsController < ApplicationController
   def create
     post = Post.find(params[:post_id])
 
-    @post_comment = post.comments.build(comment_params)
-    @user_comment = current_user.comments.build(comment_params)
+    comment = post.comments.build(comment_params)
 
-    # Add activity
+    binding.pry
 
-    @post_comment.save
-    @user_comment.save
+    comment.save
 
     redirect_to root_path
   end
@@ -27,6 +25,6 @@ class CommentsController < ApplicationController
   private
 
     def comment_params
-      params.require(:comment).permit(:content)
+      params.require(:comment).permit(:content, :commenter_id)
     end
 end

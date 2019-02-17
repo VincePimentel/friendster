@@ -1,4 +1,6 @@
-<%= form_for [post, @comment] do |f| %>
+<%# binding.pry %>
+
+<%= form_for [post, comment] do |f| %>
   <div class="form-row">
     <div class="col-9">
       <%= f.text_field :content, placeholder: "Leave a comment...", class: "form-control form-control-sm" %>
@@ -25,14 +27,13 @@
           <ul class="list-group">
             <% post.comments.each do |comment| %>
               <li class="list-group-item">
-                <%= link_to comment.commentable.user.full_name, user_path(comment.commentable.user) %> <%= comment.content %>
+                <%= link_to comment.commenter.full_name, user_path(comment.commenter) %> <%= comment.content %>
                 <span class="float-right">
                   <%= link_to icon("fas", "trash-alt"),
                     post_comment_path(post, comment),
                     method: :delete,
                     data: { confirm: "Are you sure?" } %>
                 </span>
-                <% binding.pry %>
               </li>
             <% end %>
           </ul>
