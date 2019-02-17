@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   has_many :posts
 
+  has_many :comments, as: :commentable
+
   def full_name
     "#{self.first_name} #{self.last_name}"
   end

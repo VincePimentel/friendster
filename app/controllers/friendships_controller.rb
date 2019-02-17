@@ -7,10 +7,10 @@ class FriendshipsController < ApplicationController
         )
 
     @referenced_friendship =
-      Friendship.where(
+      Friendship.find_by(
         friend_id: @friendship.user.id,
         user_id: @friendship.friend.id
-        ).take
+        )
 
     if @friendship.save
 
@@ -35,10 +35,10 @@ class FriendshipsController < ApplicationController
 
     # Other user's friendship with current user
     @referenced_friendship =
-      Friendship.where(
+      Friendship.find_by(
         friend_id: @friendship.user.id,
         user_id: @friendship.friend.id
-        ).take
+        )
 
     # Destroy current user's friendship with other user
     @friendship.destroy

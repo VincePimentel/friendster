@@ -24,7 +24,7 @@
               <!-- <a class="dropdown-item" href="#">Settings</a> -->
               <!-- <a class="dropdown-item" href="#">Log Out</a> -->
               <%= link_to "Settings", "#", class: "dropdown-item" %>
-              <%= link_to "Log Out", logout_path, class: "dropdown-item" %>
+              <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>

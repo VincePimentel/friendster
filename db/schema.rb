@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_234833) do
+ActiveRecord::Schema.define(version: 2019_02_17_084112) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -31,8 +31,17 @@ ActiveRecord::Schema.define(version: 2019_02_15_234833) do
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.string "commentable_type"
+    t.integer "commentable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  end
+
   create_table "friendships", force: :cascade do |t|
-    t.string "relationship"
+    t.string "relationship", default: "friends"
     t.integer "status", default: 0
     t.integer "user_id"
     t.integer "friend_id"
@@ -43,9 +52,9 @@ ActiveRecord::Schema.define(version: 2019_02_15_234833) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id"
     t.text "content"
     t.string "link"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"

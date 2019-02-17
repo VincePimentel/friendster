@@ -62,7 +62,7 @@
       <h5 class="mt-4 mb-3">Posts</h5>
 
       <% if @posts.size > 0 %>
-        <% @posts.reverse_each do |post| %>
+        <% @posts.each do |post| %>
           <% next if post.content.nil? %>
 
           <div class="card mb-3">

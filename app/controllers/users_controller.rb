@@ -22,10 +22,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post = @user.posts.build(link: "")
+    @post = Post.new
     @posts = @user.posts.order("created_at DESC")
 
-    # Take all pending friend requests
+    # Collect all pending friend requests
     @requests = current_user.referenced_friendships.where(status: 0)
   end
 

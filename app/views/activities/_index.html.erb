@@ -30,8 +30,12 @@
           <% end %>
         </div>
 
-        <div class="card-footer text-muted py-0">
-          COMMENT HERE
+        <div class="card-footer text-muted px-1 py-1">
+          <%= form_for [activity.trackable, @comment] do |f| %>
+            <%= f.text_field :content, placeholder: "Leave a comment", class: "form-control-sm" %>
+            <%= f.submit :post, class: "btn btn-primary btn-block" %>
+          <% end %>
+
         </div>
       </div> <!-- card mb-3 -->
   <% end %>
