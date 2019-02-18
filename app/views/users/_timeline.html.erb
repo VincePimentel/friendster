@@ -35,25 +35,11 @@
 <div class="col-md-7">
   <div class="row">
     <div class="col">
-      <%= form_for [@user, @post] do |f| %>
-        <div class="form-group">
-          <%= f.text_area :content,
-            placeholder: "What's up, #{@user.first_name}?",
-            class: "form-control" %>
-        </div>
-
-        <div class="form-row">
-          <div class="col-10 col-md-9">
-            <%= f.text_field :link,
-              placeholder: "Image URL",
-              class: "form-control" %>
-          </div>
-
-          <div class="col-2 col-md-3">
-            <%= f.submit "Share", class: "btn btn-primary btn-block" %>
-          </div>
-        </div>
-      <% end %>
+      <%= render partial: "posts/form",
+        locals: {
+          user: current_user,
+          post: @post
+        } %>
     </div> <!-- col -->
   </div> <!-- row -->
 
@@ -61,48 +47,12 @@
     <div class="col">
       <h5 class="mt-4 mb-3">Posts</h5>
 
-      <% if @posts.size > 0 %>
-        <% @posts.each do |post| %>
-          <% next if post.content.nil? %>
+      <%= render partial: "posts/index",
+        locals: {
+          posts: @posts,
+          comment: @comment
+        } %>
 
-          <div class="card mb-3">
-            <div class="card-header">
-              <%= post.user.full_name %>
-
-              <% if post.user.id == session[:user_id] %>
-                <span class="float-right">
-                  <%= link_to icon("fas", "trash-alt"), user_post_path(@user, post),
-                    method: :delete,
-                    data: { confirm: "Are you sure?" } %>
-                </span>
-              <% end %>
-
-              <br>
-
-              <small class="text-muted" data-toggle="tooltip" data-placement="right" title="<%= time_ago_in_words(post.created_at) %> ago">
-                <%= post.created_at.localtime.strftime("%A, %d %b %Y %l:%M %p") %>
-              </small>
-            </div>
-
-            <div class="card-body">
-              <%= post.content %>
-
-              <% if !post.link.empty? %>
-                <%= image_tag post.link, class: "img-fluid" %>
-              <% end %>
-            </div>
-
-            <div class="card-footer text-muted px-1 py-1">
-              <%= text_field_tag "comment[content]", nil,
-                placeholder: "Leave a comment",
-                class: "form-control form-control-sm" %>
-            </div>
-          </div> <!-- card mb-3 -->
-
-        <% end %>
-      <% else %>
-        <p>Nothing to see here!</p>
-      <% end %>
     </div> <!-- col -->
   </div> <!-- row -->
 

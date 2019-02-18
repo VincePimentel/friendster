@@ -3,9 +3,11 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
 
+    # If user posted on other user's profile
+
     @post.save
 
-    @post.create_activity(:create, owner: current_user)
+    # @post.create_activity(:create, owner: current_user)
 
     redirect_to user_path(current_user)
   end

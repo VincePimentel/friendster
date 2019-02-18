@@ -23,6 +23,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post = Post.new
+    @comment = Comment.new
+    @hashtag = Hashtag.new
     @posts = @user.posts.order("created_at DESC")
 
     # Collect all pending friend requests
