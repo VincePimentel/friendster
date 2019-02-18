@@ -1,5 +1,3 @@
-<%# binding.pry %>
-
 <%= form_for [post, comment] do |f| %>
   <div class="form-row">
     <div class="col-9">
@@ -28,12 +26,14 @@
             <% post.comments.each do |comment| %>
               <li class="list-group-item">
                 <%= link_to comment.commenter.full_name, user_path(comment.commenter) %> <%= comment.content %>
-                <span class="float-right">
-                  <%= link_to icon("fas", "trash-alt"),
-                    post_comment_path(post, comment),
-                    method: :delete,
-                    data: { confirm: "Are you sure?" } %>
-                </span>
+                <% if current_user == comment.commenter %>
+                  <span class="float-right">
+                    <%= link_to icon("fas", "trash-alt"),
+                      post_comment_path(post, comment),
+                      method: :delete,
+                      data: { confirm: "Are you sure?" } %>
+                  </span>
+                <% end %>
               </li>
             <% end %>
           </ul>

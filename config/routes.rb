@@ -8,12 +8,12 @@ Rails.application.routes.draw do
 
   # Add exceptions
   resources :users do
-    resources :posts, only: [:create, :destroy]
+    resources :posts, only: [:create, :edit, :destroy]
     resources :comments, only: [:create, :destroy]
   end
 
-  resources :posts, only: [:create, :destroy] do
-    resources :comments, only: [:create, :destroy]
+  resources :posts, only: [:create, :edit, :destroy] do
+    resources :comments, only: [:create, :edit, :destroy]
   end
 
   resources :friendships, only: [:create, :destroy]

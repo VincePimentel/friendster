@@ -4,10 +4,11 @@ class CommentsController < ApplicationController
     post = Post.find(params[:post_id])
 
     comment = post.comments.build(comment_params)
-
-    binding.pry
+    comment.commenter = current_user
 
     comment.save
+
+    # Create comment activity here
 
     redirect_to root_path
   end
@@ -15,9 +16,9 @@ class CommentsController < ApplicationController
   def destroy
     post = Post.find(params[:post_id])
 
-    @comment = post.comments.find(params[:id])
+    comment = post.comments.find(params[:id])
 
-    @comment.destroy
+    comment.destroy
 
     redirect_to root_path
   end
@@ -25,6 +26,6 @@ class CommentsController < ApplicationController
   private
 
     def comment_params
-      params.require(:comment).permit(:content, :commenter_id)
+      params.require(:comment).permit(:content)
     end
 end
