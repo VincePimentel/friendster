@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_17_084112) do
+ActiveRecord::Schema.define(version: 2019_02_17_215036) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -33,11 +33,10 @@ ActiveRecord::Schema.define(version: 2019_02_17_084112) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.string "commentable_type"
-    t.integer "commentable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.integer "commenter_id"
+    t.integer "post_id"
+    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
   create_table "friendships", force: :cascade do |t|

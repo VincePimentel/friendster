@@ -4,16 +4,17 @@
     <div class="card mb-3">
 
       <div class="card-header">
-        <%= activity.owner.full_name if activity.owner %>
+        <%= activity.owner.full_name %>
 
-        <% if activity.owner.id == session[:user_id] %>
-          <!-- <span class="float-right"> -->
-            <%= link_to icon("fas", "trash-alt"),
-              user_post_path(activity.trackable.user, activity.trackable.id),
+        <% if current_user.id == activity.owner.id %>
+          <span class="float-right">
+            <%= link_to icon("fas", "edit"),
+              edit_user_post_path(current_user.id, activity.trackable.id) %>
+            <%= link_to icon("fas", "trash"),
+              user_post_path(current_user.id, activity.trackable.id),
               method: :delete,
-              data: { confirm: "Are you sure?" },
-              class: "float-right" %>
-          <!-- </span> -->
+              data: { confirm: "Are you sure?" } %>
+          </span>
         <% end %>
 
         <br>
@@ -32,7 +33,11 @@
       </div>
 
       <div class="card-footer text-muted px-1 py-1">
-        <%= render partial: "comments/form", locals: { post: activity.trackable } %>
+        <%= render partial: "comments/form",
+          locals: {
+            post: Post.find(activity.trackable.id),
+            comment: comment
+          } %>
       </div> <!-- card-footer -->
 
     </div> <!-- card mb-3 -->

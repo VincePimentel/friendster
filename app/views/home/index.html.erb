@@ -1,3 +1,7 @@
 <div class="activity">
-  <%= render partial: "activities/activity", locals: { activities: @activities } %>
+  <%= render partial: "activities/activity",
+    locals: {
+      activities: @activities,
+      comment: @comment
+    } %>
 </div> <!-- activity -->
