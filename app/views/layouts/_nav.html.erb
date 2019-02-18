@@ -7,7 +7,19 @@
 
     <div class="collapse navbar-collapse" id="navbarsMain">
       <ul class="navbar-nav ml-auto">
+
         <% if logged_in? %>
+          <li class="nav-item">
+            <%#= icon("fas", "users", class: "nav-link") %>
+            <%= link_to users_path, class: "nav-link" do %>
+              <%= icon("fas", "users") %>
+                <% if friend_request_count > 0 %>
+                  <span class="badge badge-danger">
+                    <%= friend_request_count %>
+                  </span>
+                <% end %>
+            <% end %>
+          </li>
           <li class="nav-item">
             <%= link_to current_user.first_name, user_path(current_user), class: "nav-link" %>
           </li>
@@ -15,9 +27,9 @@
             <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "People", users_path, class: "nav-link" %>
-          </li>
+          <!-- <li class="nav-item">
+            <%#= link_to "People", users_path, class: "nav-link" %>
+          </li> -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navDropdown" data-toggle="dropdown"></a>
             <div class="dropdown-menu">

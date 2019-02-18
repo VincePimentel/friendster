@@ -10,7 +10,6 @@ User.destroy_all
 Post.destroy_all
 Comment.destroy_all
 Friendship.destroy_all
-PublicActivity::Activity.destroy_all
 
 vince = User.create(
   first_name: "Vince",

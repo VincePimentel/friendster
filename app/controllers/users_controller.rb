@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @post = Post.new
     @comment = Comment.new
     @hashtag = Hashtag.new
-    @posts = @user.posts.order("created_at DESC")
+    @posts = @user.posts.order("created_at DESC")#.and also posts by friends on profile
 
     # Collect all pending friend requests
     @requests = current_user.referenced_friendships.where(status: 0)

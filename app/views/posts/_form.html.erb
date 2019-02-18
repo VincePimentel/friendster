@@ -1,19 +1,19 @@
 <%= form_for [user, post] do |f| %>
-  <div class="form-group">
+  <div class="form-group mb-1">
     <%= f.text_area :content,
       placeholder: "What's up, #{user.first_name}?",
       class: "form-control" %>
   </div>
 
   <div class="form-row">
-    <div class="col-10 col-md-9">
+    <div class="col-10 col-md-9 pr-0">
       <%= f.text_field :link,
         placeholder: "Image URL",
-        class: "form-control" %>
+        class: "form-control form-control-sm" %>
     </div>
 
     <div class="col-2 col-md-3">
-      <%= f.submit "Share", class: "btn btn-primary btn-block" %>
+      <%= f.submit "Share", class: "btn btn-primary btn-block btn-sm" %>
     </div>
   </div>
 <% end %>
