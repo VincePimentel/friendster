@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.text :content
       t.string :link
       t.integer :recipient
+      t.integer :audience, default: 1
       t.references :user, foreign_key: true
 
       t.timestamps

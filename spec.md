@@ -19,6 +19,8 @@ Specs:
   * tag.posts.first.users.first.name #=> "Vince"
   * tag.posts.first.users.last.name #=> "Alice"
 
+  * User has_many
+
 - [x] Include at least one many-to-many relationship (x has_many y through z, y has_many x through z; e.g. Recipe has_many Items through Ingredients, Item has_many Recipes through Ingredients)
   * User(Friend) has_many Friends(User) through Friendships
   * Friend(User) has_many Users(Friend) through Friendships

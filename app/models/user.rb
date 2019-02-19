@@ -7,9 +7,14 @@ class User < ApplicationRecord
   has_many :referenced_friendships, class_name: "Friendship", foreign_key: "friend_id"
   has_many :referenced_friends, through: :referenced_friendships, source: :user
 
-  has_many :posts, dependent: :destroy
-  has_many :comments, through: :posts, dependent: :destroy
-  has_many :hashtags, through: :posts
+  # has_many :posts, dependent: :destroy
+  # has_many :comments, through: :posts, dependent: :destroy
+
+  has_many :comments, dependent: :destroy
+  has_many :posts, through: :comments, dependent: :destroy
+
+
+  # has_many :hashtags, through: :posts
 
   def full_name
     "#{self.first_name} #{self.last_name}"
