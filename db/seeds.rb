@@ -26,6 +26,36 @@ vince = User.create(
   bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget metus eros. Duis pellentesque in odio eu lacinia. Etiam et elit non lorem semper vulputate. Curabitur justo augue, lacinia sed felis in, placerat feugiat arcu. Integer interdum tincidunt finibus. Maecenas et risus maximus, vestibulum lectus ut, viverra arcu."
   )
 
+alice = User.create(
+  first_name: "Alice",
+  last_name: "Chan",
+  username: "alice",
+  email: "alice@chan.com",
+  password: "123456",
+  location: "California",
+  website: "https://alicechan.com",
+  instagram: "aliceinstagram",
+  twitter: "alicetwitter",
+  gender: "female",
+  avatar: "http://i.imgur.com/HIBZF4m.jpg",
+  bio: "In finibus dui eget iaculis pulvinar. Nam ac ipsum maximus quam aliquet vehicula vitae sit amet est. Maecenas semper lectus diam, non egestas orci tincidunt et. Integer mollis, massa nec efficitur tincidunt, augue ipsum dignissim elit, vel lobortis est diam eget tortor. Nam gravida, risus ullamcorper interdum euismod, nulla ligula semper erat, eu pharetra enim libero at enim. Nulla lacinia molestie libero. Nullam vel erat finibus, fermentum felis et, viverra nulla. Integer nisl orci, blandit non posuere ut, laoreet in nisi."
+  )
+
+edilyn = User.create(
+  first_name: "Edilyn",
+  last_name: "Oligo",
+  username: "edilyn",
+  email: "edilyn@oligo.com",
+  password: "123456",
+  location: "California",
+  website: "https://edilynchan.com",
+  instagram: "edilyninstagram",
+  twitter: "edilyntwitter",
+  gender: "female",
+  avatar: "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.0-9/51034513_10213997107301954_5233441285381029888_n.jpg?_nc_cat=104&_nc_ht=scontent-sjc3-1.xx&oh=9647e0bca1d838136e5acf680bd33186&oe=5CE09ADB",
+  bio: "Nam gravida, risus ullamcorper interdum euismod, nulla ligula semper erat, eu pharetra enim libero at enim. Nulla lacinia molestie libero. Nullam vel erat finibus, fermentum felis et, viverra nulla. Integer nisl orci, blandit non posuere ut, laoreet in nisi."
+  )
+
 10.times do |i|
   nancy = User.create(
     first_name: "Nancy #{i + 1}",
@@ -59,33 +89,4 @@ vince = User.create(
   nancy_friendship.save
 end
 
-alice = User.create(
-  first_name: "Alice",
-  last_name: "Chan",
-  username: "alice",
-  email: "alice@chan.com",
-  password: "123456",
-  location: "California",
-  website: "https://alicechan.com",
-  instagram: "aliceinstagram",
-  twitter: "alicetwitter",
-  gender: "female",
-  avatar: "http://i.imgur.com/HIBZF4m.jpg",
-  bio: "In finibus dui eget iaculis pulvinar. Nam ac ipsum maximus quam aliquet vehicula vitae sit amet est. Maecenas semper lectus diam, non egestas orci tincidunt et. Integer mollis, massa nec efficitur tincidunt, augue ipsum dignissim elit, vel lobortis est diam eget tortor. Nam gravida, risus ullamcorper interdum euismod, nulla ligula semper erat, eu pharetra enim libero at enim. Nulla lacinia molestie libero. Nullam vel erat finibus, fermentum felis et, viverra nulla. Integer nisl orci, blandit non posuere ut, laoreet in nisi."
-  )
-
-edilyn = User.create(
-  first_name: "Edilyn",
-  last_name: "Oligo",
-  username: "edilyn",
-  email: "edilyn@oligo.com",
-  password: "123456",
-  location: "California",
-  website: "https://edilynchan.com",
-  instagram: "edilyninstagram",
-  twitter: "edilyntwitter",
-  gender: "female",
-  avatar: "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.0-9/51034513_10213997107301954_5233441285381029888_n.jpg?_nc_cat=104&_nc_ht=scontent-sjc3-1.xx&oh=9647e0bca1d838136e5acf680bd33186&oe=5CE09ADB",
-  bio: "Nam gravida, risus ullamcorper interdum euismod, nulla ligula semper erat, eu pharetra enim libero at enim. Nulla lacinia molestie libero. Nullam vel erat finibus, fermentum felis et, viverra nulla. Integer nisl orci, blandit non posuere ut, laoreet in nisi."
-  )
 

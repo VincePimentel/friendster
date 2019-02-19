@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   def create
+    binding.pry
     @post = current_user.posts.build(post_params)
 
     # If user posted on other user's profile
@@ -25,6 +26,6 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:content, :link)
+      params.require(:post).permit(:content, :link, :recipient_id)
     end
 end

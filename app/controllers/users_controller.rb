@@ -24,11 +24,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.new
     @comment = Comment.new
-    @posts = @user.posts.order("created_at DESC")#.and also posts by friends on profile
+    @posts = @user.posts.merge(Post.where("recipient_id = ?", @user.id)).order("created_at DESC")#.and also posts by friends on profile
 
-    # Collect all pending friend requests
+    binding.pry
+
     @friends = @user.friends
 
+    # Collect all pending friend requests
     @requests = @user.referenced_friendships.where(status: 0)
   end
 

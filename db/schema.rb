@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_02_17_215036) do
   create_table "posts", force: :cascade do |t|
     t.text "content"
     t.string "link"
-    t.integer "recipient"
+    t.integer "recipient_id"
     t.integer "audience", default: 1
     t.integer "user_id"
     t.datetime "created_at", null: false
