@@ -24,7 +24,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.new
     @comment = Comment.new
-    @hashtag = Hashtag.new
     @posts = @user.posts.order("created_at DESC")#.and also posts by friends on profile
 
     # Collect all pending friend requests

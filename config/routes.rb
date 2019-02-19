@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'hashtags/create'
+  # get 'hashtags/create'
+
   root 'home#index'
 
   get 'login', to: 'sessions#new'

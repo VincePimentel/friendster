@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 2019_02_17_215036) do
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.integer "post_id"
-    t.integer "commenter_id"
-    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
+    t.integer "user_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "friendships", force: :cascade do |t|
