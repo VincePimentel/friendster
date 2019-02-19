@@ -27,7 +27,9 @@ class UsersController < ApplicationController
     @posts = @user.posts.order("created_at DESC")#.and also posts by friends on profile
 
     # Collect all pending friend requests
-    @requests = current_user.referenced_friendships.where(status: 0)
+    @friends = @user.friends
+
+    @requests = @user.referenced_friendships.where(status: 0)
   end
 
   def edit

@@ -1,7 +1,11 @@
-<div class="activity">
-  <%= render partial: "posts/index",
-    locals: {
-      posts: @posts,
-      comment: @comment
-    } %>
-</div> <!-- activity -->
+<% if current_user %>
+  <div class="activity">
+    <%= render partial: "posts/index",
+      locals: {
+        posts: @posts,
+        comment: @comment
+      } %>
+  </div> <!-- activity -->
+<% else %>
+  LOG IN
+<% end %>

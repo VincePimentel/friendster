@@ -26,7 +26,7 @@ class FriendshipsController < ApplicationController
       flash[:notice] = "Unable to add friend."
     end
 
-    redirect_to users_path
+    redirect_to user_path(current_user)
   end
 
   def destroy

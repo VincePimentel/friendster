@@ -1,6 +1,6 @@
 <div class="col-12">
 
-  <% if current_user == @user && @requests.size > 0 %>
+  <% if @user == current_user && @requests.size > 0 %>
     <h5>Friend Requests <%= "(#{@requests.size})" if @requests.size > 0 %></h5>
 
     <ul>
@@ -51,7 +51,11 @@
     <% else %>
 
       <p>
-        You have not added any friends, yet! Find some <%= link_to "here", users_path %>.
+        <% if @user == current_user %>
+          You have not added any friends, yet! Find some <%= link_to "here", users_path %>.
+        <% else %>
+          <%= @user.first_name %> has not added any friends, yet!
+        <% end %>
       </p>
 
     <% end %>

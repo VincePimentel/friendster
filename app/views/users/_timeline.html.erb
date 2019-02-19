@@ -18,7 +18,8 @@
       <h5 class="card-title">Friends</h5>
 
       <div class="row">
-        <% @user.friends.last(9).each do |friend| %>
+        <%# binding.pry %>
+        <% @friends.last(9).each do |friend| %>
           <div class="col-4 px-1 py-0 text-center">
             <%= image_tag friend.avatar, id: "friends-avatar", class: "img-fluid" %>
             <p id="friends-name"><small><%= friend.first_name %></small></p>
