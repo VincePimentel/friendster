@@ -1,11 +1,26 @@
 <% if current_user %>
-  <div class="activity">
-    <%= render partial: "posts/index",
-      locals: {
-        posts: @posts,
-        comment: @comment
-      } %>
-  </div> <!-- activity -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-8">
+      <%= render partial: "posts/form",
+        locals: {
+          user: current_user,
+          recipient_id: current_user.id,
+          post: @post
+        } %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <h5 class="mt-4 mb-3">Posts</h5>
+
+      <%= render partial: "posts/index",
+        locals: {
+          posts: @posts,
+          comment: @comment
+        } %>
+    </div>
+  </div>
 <% else %>
   LOG IN
 <% end %>

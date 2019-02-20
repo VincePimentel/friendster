@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 
   def index
+    @post = Post.new
     # Get all ID's of user and user's friends
     ids = current_user.friends.pluck(:id) << current_user.id
 

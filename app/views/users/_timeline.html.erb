@@ -39,6 +39,7 @@
       <%= render partial: "posts/form",
         locals: {
           user: current_user,
+          recipient_id: @user.id,
           post: @post
         } %>
     </div> <!-- col -->

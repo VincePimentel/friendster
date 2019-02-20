@@ -1,5 +1,5 @@
 <%= form_for [user, post] do |f| %>
-  <%= f.hidden_field :recipient_id, value: @user.id %>
+  <%= f.hidden_field :recipient_id, value: recipient_id %>
   <div class="form-group mb-1">
     <%= f.text_area :content,
       placeholder: "What's up, #{user.first_name}?",
