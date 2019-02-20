@@ -34,7 +34,7 @@
                 <%= icon("fas", "user-minus") + " Cancel" %>
               <% end %>
             <% elsif current_user.friends.find_by(id: @user) %>
-              <%= link_to edit_friendship_path, role: "button", class: "btn btn-light btn-sm" do %>
+              <%= link_to edit_friendship_path(@friendship), role: "button", class: "btn btn-light btn-sm" do %>
                 <%= icon("fas", "user-edit") + " Edit" %>
               <% end %>
             <% else %>

@@ -14,11 +14,12 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :friendships
+
   resources :posts do
     resources :comments
   end
 
-  resources :friendships
 
   # resources :activities
 

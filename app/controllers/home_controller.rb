@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     end
 
     # Get all posts of user and user's friends
-    @posts = Post.where(user_id: ids).order("created_at DESC")
+    @posts = Post.where(user_id: ids).where(audience: 1).order("created_at DESC")
 
     @comment = Comment.new
   end

@@ -18,7 +18,7 @@
                     <% if friendship.status == 0 %>
                       <%= tag.small("Pending", class: "badge badge-pill badge-warning") %>
                     <% else %>
-                      <%= tag.small(friendship.relationship.capitalize, class: "badge badge-pill badge-primary") %>
+                      <%= tag.small(friendship.relationship, class: "badge badge-pill badge-primary") %>
                     <% end %>
 
                     <% if current_user == @user %>
