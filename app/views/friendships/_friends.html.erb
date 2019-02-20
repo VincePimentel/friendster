@@ -22,11 +22,17 @@
                     <% end %>
 
                     <% if current_user == @user %>
-                      <%= link_to friendship_path(friendship),
-                        method: :delete,
-                        data: { confirm: "Are you sure?" },
-                        class: "no-text-decoration" do %>
-                        <%= tag.small(friendship.status == 0 ? "(cancel)" : "(edit)") %><% end %>
+                      <% if friendship.status == 0 %>
+                        <%= link_to friendship_path(friendship),
+                          method: :delete,
+                          data: { confirm: "Are you sure?" },
+                          class: "no-text-decoration" do %>
+                          <%= tag.small("(cancel)") %><% end %>
+                      <% else %>
+                        <%= link_to edit_friendship_path(friendship),
+                          class: "no-text-decoration" do %>
+                          <%= tag.small("(edit)") %><% end %>
+                      <% end %>
                     <% end %>
                   </p>
                 </div>

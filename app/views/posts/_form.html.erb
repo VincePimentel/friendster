@@ -6,15 +6,29 @@
       class: "form-control" %>
   </div>
 
-  <div class="form-row">
-    <div class="col-9 col-md-9 pr-0">
+  <div class="form-group mb-1">
+    <div class="col-12 px-0">
       <%= f.text_field :link,
         placeholder: "Image URL",
         class: "form-control form-control-sm" %>
     </div>
+  </div>
 
-    <div class="col-3 col-md-3">
-      <%= f.submit "Share", class: "btn btn-primary btn-block btn-sm" %>
+  <div class="form-row">
+    <div class="col-9">
+        <%= f.select :audience,
+          [["Public", 1], ["Friends Only", 0]],
+          { },
+          { class: "custom-select custom-select-sm" } %>
+
+    </div>
+    <div class="col-3">
+      <% if post.id %>
+        <%= f.submit "Update", class: "btn btn-primary btn-block btn-sm" %>
+      <% else %>
+        <%= f.submit "Share", class: "btn btn-primary btn-block btn-sm" %>
+      <% end %>
     </div>
   </div>
+  <!-- </div> -->
 <% end %>
