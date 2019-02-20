@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 
   def index
+    @user = current_user
     @post = Post.new
     # Get all ID's of user and user's friends
 

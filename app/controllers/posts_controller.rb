@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
 
   def create
-    binding.pry
-    @post = current_user.posts.build(post_params)
+    post = current_user.posts.build(post_params)
 
     # If user posted on other user's profile
 
-    @post.save
+    post.save
 
     # @post.create_activity(:create, owner: current_user)
 
@@ -14,17 +13,24 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
-    @user = User.find(params[:user_id])
+    @user = current_user
+    @post = current_user.posts.find(params[:id])
+  end
 
+  def update
+    post = current_user.posts.find(params[:id])
+
+    post.update(post_params)
+
+    redirect_to user_path(current_user)
   end
 
   def destroy
-    @post = current_user.posts.find(params[:id])
+    post = current_user.posts.find(params[:id])
 
     # @post.create_activity(:destroy, owner: current_user)
 
-    @post.destroy
+    post.destroy
 
     redirect_to user_path(current_user)
   end

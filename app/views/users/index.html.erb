@@ -8,7 +8,7 @@
 
         <% @users.each do |user| %>
 
-          <% next if current_user == user || current_user.friends.find_by(id: user) %>
+          <% next if current_user == user || current_user.friendships.find_by(friend_id: user, status: 1) %>
 
             <div class="col-6 mb-4">
               <div class="card">
@@ -24,11 +24,26 @@
                       </h5>
 
                       <p class="card-text">
-                        <%= link_to friendships_path(friend_id: user),
-                          method: :post,
-                          role: "button",
-                          class: "btn btn-primary btn-sm" do %>
-                          <%= tag.small(icon("fas", "user-plus") + " Add Friend") %>
+                        <% if current_user.friendships.find_by(friend_id: user, status: 0) %>
+                          <%= link_to friendship_path(current_user.friendships.find_by(friend_id: user, status: 0)),
+                            method: :delete,
+                            role: "button",
+                            data: { confirm: "Are you sure?" },
+                            class: "btn btn-primary btn-sm" do %>
+                            <%= tag.small(icon("fas", "user-minus") + " Cancel") %>
+
+                          <% end %>
+                        <% else %>
+                          <%= link_to friendships_path(friend_id: user),
+                            method: :post,
+                            role: "button",
+                            class: "btn btn-primary btn-sm" do %>
+                            <% if user.friendships.find_by(friend_id: current_user, status: 0) %>
+                              <%= tag.small(icon("fas", "user-plus") + " Accept") %>
+                            <% else %>
+                              <%= tag.small(icon("fas", "user-plus") + " Add Friend") %>
+                            <% end %>
+                          <% end %>
                         <% end %>
                       </p>
                     </div>

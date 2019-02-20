@@ -37,7 +37,7 @@
     <div class="col">
       <%= render partial: "posts/form",
         locals: {
-          user: current_user,
+          user: @user,
           recipient_id: @user.id,
           post: @post
         } %>
