@@ -25,18 +25,18 @@ body {
 }
 
 #profile-avatar {
-  width: 175px;
-  height: 175px;
-  margin: -150px 0 0 15px;
+  width: 160px;
+  height: 160px;
+  //margin: -150px 0 0 15px;
 }
 
-#profile-name {
+#profile-header {
   color: #fff;
-  margin: -105px 0 0 205px;
+  margin-top: -130px;
 }
 
 #profile-nav {
-  margin: 26px 0 0 0;
+  margin: -31px 0 0 0;
 }
 
 #friends-avatar {

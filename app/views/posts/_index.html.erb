@@ -1,15 +1,14 @@
-
 <% if posts.size > 0 %>
   <% posts.each do |post| %>
-<%# binding.pry %>
+
     <% next if post.nil? %>
 
       <div class="card mb-3">
 
         <div class="card-header">
-          <%= post.user.full_name %>
 
           <% if current_user.id == post.user.id %>
+            <%= link_to post.user.full_name, user_path(post.user) %>
             <span class="float-right">
               <%= link_to icon("fas", "edit"),
                 edit_user_post_path(current_user, post) %>
@@ -18,6 +17,8 @@
                 method: :delete,
                 data: { confirm: "Are you sure?" } %>
             </span>
+          <% else %>
+            <%= link_to post.user.full_name, user_path(post.user) %> <%= icon("fas", "caret-right") %> <%= link_to User.find(post.recipient_id).full_name, user_path(post.recipient_id) %> <!-- helper me -->
           <% end %>
 
           <br>

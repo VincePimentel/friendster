@@ -48,6 +48,8 @@
     <div class="col">
       <h5 class="mt-4 mb-3">Posts</h5>
 
+      <p>All | <%= @user.first_name %> | <%= @user.first_name %>'s Friends</p>
+
       <%= render partial: "posts/index",
         locals: {
           posts: @posts,

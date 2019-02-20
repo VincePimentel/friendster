@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   def create
-    binding.pry
+    # binding.pry
     @post = current_user.posts.build(post_params)
 
     # If user posted on other user's profile

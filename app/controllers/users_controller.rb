@@ -24,9 +24,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.new
     @comment = Comment.new
-    @posts = @user.posts.merge(Post.where("recipient_id = ?", @user.id)).order("created_at DESC")#.and also posts by friends on profile
+    # @posts = @user.posts#.merge(Post.where("recipient_id = ?", @user.id)).order("created_at DESC")#.and also posts by friends on profile
 
-    binding.pry
+    @posts = Post.where("recipient_id = ?", @user.id).order("created_at DESC")
+
+    # binding.pry
 
     @friends = @user.friends
 
