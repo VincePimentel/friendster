@@ -30,8 +30,6 @@ class FriendshipsController < ApplicationController
         friendship.update(status: 1)
         referenced_friendship.update(status: 1)
       end
-    else
-      flash[:notice] = "Unable to add friend."
     end
 
     #binding.pry

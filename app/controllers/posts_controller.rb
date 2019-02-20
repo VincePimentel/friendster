@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
     post.update(post_params)
 
-    redirect_to user_path(current_user)
+    redirect_to edit_post_path(post)
   end
 
   def destroy
