@@ -43,6 +43,8 @@ gem 'jquery-rails'
 # FontAwesome
 gem 'font-awesome-sass'
 
+gem 'gravtastic'
+
 # PublicActivity
 # gem 'public_activity'
 

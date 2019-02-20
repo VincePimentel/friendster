@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include Gravtastic
+  gravtastic
+
   has_secure_password
 
   has_many :friendships, dependent: :destroy

@@ -15,78 +15,85 @@ vince = User.create(
   first_name: "Vince",
   last_name: "Pimentel",
   username: "vince",
-  email: "vince@pimentel.com",
+  email: "vince_pimentel@email.com",
   password: "123456",
   location: "California",
   website: "https://vincepimentel.com",
   instagram: "vinceinstagram",
   twitter: "vincetwitter",
   gender: "male",
-  avatar: "https://avatars1.githubusercontent.com/u/343096?s=400&u=e72d7bf15402990dcfd0c259d0e4dfae51fc2c18&v=4",
   bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget metus eros. Duis pellentesque in odio eu lacinia. Etiam et elit non lorem semper vulputate. Curabitur justo augue, lacinia sed felis in, placerat feugiat arcu. Integer interdum tincidunt finibus. Maecenas et risus maximus, vestibulum lectus ut, viverra arcu."
   )
+
+vince.update(avatar: "#{vince.gravatar_url}&d=monsterid&size=150")
 
 alice = User.create(
   first_name: "Alice",
   last_name: "Chan",
   username: "alice",
-  email: "alice@chan.com",
+  email: "alice_chan@email.com",
   password: "123456",
   location: "California",
   website: "https://alicechan.com",
   instagram: "aliceinstagram",
   twitter: "alicetwitter",
   gender: "female",
-  avatar: "http://i.imgur.com/HIBZF4m.jpg",
   bio: "In finibus dui eget iaculis pulvinar. Nam ac ipsum maximus quam aliquet vehicula vitae sit amet est. Maecenas semper lectus diam, non egestas orci tincidunt et. Integer mollis, massa nec efficitur tincidunt, augue ipsum dignissim elit, vel lobortis est diam eget tortor. Nam gravida, risus ullamcorper interdum euismod, nulla ligula semper erat, eu pharetra enim libero at enim. Nulla lacinia molestie libero. Nullam vel erat finibus, fermentum felis et, viverra nulla. Integer nisl orci, blandit non posuere ut, laoreet in nisi."
   )
 
-edilyn = User.create(
-  first_name: "Edilyn",
-  last_name: "Oligo",
-  username: "edilyn",
-  email: "edilyn@oligo.com",
-  password: "123456",
-  location: "California",
-  website: "https://edilynchan.com",
-  instagram: "edilyninstagram",
-  twitter: "edilyntwitter",
-  gender: "female",
-  avatar: "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.0-9/51034513_10213997107301954_5233441285381029888_n.jpg?_nc_cat=104&_nc_ht=scontent-sjc3-1.xx&oh=9647e0bca1d838136e5acf680bd33186&oe=5CE09ADB",
-  bio: "Nam gravida, risus ullamcorper interdum euismod, nulla ligula semper erat, eu pharetra enim libero at enim. Nulla lacinia molestie libero. Nullam vel erat finibus, fermentum felis et, viverra nulla. Integer nisl orci, blandit non posuere ut, laoreet in nisi."
-  )
+alice.update(avatar: "#{alice.gravatar_url}&d=monsterid&size=150")
 
-10.times do |i|
-  nancy = User.create(
-    first_name: "Nancy #{i + 1}",
-    last_name: "Tran",
-    username: "nancy_#{i + 1}",
-    email: "nancy_#{i + 1}@tran.com",
+people = [
+  ["Pat Wolfe", "male"],
+  ["Darren Stewart", "male"],
+  ["Nettie Fields", "female"],
+  ["Joseph Osborne", "male"],
+  ["Willie Craig", "male"],
+  ["Sylvester Herrera", "male"],
+  ["Erma Willis", "female"],
+  ["Nelson Fuller", "male"],
+  ["Kelly Hamilton", "female"],
+  ["Rachael Quinn", "female"],
+]
+
+people.each do |person|
+  full_name = person[0]
+  first = full_name.split[0]
+  last = full_name.split[1]
+  join = first.downcase + last.downcase
+  email = "#{first.downcase}_#{last.downcase}@email.com"
+
+  user = User.create(
+    first_name: first,
+    last_name: last,
+    username: join,
+    email: email,
     password: "123456",
     location: "California",
-    website: "https://nancy#{i + 1}tran.com",
-    instagram: "nancy#{i + 1}instagram",
-    twitter: "nancy#{i + 1}twitter",
-    gender: "female",
-    avatar: "https://via.placeholder.com/175.png/09f/fff?text=#{i + 1}",
+    website: "https://#{join}.com",
+    instagram: "#{join}instagram",
+    twitter: "#{join}twitter",
+    gender: person[1],
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget metus eros. Duis pellentesque in odio eu lacinia. Etiam et elit non lorem semper vulputate. Curabitur justo augue, lacinia sed felis in, placerat feugiat arcu. Integer interdum tincidunt finibus. Maecenas et risus maximus, vestibulum lectus ut, viverra arcu."
     )
 
+  user.update(avatar: "#{user.gravatar_url}&d=monsterid&size=150")
+
   vince_friendship = vince.friendships.build(
     relationship: "friends",
-    friend_id: nancy.id,
+    friend_id: user.id,
     status: 1
     )
 
   vince_friendship.save
 
-  nancy_friendship = nancy.friendships.build(
+  user_friendship = user.friendships.build(
     relationship: "friends",
-    friend_id: vince.id,
+    friend_id: user.id,
     status: 1
     )
 
-  nancy_friendship.save
+  user_friendship.save
 end
 
 
