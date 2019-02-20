@@ -24,9 +24,9 @@
       <div class="col-auto col-sm-auto pr-5">
         <div class="h-100 justify-content-center flex-column d-flex">
           <%# binding.pry %>
-          <% if current_user != @user || !current_user.friends.find_by(id: @user) %>
-            <% if @friendships.find_by(friend_id: @user, status: 0) %>
-              <% binding.pry %>
+          <% if current_user != @user %>
+
+            <% if @friendship&.status == 0 %>
               <%= link_to friendship_path(@friendship),
                 method: :delete,
                 role: "button",
@@ -34,13 +34,14 @@
                 <%= icon("fas", "user-minus") + " Cancel" %>
               <% end %>
             <% else %>
-              <%= link_to friendship_path(@friendship),
+              <%= link_to friendships_path(friend_id: @user),
                 method: :post,
                 role: "button",
                 class: "btn btn-light btn-sm" do %>
                 <%= icon("fas", "user-plus") + " Add Friend" %>
               <% end %>
             <% end %>
+
           <% end %>
         </div>
       </div>
