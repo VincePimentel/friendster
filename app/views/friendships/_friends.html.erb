@@ -26,7 +26,7 @@
                         method: :delete,
                         data: { confirm: "Are you sure?" },
                         class: "no-text-decoration" do %>
-                        <%= tag.small(friendship.status == 0 ? "Cancel" : "(edit)") %><% end %>
+                        <%= tag.small(friendship.status == 0 ? "(cancel)" : "(edit)") %><% end %>
                     <% end %>
                   </p>
                 </div>

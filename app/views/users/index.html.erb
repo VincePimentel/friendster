@@ -1,18 +1,57 @@
-<div class="row">
+<div class="row justify-content-center mt-4">
   <div class="col-12">
-    <h5>Find Friends</h5>
+    <h5 class="mb-3">Find Friends</h5>
 
-    <ul>
-      <% @users.each do |user| %>
+    <% if @users.size > 0 %>
 
-        <% next if current_user == user || current_user.friends.exists?(user.id) %>
+      <div class="row">
 
-          <li>
-            <%= link_to user.full_name, user_path(user) %>
-            (<%= link_to "Add Friend", friendships_path(friend_id: user), method: :post  %>)
-          </li>
+        <% @users.each do |user| %>
 
-      <% end %>
-    </ul>
+          <% next if current_user == user || current_user.friends.find_by(id: user) %>
+
+            <div class="col-6 mb-4">
+              <div class="card">
+                <div class="row no-gutters">
+                  <div class="col-md-4 text-center">
+                    <%= image_tag user.avatar, class: "img-fluid" %>
+                  </div>
+
+                  <div class="col-md-8 mb-n1">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= link_to user.full_name, user_path(user) %>
+                      </h5>
+
+                      <p class="card-text">
+                        <%= link_to friendships_path(friend_id: user),
+                          method: :post,
+                          role: "button",
+                          class: "btn btn-primary btn-sm" do %>
+                          <%= tag.small(icon("fas", "user-plus") + " Add Friend") %>
+                        <% end %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <% end %>
+
+      </div>
+
+    <% else %>
+
+      <p>
+        <% if @user == current_user %>
+          You have not added any friends, yet! Find some <%= link_to "here", users_path %>.
+        <% else %>
+          <%= @user.first_name %> has not added any friends, yet!
+        <% end %>
+      </p>
+
+    <% end %>
+
   </div>
 </div>
