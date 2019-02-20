@@ -17,48 +17,10 @@
 
   <h5>Friends <%= "(#{@user.friendships.size})" if @user.friendships.size > 0 %></h5>
 
-    <% if @user.friendships.size > 0 %>
-
-      <div class="row">
-
-        <% @user.friendships.each do |friendship| %>
-
-            <div class="col-6 mb-4">
-              <div class="card">
-                <div class="row no-gutters">
-                  <div class="col-md-4 text-center">
-                    <%= image_tag friendship.friend.avatar, class: "img-fluid" %>
-                  </div>
-
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title"><%= link_to friendship.friend.full_name, user_path(friendship.friend) %></h5>
-                      <p class="card-text">
-                        <% if current_user == @user %>
-                          (<%= link_to "Unfriend", friendship_path(friendship), method: :delete, data: { confirm: "Are you sure?" } %><span class="text-muted"> - <%= friendship.status == 0 ? "Pending" : friendship.relationship.capitalize %></span>)
-                        <% end %>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-        <% end %>
-
-      </div>
-
-    <% else %>
-
-      <p>
-        <% if @user == current_user %>
-          You have not added any friends, yet! Find some <%= link_to "here", users_path %>.
-        <% else %>
-          <%= @user.first_name %> has not added any friends, yet!
-        <% end %>
-      </p>
-
-    <% end %>
+    <%= render partial: "friendships/friends",
+      locals: {
+        friendships: @user.friendships
+      } %>
 
 </div>
 

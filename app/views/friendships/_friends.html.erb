@@ -1,0 +1,52 @@
+<% if friendships.size > 0 %>
+
+  <div class="row">
+
+    <% friendships.each do |friendship| %>
+
+        <div class="col-6 mb-4">
+          <div class="card">
+            <div class="row no-gutters">
+              <div class="col-md-4 text-center">
+                <%= image_tag friendship.friend.avatar, class: "img-fluid" %>
+              </div>
+
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><%= link_to friendship.friend.full_name, user_path(friendship.friend) %></h5>
+                  <p class="card-text">
+                    <% if current_user == @user %>
+                      <% if friendship.status == 0 %>
+                        <%= tag.small("Pending", class: "badge badge-pill badge-warning") %>
+                      <% else %>
+                        <%= tag.small("Friends", class: "badge badge-pill badge-primary") %>
+                      <% end %>
+
+                      <%= link_to friendship_path(friendship),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" },
+                        class: "no-text-decoration" do %>
+                        <%= tag.small(friendship.status == 0 ? "Cancel" : "Unfriend") %><% end %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+
+  </div>
+
+<% else %>
+
+  <p>
+    <% if @user == current_user %>
+      You have not added any friends, yet! Find some <%= link_to "here", users_path %>.
+    <% else %>
+      <%= @user.first_name %> has not added any friends, yet!
+    <% end %>
+  </p>
+
+<% end %>
