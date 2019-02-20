@@ -1,5 +1,8 @@
 class FriendshipsController < ApplicationController
   def create
+
+    # Add check to avoid dupes
+
     @friendship =
       current_user.friendships.build(
         relationship: "friends",

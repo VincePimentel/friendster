@@ -15,18 +15,18 @@
                 <div class="card-body">
                   <h5 class="card-title"><%= link_to friendship.friend.full_name, user_path(friendship.friend) %></h5>
                   <p class="card-text">
-                    <% if current_user == @user %>
-                      <% if friendship.status == 0 %>
-                        <%= tag.small("Pending", class: "badge badge-pill badge-warning") %>
-                      <% else %>
-                        <%= tag.small("Friends", class: "badge badge-pill badge-primary") %>
-                      <% end %>
+                    <% if friendship.status == 0 %>
+                      <%= tag.small("Pending", class: "badge badge-pill badge-warning") %>
+                    <% else %>
+                      <%= tag.small(friendship.relationship.capitalize, class: "badge badge-pill badge-primary") %>
+                    <% end %>
 
+                    <% if current_user == @user %>
                       <%= link_to friendship_path(friendship),
                         method: :delete,
                         data: { confirm: "Are you sure?" },
                         class: "no-text-decoration" do %>
-                        <%= tag.small(friendship.status == 0 ? "Cancel" : "Unfriend") %><% end %>
+                        <%= tag.small(friendship.status == 0 ? "Cancel" : "(edit)") %><% end %>
                     <% end %>
                   </p>
                 </div>

@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     # Collect all pending friend requests
     @requests = @user.referenced_friendships.where(status: 0)
 
-    @friendship = current_user.friendships.find_by(friend_id: @user, status: 0)
+    @friendship = current_user.friendships.find_by(friend_id: @user)
 
     @friendships = current_user.friendships
     #binding.pry

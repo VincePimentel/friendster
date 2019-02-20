@@ -10,17 +10,17 @@ Rails.application.routes.draw do
 
   # Add exceptions
   resources :users do
-    resources :posts, only: [:create, :edit, :destroy]
-    resources :comments, only: [:create, :destroy]
+    resources :posts
+    resources :comments
   end
 
-  resources :posts, only: [:create, :edit, :destroy] do
-    resources :comments, only: [:create, :edit, :destroy]
+  resources :posts do
+    resources :comments
   end
 
-  resources :friendships, only: [:create, :destroy]
+  resources :friendships
 
-  resources :activities, only: [:create, :destroy]
+  # resources :activities
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

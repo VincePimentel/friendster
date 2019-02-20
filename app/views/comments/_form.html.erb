@@ -25,7 +25,9 @@
           <ul class="list-group">
             <% post.comments.each do |comment| %>
               <li class="list-group-item">
-                <%= link_to comment.user.full_name, user_path(comment.user) %> <%= comment.content %>
+                <%= link_to comment.user.full_name, user_path(comment.user) %>
+                <%= comment.content %>
+
                 <% if current_user == comment.user %>
                   <span class="float-right">
                     <%= link_to icon("fas", "trash-alt"),

@@ -33,6 +33,8 @@
                 class: "btn btn-light btn-sm" do %>
                 <%= icon("fas", "user-minus") + " Cancel" %>
               <% end %>
+            <% elsif current_user.friends.find_by(id: @user) %>
+              <%= link_to  %>
             <% else %>
               <%= link_to friendships_path(friend_id: @user),
                 method: :post,
