@@ -1,6 +1,10 @@
 module FriendshipsHelper
 
   def friend_request_count
-    current_user.referenced_friendships.where(status: 0).size
+    current_user.friend_requests.size
+  end
+
+  def method_name
+
   end
 end

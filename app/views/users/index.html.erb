@@ -1,72 +1,56 @@
 <div class="row justify-content-center mt-4">
   <div class="col-12">
+    <h5 class="mb-3">Friend Requests</h5>
+
+    <% if @requests.size > 0 %>
+
+      <div class="row">
+        <% @requests.each do |user| %>
+          <%= render partial: "card", locals: { user: user } %>
+        <% end %>
+      </div>
+
+    <% else %>
+      NO INCOMING REQUESTS
+
+    <% end %>
+  </div>
+</div>
+
+<div class="row justify-content-center mt-4">
+  <div class="col-12">
+    <h5 class="mb-3">Pending Requests</h5>
+
+    <% if @pending.size > 0 %>
+
+      <div class="row">
+        <% @pending.each do |user| %>
+          <%= render partial: "card", locals: { user: user } %>
+        <% end %>
+      </div>
+
+    <% else %>
+      NO OUTGOING REQUESTS
+
+    <% end %>
+  </div>
+</div>
+
+<div class="row justify-content-center mt-4">
+  <div class="col-12">
     <h5 class="mb-3">Find Friends</h5>
 
     <% if @users.size > 0 %>
 
       <div class="row">
-
         <% @users.each do |user| %>
-
-          <% next if current_user == user || current_user.friendships.find_by(friend_id: user, status: 1) %>
-
-            <div class="col-6 mb-4">
-              <div class="card">
-                <div class="row no-gutters">
-                  <div class="col-md-4 text-center">
-                    <%= image_tag user.avatar, class: "img-fluid" %>
-                  </div>
-
-                  <div class="col-md-8 mb-n1">
-                    <div class="card-body">
-                      <h5 class="card-title">
-                        <%= link_to user.full_name, user_path(user) %>
-                      </h5>
-
-                      <p class="card-text">
-                        <% if current_user.friendships.find_by(friend_id: user, status: 0) %>
-                          <%= link_to friendship_path(current_user.friendships.find_by(friend_id: user, status: 0)),
-                            method: :delete,
-                            role: "button",
-                            data: { confirm: "Are you sure?" },
-                            class: "btn btn-primary btn-sm" do %>
-                            <%= tag.small(icon("fas", "user-minus") + " Cancel") %>
-
-                          <% end %>
-                        <% else %>
-                          <%= link_to friendships_path(friend_id: user),
-                            method: :post,
-                            role: "button",
-                            class: "btn btn-primary btn-sm" do %>
-                            <% if user.friendships.find_by(friend_id: current_user, status: 0) %>
-                              <%= tag.small(icon("fas", "user-plus") + " Accept") %>
-                            <% else %>
-                              <%= tag.small(icon("fas", "user-plus") + " Add Friend") %>
-                            <% end %>
-                          <% end %>
-                        <% end %>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+          <%= render partial: "card", locals: { user: user } %>
         <% end %>
-
       </div>
 
     <% else %>
-
-      <p>
-        <% if @user == current_user %>
-          You have not added any friends, yet! Find some <%= link_to "here", users_path %>.
-        <% else %>
-          <%= @user.first_name %> has not added any friends, yet!
-        <% end %>
-      </p>
+      NO FRIENDS
 
     <% end %>
-
   </div>
 </div>

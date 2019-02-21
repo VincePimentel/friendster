@@ -45,3 +45,25 @@ Navigation
 Friendship
   * DONE - Set up associations
   * DONE - Add relationship (str) attribute
+
+<% if current_user.friendships.find_by(friend_id: user, status: 0) %>
+      <%= link_to friendship_path(current_user.friendships.find_by(friend_id: user, status: 0)),
+        method: :delete,
+        role: "button",
+        data: { confirm: "Are you sure?" },
+        class: "btn btn-primary btn-sm" do %>
+        <%= tag.small(icon("fas", "user-minus") + " Cancel") %>
+
+      <% end %>
+    <% else %>
+      <%= link_to friendships_path(friend_id: user),
+        method: :post,
+        role: "button",
+        class: "btn btn-primary btn-sm" do %>
+        <% if user.friendships.find_by(friend_id: current_user, status: 0) %>
+          <%= tag.small(icon("fas", "user-plus") + " Accept") %>
+        <% else %>
+          <%= tag.small(icon("fas", "user-plus") + " Add Friend") %>
+        <% end %>
+      <% end %>
+    <% end %>

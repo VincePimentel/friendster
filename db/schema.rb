@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_02_17_215036) do
   end
 
   create_table "friendships", force: :cascade do |t|
-    t.string "relationship", default: "friends"
+    t.string "relationship", default: "Friends"
     t.integer "status", default: 0
     t.integer "user_id"
     t.integer "friend_id"

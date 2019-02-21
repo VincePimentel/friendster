@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    @users = current_user.available_friends
+    @pending = current_user.pending_requests
+    @requests = current_user.friend_requests
   end
 
   def new

@@ -9,7 +9,7 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">
-              <%= link_to @friendship.friend.full_name, path(@friendship.friend) %>
+              <%= link_to @friendship.friend.full_name, user_path(@friendship.friend) %>
             </h5>
             <p class="card-text">
               <%= tag.small(@friendship.relationship, class: "badge badge-pill badge-primary") %>
