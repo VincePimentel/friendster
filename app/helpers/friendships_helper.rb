@@ -24,7 +24,13 @@ module FriendshipsHelper
       cancel_button(object, action)
     when "edit"
       edit_button(object)
+    else
+      relationship_badge(object, action)
     end
+  end
+
+  def relationship_badge(friend, user)
+    tag.small(user.friendship(friend).relationship, class: "badge badge-pill badge-primary")
   end
 
   def add_button(user, action)

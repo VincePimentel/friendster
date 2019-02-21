@@ -19,9 +19,12 @@
 <% end %>
 
 <div class="col-12">
-
-
-
+  <%= render partial: "row",
+    locals: {
+      heading: "Friends",
+      users: @friends,
+      action: @user
+    } %>
 </div>
 
 

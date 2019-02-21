@@ -79,21 +79,21 @@ people.each do |person|
 
   user.update(avatar: "#{user.gravatar_url}&d=monsterid&size=175")
 
-  vince_friendship = vince.friendships.build(
-    relationship: "friends",
-    friend_id: user.id,
-    status: 1
-    )
+  # vince_friendship = vince.friendships.build(
+  #   relationship: "friends",
+  #   friend_id: user.id,
+  #   status: 1
+  #   )
 
-  vince_friendship.save
+  # vince_friendship.save
 
-  user_friendship = user.friendships.build(
-    relationship: "friends",
-    friend_id: user.id,
-    status: 1
-    )
+  # user_friendship = user.friendships.build(
+  #   relationship: "friends",
+  #   friend_id: user.id,
+  #   status: 1
+  #   )
 
-  user_friendship.save
+  # user_friendship.save
 end
 
 

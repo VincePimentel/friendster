@@ -34,10 +34,13 @@ class UsersController < ApplicationController
 
     @friends = @user.current_friends
 
+
     @sent_requests = current_user.sent_requests
     @received_requests = current_user.received_requests
 
-    @friendships = current_user.friendships
+    #@friendships = current_user.friendships
+
+    #binding.pry
   end
 
   def edit

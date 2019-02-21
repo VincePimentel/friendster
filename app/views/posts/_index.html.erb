@@ -31,8 +31,10 @@
           </small>
         </div> <!-- card-header -->
 
-        <div class="card-body">
-          <%= post.content %>
+        <div class="card-body px-0 pb-0">
+          <div class="col">
+            <p><%= post.content %></p>
+          </div>
 
           <% if !post.link.empty? %>
             <!-- Add check to make sure image is an image -->
