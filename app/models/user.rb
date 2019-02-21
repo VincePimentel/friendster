@@ -28,19 +28,23 @@ class User < ApplicationRecord
     # has received a friend request from,
     # and self.
 
-    ids = current_friends + sent_requests + received_requests << self.id
+    ids = current_friend_ids + sent_request_ids + received_request_ids << self.id
 
     User.where.not(id: ids)
   end
 
-  def pending_requests
-    # Outgoing friend requests to other users
-    User.where(id: sent_requests)
+  def current_friends
+    User.where(id: current_friend_ids)
   end
 
-  def friend_requests
+  def sent_requests
+    # Outgoing friend requests to other users
+    User.where(id: sent_request_ids)
+  end
+
+  def received_requests
     # Incoming friend requests from other users
-    User.where(id: received_requests)
+    User.where(id: received_request_ids)
   end
 
   def friendship(user)
@@ -55,15 +59,15 @@ class User < ApplicationRecord
 
   private
 
-    def sent_requests
+    def current_friend_ids
+      self.friendships.where(status: 1).pluck(:friend_id)
+    end
+
+    def sent_request_ids
       self.friendships.where(status: 0).pluck(:friend_id)
     end
 
-    def received_requests
+    def received_request_ids
       self.referenced_friendships.where(status: 0).pluck(:user_id)
-    end
-
-    def current_friends
-      self.friends.pluck(:id)
     end
 end

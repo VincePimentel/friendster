@@ -10,7 +10,7 @@ module FriendshipsHelper
 
   def request_notification
     link_to users_path, class: "nav-link" do
-      icon("fas", "users") + " " + (tag.span(current_user.friend_requests.size, class: "badge badge-danger") if current_user.friend_requests.size > 0)
+      icon("fas", "users") + " " + (tag.span(current_user.received_requests.size, class: "badge badge-danger") if current_user.received_requests.size > 0)
     end
   end
 

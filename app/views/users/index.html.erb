@@ -1,20 +1,32 @@
-<%= render partial: "row",
-  locals: {
-    heading: "Friend Requests (Received)",
-    users: @requests,
-    action: "accept"
-  } %>
+<div class="row justify-content-center mt-4">
+  <div class="col-12">
+    <%= render partial: "row",
+      locals: {
+        heading: "Friend Requests (Received)",
+        users: @received_requests,
+        action: "accept"
+      } %>
+  </div>
+</div>
 
-<%= render partial: "row",
-  locals: {
-    heading: "Pending Requests (Sent)",
-    users: @pending,
-    action: "cancel"
-  } %>
+<div class="row justify-content-center mt-4">
+  <div class="col-12">
+    <%= render partial: "row",
+      locals: {
+        heading: "Pending Requests (Sent)",
+        users: @sent_requests,
+        action: "cancel"
+      } %>
+  </div>
+</div>
 
-<%= render partial: "row",
-  locals: {
-    heading: "Find Friends",
-    users: @users,
-    action: "add friend"
-  } %>
+<div class="row justify-content-center mt-4">
+  <div class="col-12">
+    <%= render partial: "row",
+      locals: {
+        heading: "Find Friends",
+        users: @users,
+        action: "add friend"
+      } %>
+  </div>
+</div>

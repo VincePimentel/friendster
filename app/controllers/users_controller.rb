@@ -2,8 +2,8 @@ class UsersController < ApplicationController
 
   def index
     @users = current_user.available_friends
-    @pending = current_user.pending_requests
-    @requests = current_user.friend_requests
+    @sent_requests = current_user.sent_requests
+    @received_requests = current_user.received_requests
   end
 
   def new
@@ -32,12 +32,10 @@ class UsersController < ApplicationController
 
     @posts = Post.where(recipient_id: @user).order("created_at DESC")
 
-    @friends = @user.friends
+    @friends = @user.current_friends
 
-    # Collect all pending friend requests
-    @requests = @user.referenced_friendships.where(status: 0)
-
-    #@friendship = current_user.friendships.find_by(friend_id: @user)
+    @sent_requests = current_user.sent_requests
+    @received_requests = current_user.received_requests
 
     @friendships = current_user.friendships
   end
