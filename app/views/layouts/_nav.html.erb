@@ -11,14 +11,7 @@
         <% if logged_in? %>
           <li class="nav-item">
             <%#= icon("fas", "users", class: "nav-link") %>
-            <%= link_to users_path, class: "nav-link" do %>
-              <%= icon("fas", "users") %>
-                <% if friend_request_count > 0 %>
-                  <span class="badge badge-danger">
-                    <%= friend_request_count %>
-                  </span>
-                <% end %>
-            <% end %>
+            <%= request_notification %>
           </li>
           <li class="nav-item"> <!-- active -->
             <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
