@@ -1,45 +1,43 @@
 class FriendshipsController < ApplicationController
   def create
-    friendship = Friendship.find_by(
-      user_id: current_user,
-      friend_id: params[:friend_id])
-
-    # Add check to avoid dupes
+    friendship =
+      Friendship.find_by(
+        user_id: current_user,
+        friend_id: params[:friend_id]
+        )
 
     if friendship.nil?
       friendship =
-      current_user.friendships.build(
-        relationship: "friends",
-        friend_id: params[:friend_id]
-        )
+        current_user.friendships.build(
+          friend_id: params[:friend_id]
+          )
     end
 
-    referenced_friendship =
-      Friendship.find_by(
-        friend_id: friendship.user,
-        user_id: friendship.friend
-        )
-
     if friendship.save
+      referenced_friendship =
+        Friendship.find_by(
+          friend_id: friendship.user,
+          user_id: friendship.friend
+          )
 
-      # If other user has added current user then
-      # Set friendship status of both users to 1
-      # (both users have added each other)
-      # To be used in users#show requests variable
       if referenced_friendship
         friendship.update(status: 1)
         referenced_friendship.update(status: 1)
       end
     end
 
-    #binding.pry
+    # If the other user has added the current user
+    # via referenced_friendship, then,
+    # both users have added each other,
+    # set friendship status of both users to 1.
+    # To be used in users#show requests variable
 
-    redirect_to user_path(params[:friend_id])
+    redirect_back(fallback_location: users_path)
   end
 
   def edit
+    binding.pry
     @user = current_user
-    #binding.pry
     @friendship = Friendship.find(params[:id])
   end
 
@@ -53,7 +51,7 @@ class FriendshipsController < ApplicationController
 
   def destroy
     # Current user's friendship with other user
-    friendship = current_user.friendships.find(params[:id])
+    friendship = Friendship.find(params[:id])
 
     # Other user's friendship with current user
     referenced_friendship =
@@ -66,7 +64,7 @@ class FriendshipsController < ApplicationController
     friendship.destroy
 
     # Destroy other user's friendship with current user
-    # if other user has added current user prior to removal
+    # if other user has added current user prior to deletion
     if referenced_friendship
       referenced_friendship.destroy
     end

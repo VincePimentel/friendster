@@ -13,7 +13,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, through: :posts, dependent: :destroy
 
-  # ADD VALIDATIONS HERE
+  # ADD VALIDATIONS FOR
+  # => username
+  # => email
+  # => password
 
   def full_name
     "#{self.first_name} #{self.last_name}"
@@ -24,23 +27,41 @@ class User < ApplicationRecord
   end
 
   def available_friends
-    # Get users that are not user's friends and have not sent a friend request
-    ids = self.friends.pluck(:id) + (self.friendships.where(status: 0).pluck(:friend_id)) + (self.referenced_friendships.where(status: 0).pluck(:user_id)) << self.id
+    # Get user IDs of users current user is friends with,
+    # has sent a friend request to,
+    # has received a friend request from,
+    # and self.
+
+    ids = current_friends + sent_requests + received_requests << self.id
 
     User.where.not(id: ids)
   end
 
   def pending_requests
     # Outgoing friend requests to other users
-    User.where(id: self.friendships.where(status: 0).pluck(:friend_id))
+    User.where(id: sent_requests)
   end
 
   def friend_requests
     # Incoming friend requests from other users
-    User.where(id: self.referenced_friendships.where(status: 0).pluck(:user_id))
+    User.where(id: received_requests)
   end
 
   def find_friendship(user)
     self.friendships.find_by(friend_id: user, status: 0)
   end
+
+  private
+
+    def sent_requests
+      self.friendships.where(status: 0).pluck(:friend_id)
+    end
+
+    def received_requests
+      self.referenced_friendships.where(status: 0).pluck(:user_id)
+    end
+
+    def current_friends
+      self.friends.pluck(:id)
+    end
 end
