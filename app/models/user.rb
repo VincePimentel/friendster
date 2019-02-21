@@ -37,4 +37,8 @@ class User < ApplicationRecord
     # Incoming friend requests from other users
     User.where(id: self.referenced_friendships.where(status: 0).pluck(:user_id))
   end
+
+  def find_friendship(user)
+    self.friendships.find_by(friend_id: user, status: 0)
+  end
 end

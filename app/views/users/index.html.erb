@@ -1,56 +1,20 @@
-<div class="row justify-content-center mt-4">
-  <div class="col-12">
-    <h5 class="mb-3">Friend Requests</h5>
+<%= render partial: "users_row",
+  locals: {
+    heading: "Friend Requests (Received)",
+    users: @requests,
+    type: "accept"
+  } %>
 
-    <% if @requests.size > 0 %>
+<%= render partial: "users_row",
+  locals: {
+    heading: "Pending Requests (Sent)",
+    users: @pending,
+    type: "cancel"
+  } %>
 
-      <div class="row">
-        <% @requests.each do |user| %>
-          <%= render partial: "card", locals: { user: user } %>
-        <% end %>
-      </div>
-
-    <% else %>
-      NO INCOMING REQUESTS
-
-    <% end %>
-  </div>
-</div>
-
-<div class="row justify-content-center mt-4">
-  <div class="col-12">
-    <h5 class="mb-3">Pending Requests</h5>
-
-    <% if @pending.size > 0 %>
-
-      <div class="row">
-        <% @pending.each do |user| %>
-          <%= render partial: "card", locals: { user: user } %>
-        <% end %>
-      </div>
-
-    <% else %>
-      NO OUTGOING REQUESTS
-
-    <% end %>
-  </div>
-</div>
-
-<div class="row justify-content-center mt-4">
-  <div class="col-12">
-    <h5 class="mb-3">Find Friends</h5>
-
-    <% if @users.size > 0 %>
-
-      <div class="row">
-        <% @users.each do |user| %>
-          <%= render partial: "card", locals: { user: user } %>
-        <% end %>
-      </div>
-
-    <% else %>
-      NO FRIENDS
-
-    <% end %>
-  </div>
-</div>
+<%= render partial: "users_row",
+  locals: {
+    heading: "Find Friends",
+    users: @users,
+    type: "add"
+  } %>

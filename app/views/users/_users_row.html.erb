@@ -1,0 +1,18 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-12">
+    <h5 class="mb-3">
+      <%= heading %>
+    </h5>
+
+    <% if users.size > 0 %>
+      <div class="row">
+        <% users.each do |user| %>
+          <%= render partial: "card", locals: { user: user, type: type } %>
+        <% end %>
+      </div>
+    <% else %>
+      NO REQUESTS
+    <% end %>
+
+  </div>
+</div>
