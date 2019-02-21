@@ -14,6 +14,8 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
+      user.update(avatar: "#{user.gravatar_url}&d=monsterid&size=175")
+
       session[:user_id] = user.id
 
       redirect_to user_path(user)
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
     @comment = Comment.new
     # @posts = @user.posts#.merge(Post.where("recipient_id = ?", @user.id)).order("created_at DESC")#.and also posts by friends on profile
 
-    @posts = Post.where("recipient_id = ?", @user.id).order("created_at DESC")
+    @posts = Post.where(recipient_id: @user).order("created_at DESC")
 
     # binding.pry
 

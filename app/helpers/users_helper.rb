@@ -1,16 +1,25 @@
 module UsersHelper
 
+  def button(user, type)
+    case type
+    when "add", "accept"
+      plus_button(user, type)
+    when "cancel"
+      minus_button(user)
+    end
+  end
+
   def plus_button(user, type)
     link_to friendships_path(friend_id: user),
-          method: :post,
-          role: "button",
-          class: "btn btn-primary btn-sm" do
+      method: :post,
+      role: "button",
+      class: "btn btn-primary btn-sm" do
 
       case type
       when "add"
-        generate_button("plus", "add friend")
+        icon_label("plus", "add friend")
       when "accept"
-        generate_button("plus", "accept")
+        icon_label("plus", "accept")
       end
     end
   end
@@ -23,21 +32,12 @@ module UsersHelper
         role: "button",
         class: "btn btn-primary btn-sm" do
 
-        generate_button("minus", "cancel")
+        icon_label("minus", "cancel")
       end
     end
   end
 
-  def generate_button(icon, label)
+  def icon_label(icon, label)
     tag.small(icon("fas", "user-#{icon}") + " #{label.titleize}")
-  end
-
-  def button(user, type)
-    case type
-    when "add", "accept"
-      plus_button(user, type)
-    when "cancel"
-      minus_button(user)
-    end
   end
 end

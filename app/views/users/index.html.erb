@@ -1,18 +1,18 @@
-<%= render partial: "users_row",
+<%= render partial: "row",
   locals: {
     heading: "Friend Requests (Received)",
     users: @requests,
     type: "accept"
   } %>
 
-<%= render partial: "users_row",
+<%= render partial: "row",
   locals: {
     heading: "Pending Requests (Sent)",
     users: @pending,
     type: "cancel"
   } %>
 
-<%= render partial: "users_row",
+<%= render partial: "row",
   locals: {
     heading: "Find Friends",
     users: @users,
