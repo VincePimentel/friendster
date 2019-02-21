@@ -36,7 +36,6 @@ class FriendshipsController < ApplicationController
   end
 
   def edit
-    binding.pry
     @user = current_user
     @friendship = Friendship.find(params[:id])
   end

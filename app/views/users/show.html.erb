@@ -1,8 +1,10 @@
 <div class="row">
   <div class="col-12">
+
     <%= image_tag "https://via.placeholder.com/1280x350/000000/000000", class: "img-fluid" %>
 
     <div id="profile-header" class="row">
+
       <div class="h-100 justify-content-center flex-column d-flex pl-4">
         <%= image_tag @user.avatar, id: "profile-avatar", class: "img-fluid border border-white rounded-circle" %>
       </div>
@@ -18,41 +20,27 @@
 
       <div class="col-auto col-sm-auto pr-5">
         <div class="h-100 justify-content-center flex-column d-flex">
-
           <% if current_user != @user %>
-
-            <% if @friendship&.status == 0 %>
-              <%= link_to friendship_path(@friendship),
-                method: :delete,
-                role: "button",
-                class: "btn btn-light btn-sm" do %>
-                <%= icon("fas", "user-minus") + " Cancel" %>
-              <% end %>
-            <% elsif current_user.friends.find_by(id: @user) %>
-              <%= link_to edit_friendship_path(@friendship), role: "button", class: "btn btn-light btn-sm" do %>
-                <%= icon("fas", "user-edit") + " Edit" %>
-              <% end %>
+            <% if status_pending?(@user) %>
+              <%= button(@user, "cancel") %>
+            <% elsif friends?(@user) %>
+              <%= button(@user, "edit") %>
             <% else %>
-              <%= link_to friendships_path(friend_id: @user),
-                method: :post,
-                role: "button",
-                class: "btn btn-light btn-sm" do %>
-                <%= icon("fas", "user-plus") + " Add Friend" %>
-              <% end %>
+              <%= button(@user, "add friend") %>
             <% end %>
-
           <% end %>
         </div>
       </div>
 
-    </div>
+    </div> <!-- profile-header -->
 
-  </div>
-</div>
+  </div> <!-- col-12 -->
+</div> <!-- row -->
 
 <div class="row">
   <div class="col-12">
     <div id="profile-nav">
+
       <ul class="nav nav-tabs justify-content-center mb-4" id="profileNav" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab">
@@ -69,12 +57,8 @@
           Friends
           </a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" id="requests-tab" data-toggle="tab" href="#requests" role="tab">
-          Requests
-          </a>
-        </li> -->
       </ul>
+
       <div class="tab-content" id="profileNavContent">
         <div class="tab-pane fade show active" id="timeline" role="tabpanel">
           <div class="row">
@@ -93,13 +77,8 @@
             <%= render "friends" %>
           </div>
         </div>
-
-        <!-- <div class="tab-pane fade" id="requests" role="tabpanel">
-          <div class="row">
-            <%#= render "requests" %>
-          </div>
-        </div> -->
       </div>
+
     </div> <!-- profile-nav -->
   </div> <!-- col-12 -->
 </div> <!-- row -->

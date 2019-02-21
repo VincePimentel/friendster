@@ -22,10 +22,6 @@ class User < ApplicationRecord
     "#{self.first_name} #{self.last_name}"
   end
 
-  def users_by_friendship_status(status)
-    User.where(id: self.friendships.where(status: status).pluck(:friend_id))
-  end
-
   def available_friends
     # Get user IDs of users current user is friends with,
     # has sent a friend request to,
@@ -47,8 +43,14 @@ class User < ApplicationRecord
     User.where(id: received_requests)
   end
 
-  def find_friendship(user)
-    self.friendships.find_by(friend_id: user, status: 0)
+  def friendship(user)
+    # self.friendships.find_by(friend_id: user, status: 0)
+    self.friendships.find_by(friend_id: user)
+  end
+
+  def referenced_friendship
+    # self.referenced_friendships.find_by(friend_id: self, status: 0)
+    self.referenced_friendships.find_by(friend_id: self)
   end
 
   private

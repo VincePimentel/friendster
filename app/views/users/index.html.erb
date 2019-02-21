@@ -2,19 +2,19 @@
   locals: {
     heading: "Friend Requests (Received)",
     users: @requests,
-    type: "accept"
+    action: "accept"
   } %>
 
 <%= render partial: "row",
   locals: {
     heading: "Pending Requests (Sent)",
     users: @pending,
-    type: "cancel"
+    action: "cancel"
   } %>
 
 <%= render partial: "row",
   locals: {
     heading: "Find Friends",
     users: @users,
-    type: "add"
+    action: "add friend"
   } %>
