@@ -1,7 +1,7 @@
 <% if posts.size > 0 %>
   <% posts.each do |post| %>
 
-    <% next if post.nil? %>
+    <%# next if post.nil? %>
 
       <div class="card mb-3">
 
@@ -16,15 +16,10 @@
           </small>
         </div> <!-- card-header -->
 
-        <div class="card-body px-0 pb-0">
-          <div class="col">
-            <p><%= post.content %></p>
-          </div>
+        <div class="card-body p-0">
 
-          <%# if !post.link.empty? %>
-            <!-- Add check to make sure image is an image -->
-            <%= image_tag post.link, class: "img-fluid" if !post.link.empty? %>
-          <%# end %>
+          <%= post_body(post) %>
+
         </div>
 
         <div class="card-footer text-muted px-1 py-1">
