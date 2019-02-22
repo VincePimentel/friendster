@@ -1,32 +1,54 @@
-<div class="row justify-content-center mt-4">
-  <div class="col-12">
-    <%= render partial: "row",
-      locals: {
-        heading: "Friend Requests (Received)",
-        users: @received_requests,
-        action: "accept"
-      } %>
-  </div>
-</div>
+<% if @received_requests.size > 0 %>
+  <div class="row justify-content-center mt-4">
+    <div class="col-12">
+      <h5 class="mb-3">
+        Friend Requests
+      </h5>
 
-<div class="row justify-content-center mt-4">
-  <div class="col-12">
-    <%= render partial: "row",
-      locals: {
-        heading: "Pending Requests (Sent)",
-        users: @sent_requests,
-        action: "cancel"
-      } %>
+      <div class="row">
+        <%= render partial: "user",
+          collection: @received_requests,
+          locals: {
+            action: "accept"
+          } %>
+      </div>
+    </div>
   </div>
-</div>
+<% end %>
 
-<div class="row justify-content-center mt-4">
-  <div class="col-12">
-    <%= render partial: "row",
-      locals: {
-        heading: "Find Friends",
-        users: @users,
-        action: "add friend"
-      } %>
+<% if @sent_requests.size > 0 %>
+  <div class="row justify-content-center mt-4">
+    <div class="col-12">
+      <h5 class="mb-3">
+        Pending Requests
+      </h5>
+
+      <div class="row">
+        <%= render partial: "user",
+          collection: @sent_requests,
+          locals: {
+            action: "cancel"
+          } %>
+      </div>
+    </div>
   </div>
-</div>
+<% end %>
+
+<% if @users.size > 0 %>
+  <div class="row justify-content-center mt-4">
+    <div class="col-12">
+      <h5 class="mb-3">
+        Find Friends
+      </h5>
+
+      <div class="row">
+        <%= render partial: "user",
+          collection: @users,
+          locals: {
+            action: "add friend"
+          } %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

@@ -33,21 +33,21 @@
         <dt class="col-12 col-md-2">Website</dt>
         <dd class="col-10">
           <% if @user.website %>
-            <%= link_to @user.website.gsub(/(https\:\/\/)|(http\:\/\/)/, ""), @user.website %>
+            <%= link_to @user.website, "https://#{@user.website.gsub(/w+\./, "")}", target: "_blank" %>
           <% end %>
         </dd>
 
         <dt class="col-12 col-md-2">Instagram</dt>
         <dd class="col-10">
           <% if @user.instagram %>
-            <%= link_to @user.instagram, "https://instagram.com/#{@user.instagram}" %>
+            <%= link_to @user.instagram, "https://instagram.com/#{@user.instagram.gsub(/@/, "")}", target: "_blank" %>
           <% end %>
         </dd>
 
         <dt class="col-12 col-md-2">Twitter</dt>
         <dd class="col-10">
           <% if @user.twitter %>
-            <%= link_to @user.twitter, "https://twitter.com/#{@user.twitter}" %>
+            <%= link_to @user.twitter, "https://twitter.com/#{@user.twitter.gsub(/@/, "")}", target: "_blank" %>
           <% end %>
         </dd>
       </dl>

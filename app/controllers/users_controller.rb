@@ -42,6 +42,14 @@ class UsersController < ApplicationController
 
   def edit; end
 
+  def update
+    @user = current_user
+
+    @user.update(user_params)
+
+    redirect_back(fallback_location: root_path)
+  end
+
   def destroy
     if @user == current_user
       @user.destroy
@@ -63,7 +71,12 @@ class UsersController < ApplicationController
         :username,
         :email,
         :password,
-        :password_confirmation
+        :password_confirmation,
+        :gender,
+        :bio,
+        :website,
+        :instagram,
+        :twitter
         )
     end
 
