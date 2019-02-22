@@ -1,7 +1,7 @@
 <% if posts.size > 0 %>
   <% posts.each do |post| %>
 
-    <% next if post.nil? %>
+    <%# next if post.nil? %>
 
       <div class="card mb-3">
 
@@ -15,20 +15,8 @@
           </small>
         </div> <!-- card-header -->
 
-<<<<<<< HEAD
         <div class="card-body p-0">
           <%= post_body(post) %>
-=======
-        <div class="card-body px-0 pb-0">
-          <div class="col">
-            <p><%= post.content %></p>
-          </div>
-
-          <%# if !post.link.empty? %>
-            <!-- Add check to make sure image is an image -->
-            <%= image_tag post.link, class: "img-fluid" if !post.link.empty? %>
-          <%# end %>
->>>>>>> parent of b2edc99... Refactor posts index partial
         </div>
 
         <div class="card-footer text-muted px-1 py-1">
