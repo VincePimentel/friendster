@@ -93,17 +93,11 @@ module FriendshipsHelper
     tag.small(icon("fas", "user-#{icon}") + " #{action.titleize}")
   end
 
-  def timeline_friends(user, friends)
-    if friends.size > 0
-      friends.last(9).each do |friend|
-        tag.div class: "col-4 px-1 py-0 text-center" do
-          link_to user_path(friend), class: "text-decoration-none" do
-            image_tag friend.avatar, id: "friends-avatar", class: "img-fluid"
-
-            tag.p id: "friends-name" do
-              tag.small(friend.first_name)
-            end
-          end
+  def timeline_friends(user, friend)
+    if friend
+      tag.div class: "col-4 px-1 py-0 text-center" do
+        link_to user_path(friend), class: "text-decoration-none" do
+          image_tag(friend.avatar, id: "friends-avatar", class: "img-fluid") + tag.p(tag.small(friend.first_name), id: "friends-name")
         end
       end
     else

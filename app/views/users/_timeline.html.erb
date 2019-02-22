@@ -12,8 +12,8 @@
       <h5 class="card-title">Friends</h5>
 
       <div class="row">
-        <%= timeline_friends(@user, @friends) %>
-
+        <%#= timeline_friends(@user, @friends) %>
+        <%= render partial: "friendships/friend", collection: @friends, locals: { user: @user } %>
       </div>
 
     </div>
