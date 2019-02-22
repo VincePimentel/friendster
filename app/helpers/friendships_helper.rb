@@ -25,32 +25,32 @@ module FriendshipsHelper
     when "edit"
       edit_button(object)
     else
-      relationship_badge(object, action)
+      relationship_badge(object, action) + " " + edit_link(object)
     end
   end
 
-  def relationship_badge(friend, user)
-    tag.small(user.friendship(friend).relationship, class: "badge badge-pill badge-primary")
-  end
-
   def add_button(user, action)
-    link_to friendships_path(friend_id: user),
-      method: :post,
-      role: "button",
-      class: "btn btn-primary btn-sm" do
+    if current_user != user
+      link_to friendships_path(friend_id: user),
+        method: :post,
+        role: "button",
+        class: "btn btn-primary btn-sm" do
 
-      icon_label("plus", action)
+        icon_label("plus", action)
+      end
     end
   end
 
   def cancel_button(user, action)
-    link_to friendship_path(current_user.friendship(user)),
-      method: :delete,
-      data: { confirm: "Are you sure?" },
-      role: "button",
-      class: "btn btn-primary btn-sm" do
+    if current_user != user
+      link_to friendship_path(current_user.friendship(user)),
+        method: :delete,
+        data: { confirm: "Are you sure?" },
+        role: "button",
+        class: "btn btn-primary btn-sm" do
 
-      icon_label("minus", action)
+        icon_label("minus", action)
+      end
     end
   end
 
@@ -66,16 +66,49 @@ module FriendshipsHelper
   end
 
   def edit_button(user)
-    link_to edit_friendship_path(current_user.friendship(user)),
-      role: "button",
-      class: "btn btn-light btn-sm" do
+    if current_user != user
+      link_to edit_friendship_path(current_user.friendship(user)),
+        role: "button",
+        class: "btn btn-light btn-sm float-right" do
 
-      icon_label("edit", "edit")
+        icon_label("edit", "edit")
+      end
+    end
+  end
+
+  def relationship_badge(friend, user)
+    tag.small user.friendship(friend).relationship, class: "badge badge-pill badge-primary"
+  end
+
+  def edit_link(user)
+    if current_user != user
+      link_to edit_friendship_path(current_user.friendship(user)), class: "text-decoration-none" do
+
+        icon_label("edit", "edit")
+      end
     end
   end
 
   def icon_label(icon, action)
     tag.small(icon("fas", "user-#{icon}") + " #{action.titleize}")
+  end
+
+  def timeline_friends(user, friends)
+    if friends.size > 0
+      friends.last(9).each do |friend|
+        tag.div class: "col-4 px-1 py-0 text-center" do
+          link_to user_path(friend), class: "text-decoration-none" do
+            image_tag friend.avatar, id: "friends-avatar", class: "img-fluid"
+
+            tag.p id="friends-name" do
+              tag.small(friend.first_name)
+            end
+          end
+        end
+      end
+    else
+      tag.div "#{user.first_name} has not added any friends yet.", class: "col-12 mb-3"
+    end
   end
 
 end

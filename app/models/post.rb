@@ -3,6 +3,10 @@ class Post < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :users, through: :comments
+  # has_many :commenters, through: :comments
+
+  # ADD SCOPES
+  #scope :by_friends, -> {}
 
   def self.by_friends(user)
     ids = user.friends.pluck(:id) << user.id

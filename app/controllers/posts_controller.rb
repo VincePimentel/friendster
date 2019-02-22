@@ -14,16 +14,17 @@ class PostsController < ApplicationController
 
     # @post.create_activity(:create, owner: current_user)
 
-    redirect_to user_path(current_user)
+    redirect_back(fallback_location: root_path)
   end
 
   def edit
     @user = current_user
-    @post = current_user.posts.find(params[:id])
+    @post = current_user.posts.find_by(id: params[:id])
+    @comment = Comment.new
   end
 
   def update
-    post = current_user.posts.find(params[:id])
+    post = current_user.posts.find_by(id: params[:id])
 
     post.update(post_params)
 
@@ -31,13 +32,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = current_user.posts.find(params[:id])
+    post = current_user.posts.find_by(id: params[:id])
 
     # @post.create_activity(:destroy, owner: current_user)
 
     post.destroy
 
-    redirect_to user_path(current_user)
+    redirect_back(fallback_location: root_path)
   end
 
   private

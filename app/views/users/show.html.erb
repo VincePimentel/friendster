@@ -20,14 +20,12 @@
 
       <div class="col-auto col-sm-auto pr-5">
         <div class="h-100 justify-content-center flex-column d-flex">
-          <% if current_user != @user %>
-            <% if status_pending?(@user) %>
-              <%= button(@user, "cancel") %>
-            <% elsif friends?(@user) %>
-              <%= button(@user, "edit") %>
-            <% else %>
-              <%= button(@user, "add friend") %>
-            <% end %>
+          <% if status_pending?(@user) %>
+            <%= button(@user, "cancel") %>
+          <% elsif friends?(@user) %>
+            <%= button(@user, "edit") %>
+          <% else %>
+            <%= button(@user, "add friend") %>
           <% end %>
         </div>
       </div>
