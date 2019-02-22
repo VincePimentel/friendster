@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   include SessionsHelper
 
   before_action :set_user, only: [:show, :edit, :destroy]
+  before_action :redirect_if_logged_out
+  before_action :redirect_if_unauthorized, only: [:edit, :update, :destroy]
 
   def index
     @users = current_user.available_friends
@@ -43,21 +45,15 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    @user = current_user
-
-    @user.update(user_params)
+    current_user.update(user_params)
 
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    if @user == current_user
-      @user.destroy
+    @user.destroy
 
-      log_out
-    else
-      flash[:alert] = "You are not authorized to perform this action."
-    end
+    log_out
 
     redirect_to root_path
   end

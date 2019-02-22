@@ -5,7 +5,7 @@ module SessionsHelper
   end
 
   def current_user?
-    @user == current_user
+    current_user == @user
   end
 
   def logged_in?
@@ -18,6 +18,12 @@ module SessionsHelper
 
   def redirect_if_logged_in
     redirect_back(fallback_location: root_path) if logged_in?
+  end
+
+  def redirect_if_unauthorized
+    flash[:alert] = "You are not authorized to perform this action."
+
+    redirect_back(fallback_location: root_path) if !current_user?
   end
 
   def log_out

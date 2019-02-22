@@ -17,6 +17,16 @@ User
   * DONE - Add header (str) attribute
   * DONE - Add avatar (str) attribute
   * DONE - Add username (str) attribute
+  * Add validations
+    - Display error messages:
+      - Create
+      - Update
+      - Destroy
+
+Session
+  * Add validations
+    - Display error messages:
+      - Create
 
 Tags (or Hashtags?)
   * REMOVED - Add tag model for posts
@@ -27,6 +37,11 @@ Post
   * DONE - Add location (bool) attribute (where user posted the post)
     - DONE - Display Vince -> Alice
   * DONE - Expand image when clicked
+  * Add validations
+    - Display error messages:
+      - Create
+      - Update
+      - Destroy
 
 Comment
   * DONE - Add comment box to:
