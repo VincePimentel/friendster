@@ -100,7 +100,7 @@ module FriendshipsHelper
           link_to user_path(friend), class: "text-decoration-none" do
             image_tag friend.avatar, id: "friends-avatar", class: "img-fluid"
 
-            tag.p id="friends-name" do
+            tag.p id: "friends-name" do
               tag.small(friend.first_name)
             end
           end

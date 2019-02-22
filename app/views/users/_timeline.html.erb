@@ -13,6 +13,7 @@
 
       <div class="row">
         <%= timeline_friends(@user, @friends) %>
+
       </div>
 
     </div>
@@ -39,11 +40,8 @@
 
       <p>All | <%= @user.first_name %> | <%= @user.first_name %>'s Friends</p>
 
-      <%= render partial: "posts/index",
-        locals: {
-          posts: @posts,
-          comment: @comment
-        } %>
+      <%= render partial: "posts/post", collection: @posts,
+        locals: { comment: @comment } %>
 
     </div> <!-- col -->
   </div> <!-- row -->
