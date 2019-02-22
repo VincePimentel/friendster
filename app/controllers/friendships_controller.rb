@@ -1,11 +1,14 @@
 class FriendshipsController < ApplicationController
   def create
+    # Retrieve any existing friendship to avoid duplicates
+    # when another user has already added current user.
     friendship =
       Friendship.find_by(
         user_id: current_user,
         friend_id: params[:friend_id]
         )
 
+    # If no record exists, create a new one for current user.
     if friendship.nil?
       friendship =
         current_user.friendships.build(
@@ -13,6 +16,10 @@ class FriendshipsController < ApplicationController
           )
     end
 
+    # If the other user has added the current user
+    # via referenced_friendship, then,
+    # both users have added each other,
+    # set friendship status of both users to 1.
     if friendship.save
       referenced_friendship =
         Friendship.find_by(
@@ -26,18 +33,13 @@ class FriendshipsController < ApplicationController
       end
     end
 
-    # If the other user has added the current user
-    # via referenced_friendship, then,
-    # both users have added each other,
-    # set friendship status of both users to 1.
-    # To be used in users#show requests variable
-
     redirect_back(fallback_location: users_path)
   end
 
   def edit
     @user = current_user
-    @friendship = Friendship.find(params[:id])
+    @friendship = @user.friendships.find_by(id: params[:id])
+    @friend = @user.friends.find_by(id: @friendship.friend_id)
   end
 
   def update

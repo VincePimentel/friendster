@@ -14,14 +14,14 @@
         <dd class="col-10 lead"><%= @user.bio %></dd>
 
         <dt class="col-12 col-md-2">Gender</dt>
-        <dd class="col-10"><%= @user.gender.capitalize %></dd>
+        <dd class="col-10"><%= @user.gender&.capitalize %></dd>
       </dl>
     </div>
 
     <div class="tab-pane fade" id="v-pills-contact" role="tabpanel">
       <dl class="row">
         <dt class="col-12 col-md-2">Location</dt>
-        <dd class="col-10"><%= @user.location %></dd>
+        <dd class="col-10"><%= @user&.location %></dd>
 
         <dt class="col-12 col-md-2">E-mail</dt>
         <dd class="col-10"><%= @user.email %></dd>
@@ -31,13 +31,25 @@
     <div class="tab-pane fade" id="v-pills-social" role="tabpanel">
       <dl class="row">
         <dt class="col-12 col-md-2">Website</dt>
-        <dd class="col-10"><%= link_to @user.website.gsub(/(https\:\/\/)|(http\:\/\/)/, ""), @user.website %></dd>
+        <dd class="col-10">
+          <% if @user.website %>
+            <%= link_to @user.website.gsub(/(https\:\/\/)|(http\:\/\/)/, ""), @user.website %>
+          <% end %>
+        </dd>
 
         <dt class="col-12 col-md-2">Instagram</dt>
-        <dd class="col-10"><%= link_to @user.instagram, "https://instagram.com/#{@user.instagram}" %></dd>
+        <dd class="col-10">
+          <% if @user.instagram %>
+            <%= link_to @user.instagram, "https://instagram.com/#{@user.instagram}" %>
+          <% end %>
+        </dd>
 
         <dt class="col-12 col-md-2">Twitter</dt>
-        <dd class="col-10"><%= link_to @user.twitter, "https://twitter.com/#{@user.twitter}" %></dd>
+        <dd class="col-10">
+          <% if @user.twitter %>
+            <%= link_to @user.twitter, "https://twitter.com/#{@user.twitter}" %>
+          <% end %>
+        </dd>
       </dl>
     </div>
 

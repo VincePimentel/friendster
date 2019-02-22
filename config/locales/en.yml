@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    submit:
+      user:
+        create: "Sign Up"
+        update: "Save Changes"
+        destroy: "Delete Account"

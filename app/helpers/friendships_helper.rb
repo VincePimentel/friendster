@@ -17,19 +17,19 @@ module FriendshipsHelper
   def button(object, action)
     case action
     when "add friend"
-      add_button(object, action)
+      add_friend_button(object, action)
     when "accept"
-      add_button(object, action) + " " + reject_button
+      add_friend_button(object, action) + " " + reject_request_button
     when "cancel"
-      cancel_button(object, action)
+      cancel_request_button(object, action)
     when "edit"
-      edit_button(object)
+      edit_friendship_button(object)
     else
-      relationship_badge(object, action) + " " + edit_link(object)
+      relationship_badge(object, action) + " " + edit_friendship_link(object)
     end
   end
 
-  def add_button(user, action)
+  def add_friend_button(user, action)
     if current_user != user
       link_to friendships_path(friend_id: user),
         method: :post,
@@ -41,7 +41,7 @@ module FriendshipsHelper
     end
   end
 
-  def cancel_button(user, action)
+  def cancel_request_button(user, action)
     if current_user != user
       link_to friendship_path(current_user.friendship(user)),
         method: :delete,
@@ -54,7 +54,7 @@ module FriendshipsHelper
     end
   end
 
-  def reject_button
+  def reject_request_button
     link_to friendship_path(current_user.referenced_friendship),
       method: :delete,
       data: { confirm: "Are you sure?" },
@@ -65,7 +65,7 @@ module FriendshipsHelper
     end
   end
 
-  def edit_button(user)
+  def edit_friendship_button(user)
     if current_user != user
       link_to edit_friendship_path(current_user.friendship(user)),
         role: "button",
@@ -80,11 +80,11 @@ module FriendshipsHelper
     tag.small user.friendship(friend).relationship, class: "badge badge-pill badge-primary"
   end
 
-  def edit_link(user)
+  def edit_friendship_link(user)
     if current_user != user
       link_to edit_friendship_path(current_user.friendship(user)), class: "text-decoration-none" do
 
-        icon_label("edit", "edit")
+        icon_label("edit", "")
       end
     end
   end
@@ -96,7 +96,7 @@ module FriendshipsHelper
   def timeline_friends(user, friend)
     tag.div class: "col-4 px-1 py-0 text-center" do
       link_to user_path(friend), class: "text-decoration-none" do
-        image_tag(friend.avatar, id: "friends-avatar", class: "img-fluid") + tag.p(tag.small(friend.first_name), id: "friends-name")
+        image_tag(friend.avatar, id: "friends-avatar", class: "img-fluid") + tag.p(tag.small(friend.first_name), id: "friends-name", class: "badge badge-pill badge-primary")
       end
     end
   end

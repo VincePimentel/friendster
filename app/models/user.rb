@@ -23,37 +23,40 @@ class User < ApplicationRecord
   end
 
   def available_friends
-    # Get user IDs of users current user is friends with,
-    # has sent a friend request to,
-    # has received a friend request from,
-    # and self.
-
+    # Get user IDs of all users:
+    # 1) current user is friends with
+    # 2) current user has sent a friend request to
+    # 3) current user has received a friend request from
+    # 4) and self
     ids = current_friend_ids + sent_request_ids + received_request_ids << self.id
 
+    # Retrieve all users that are not included in the array of user IDs
     User.where.not(id: ids)
   end
 
+  # Retrieve all users current user is
+  # confirmed friends with (status: 1)
   def current_friends
     User.where(id: current_friend_ids)
   end
 
+  # Retrieve outgoing friend requests to other users
   def sent_requests
-    # Outgoing friend requests to other users
     User.where(id: sent_request_ids)
   end
 
+  # Retrieve incoming friend requests from other users
   def received_requests
-    # Incoming friend requests from other users
     User.where(id: received_request_ids)
   end
 
-  def friendship(user)
-    # self.friendships.find_by(friend_id: user, status: 0)
-    self.friendships.find_by(friend_id: user)
+  # Retrieve friendship from friend
+  def friendship(friend)
+    self.friendships.find_by(friend_id: friend)
   end
 
+  # Retrieve friendship from friend's friendship table
   def referenced_friendship
-    # self.referenced_friendships.find_by(friend_id: self, status: 0)
     self.referenced_friendships.find_by(friend_id: self)
   end
 

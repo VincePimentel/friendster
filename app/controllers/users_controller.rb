@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  include SessionsHelper
+
+  before_action :set_user, only: [:show, :edit, :destroy]
 
   def index
     @users = current_user.available_friends
@@ -25,30 +28,30 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @post = Post.new
     @comment = Comment.new
-    # @posts = @user.posts#.merge(Post.where("recipient_id = ?", @user.id)).order("created_at DESC")#.and also posts by friends on profile
 
+    # Retrieve all posts posted on @user's timeline
     @posts = Post.where(recipient_id: @user).order("created_at DESC")
 
     @friends = @user.current_friends
 
-
     @sent_requests = current_user.sent_requests
     @received_requests = current_user.received_requests
-
-    #@friendships = current_user.friendships
-
-    #binding.pry
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  def edit; end
 
   def destroy
+    if @user == current_user
+      @user.destroy
 
+      log_out
+    else
+      flash[:alert] = "You are not authorized to perform this action."
+    end
+
+    redirect_to root_path
   end
 
   private
@@ -57,9 +60,14 @@ class UsersController < ApplicationController
       params.require(:user).permit(
         :first_name,
         :last_name,
+        :username,
         :email,
         :password,
         :password_confirmation
         )
+    end
+
+    def set_user
+      @user = User.find(params[:id])
     end
 end

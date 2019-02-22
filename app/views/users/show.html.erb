@@ -20,7 +20,9 @@
 
       <div class="col-auto col-sm-auto pr-5">
         <div class="h-100 justify-content-center flex-column d-flex">
-          <% if status_pending?(@user) %>
+          <% if current_user? %>
+            <%= edit_profile_button %>
+          <% elsif status_pending?(@user) %>
             <%= button(@user, "cancel") %>
           <% elsif friends?(@user) %>
             <%= button(@user, "edit") %>

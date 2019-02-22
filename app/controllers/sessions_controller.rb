@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  include SessionsHelper
+
+  before_action :redirect_if_logged_in, only: [:new, :create]
 
   def new; end
 
@@ -15,9 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete(:user_id)
-
-    @current_user = nil
+    log_out
 
     redirect_to login_path
   end

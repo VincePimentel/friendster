@@ -1,21 +1,27 @@
 <div class="row justify-content-center mt-4">
   <div class="col-10 col-sm-9 col-md-7 col-lg-6">
-    <div class="card mb-3">
+
+    <div class="card mb-3"">
       <div class="row no-gutters">
+
         <div class="col-md-4 text-center">
-          <%= image_tag @friendship.friend.avatar, class: "img-fluid" %>
+          <%= image_tag @friend.avatar, class: "img-fluid" %>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-8 mb-n1">
           <div class="card-body">
+
             <h5 class="card-title">
-              <%= link_to @friendship.friend.full_name, user_path(@friendship.friend) %>
+              <%= link_to @friend.full_name, user_path(@friend) %>
             </h5>
+
             <p class="card-text">
-              <%= tag.small(@friendship.relationship, class: "badge badge-pill badge-primary") %>
+              <%= relationship_badge(@friend, @user) %>
             </p>
+
           </div>
         </div>
+
       </div>
     </div>
 
@@ -40,6 +46,7 @@
             <%= link_to friendship_path(@friendship),
               method: :delete,
               role: "button",
+              data: { confirm: "Are you sure?" },
               class: "btn btn-primary btn-block btn-sm" do %>
               <%= icon("fas", "user-minus") + " Unfriend" %>
             <% end %>
@@ -48,14 +55,6 @@
       </div>
 
     <% end %>
-  </div>
-</div>
-
-<div class="dropdown-divider"></div>
-
-<div class="row justify-content-center">
-  <div class="col-12">
-
   </div>
 </div>
 
