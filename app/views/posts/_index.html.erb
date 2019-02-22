@@ -6,17 +6,20 @@
       <div class="card mb-3">
 
         <div class="card-header">
+
           <%= post_header(post) %>
 
           <br>
 
           <small class="text-muted" data-toggle="tooltip" data-placement="right" title="<%= time_ago_in_words(post.created_at) %> ago">
-            <%= post_datetime(post) %>
+            <%= post.created_at.localtime.strftime("%A, %d %b %Y %l:%M %p") %>
           </small>
         </div> <!-- card-header -->
 
         <div class="card-body p-0">
+
           <%= post_body(post) %>
+
         </div>
 
         <div class="card-footer text-muted px-1 py-1">
