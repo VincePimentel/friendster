@@ -44,4 +44,8 @@ module PostsHelper
     end
   end
 
+  def post_datetime(post)
+    post.created_at.localtime.strftime("%A, %d %b %Y %l:%M %p")
+  end
+
 end
