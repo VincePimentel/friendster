@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-sm-4">
+    <%= form_for(@user) do |f| %>
+      <div class="form-group">
+        <%= f.label :first_name, "Name" %>
+        <%= f.text_field :first_name, placeholder: "First name", class: "form-control" %>
+        <%= f.text_field :last_name, placeholder: "Last name", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, "E-mail" %>
+        <%= f.email_field :email, placeholder: "name@example.com", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, placeholder: "Minimum 6 characters", class: "form-control" %>
+        <%= f.password_field :password_confirmation, placeholder: "Repeat password", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "Register", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row justify-content-center mt-4">
+    <div class="col-10 col-sm-9 col-md-7 col-lg-6">
+
+      <form>
+        <div class="input-group">
+          <div class="input-group-prepend col-4 pr-0">
+            <span class="input-group-text col">Name</span>
+          </div>
+          <input type="text" class="form-control" placeholder="First">
+          <input type="text" class="form-control" placeholder="Last">
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-prepend col-4 pr-0">
+            <span class="input-group-text col">Password</span>
+          </div>
+          <input type="text" class="form-control" placeholder="">
+          <input type="text" class="form-control" placeholder="Repeat">
+        </div>
+      </form>
+
+  </div>
+</div>

@@ -3,7 +3,6 @@
 TO-DO
 
 Home
-  * Build index
   * Display only:
     - posts
     - comments
@@ -25,7 +24,7 @@ Post
   * DONE - Add edit feature
   * Add location (bool) attribute (where user posted the post)
     - Display Vince -> Alice
-  * Expand image when clicked
+  * DONE - Expand image when clicked
 
 Comment
   * DONE - Add comment box to:
