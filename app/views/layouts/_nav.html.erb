@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
   <div class="container">
+
     <a class="navbar-brand" href="#">Friendster</a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsMain">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,25 +12,18 @@
 
         <% if logged_in? %>
           <li class="nav-item">
-            <%#= icon("fas", "users", class: "nav-link") %>
             <%= request_notification %>
           </li>
           <li class="nav-item"> <!-- active -->
-            <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to current_user.first_name, user_path(current_user), class: "nav-link" %>
           </li>
-          <!-- <li class="nav-item">
-            <%#= link_to "People", users_path, class: "nav-link" %>
-          </li> -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navDropdown" data-toggle="dropdown"><%= icon("fas", "user-cog") %></a>
             <div class="dropdown-menu">
-              <!-- <a class="dropdown-item" href="#">Settings</a> -->
-              <!-- <a class="dropdown-item" href="#">Log Out</a> -->
-              <%= link_to "Settings", "#", class: "dropdown-item" %>
+              <%#= link_to "Settings", "#", class: "dropdown-item" %>
               <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
@@ -42,9 +37,7 @@
         <% end %>
 
       </ul>
-      <!-- <form class="form-inline my-2 my-md-0">
-        <input class="form-control" type="text" placeholder="Search">
-      </form> -->
     </div>
+
   </div>
 </nav>

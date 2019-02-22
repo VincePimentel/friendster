@@ -17,7 +17,11 @@
             user: @user
           } %>
 
-        <%= tag.div "#{@user.first_name} has not added any friends yet.", class: "col-12 mb-3" if @friends.empty? %>
+        <% if @friends.size == 0 %>
+          <div class="col-12 mb-3">
+            <%= current_user? ? "You have" : "#{@user.first_name} has" %> not added any friends yet.
+          </div>
+        <% end %>
       </div>
 
     </div>
@@ -42,9 +46,8 @@
     <div class="col">
       <h5 class="mt-4 mb-3">Posts</h5>
 
-      <p>All | <%= @user.first_name %> | <%= @user.first_name %>'s Friends</p>
-
-      <%= render partial: "posts/post", collection: @posts,
+      <%= render partial: "posts/post",
+        collection: @posts,
         locals: { comment: @comment } %>
 
     </div> <!-- col -->

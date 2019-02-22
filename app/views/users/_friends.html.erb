@@ -1,4 +1,4 @@
-<% if current_user == @user %>
+<% if current_user? %>
   <div class="col-12">
     <h5 class="mb-3">
       Friend Requests
@@ -33,13 +33,18 @@
       Friends
   </h5>
 
-  <div class="row">
-    <%= render partial: "user",
-      collection: @friends,
-      locals: {
-        action: @user
-      } %>
-  </div>
+  <% if @friends.size > 0 %>
+    <div class="row">
+      <%= render partial: "user",
+        collection: @friends,
+        locals: {
+          action: @user
+        } %>
+    </div>
+  <% else %>
+    <%= current_user? ? "You have" : "#{@user.first_name} has" %> not added any friends yet.
+  <% end %>
+
 </div>
 
 

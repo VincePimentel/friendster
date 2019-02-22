@@ -8,10 +8,12 @@ Home
     - comments
 
 User
-  * Add edit view
-  * Add settings?
+  * DONE - Add edit view
+  * REMOVED - Add settings?
   * DONE - Add relationship
-  * Fix avatar cropping and border
+  * Fix avatar:
+    - Crop
+    - DONE - Border
   * DONE - Add header (str) attribute
   * DONE - Add avatar (str) attribute
   * DONE - Add username (str) attribute
@@ -22,8 +24,8 @@ Tags (or Hashtags?)
 Post
   * REMOVED - Add dropdown for tags
   * DONE - Add edit feature
-  * Add location (bool) attribute (where user posted the post)
-    - Display Vince -> Alice
+  * DONE - Add location (bool) attribute (where user posted the post)
+    - DONE - Display Vince -> Alice
   * DONE - Expand image when clicked
 
 Comment
@@ -36,10 +38,10 @@ Like
   * REMOVED - Set up
 
 Registration
-  * Add @ to username field
+  * DONE (changed) - Add @ to username field
 
 Navigation
-  * Change active link depending on current page
+  * REMOVED - Change active link depending on current page
   * DONE - Add badge for friend request count
 
 Friendship
