@@ -94,14 +94,10 @@ module FriendshipsHelper
   end
 
   def timeline_friends(user, friend)
-    if friend
-      tag.div class: "col-4 px-1 py-0 text-center" do
-        link_to user_path(friend), class: "text-decoration-none" do
-          image_tag(friend.avatar, id: "friends-avatar", class: "img-fluid") + tag.p(tag.small(friend.first_name), id: "friends-name")
-        end
+    tag.div class: "col-4 px-1 py-0 text-center" do
+      link_to user_path(friend), class: "text-decoration-none" do
+        image_tag(friend.avatar, id: "friends-avatar", class: "img-fluid") + tag.p(tag.small(friend.first_name), id: "friends-name")
       end
-    else
-      tag.div "#{user.first_name} has not added any friends yet.", class: "col-12 mb-3"
     end
   end
 

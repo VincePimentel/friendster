@@ -12,8 +12,12 @@
       <h5 class="card-title">Friends</h5>
 
       <div class="row">
-        <%#= timeline_friends(@user, @friends) %>
-        <%= render partial: "friendships/friend", collection: @friends, locals: { user: @user } %>
+        <%= render partial: "friendships/friend", collection: @friends,
+          locals: {
+            user: @user
+          } %>
+
+        <%= tag.div "#{@user.first_name} has not added any friends yet.", class: "col-12 mb-3" if @friends.empty? %>
       </div>
 
     </div>

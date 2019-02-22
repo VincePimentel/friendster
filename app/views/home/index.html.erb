@@ -15,7 +15,9 @@
       <h5 class="mt-4 mb-3">Posts</h5>
 
       <%= render partial: "posts/post", collection: @posts,
-        locals: { comment: @comment } %>
+        locals: {
+          comment: @comment
+        } %>
     </div>
   </div>
 <% else %>
