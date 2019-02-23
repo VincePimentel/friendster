@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
   include SessionsHelper
 
-  before_action :redirect_if_logged_out
+  # before_action :redirect_if_logged_out
   before_action :set_user, only: [:edit]
   before_action :set_friendship, only: [:update, :destroy]
 

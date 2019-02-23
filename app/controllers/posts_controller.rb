@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
   include SessionsHelper
 
-  before_action :redirect_if_logged_out
-  before_action :set_user, only: [:new, :edit]
+  # before_action :redirect_if_logged_out
+  before_action :set_user, only: [:new, :create, :update, :edit]
 
   def new
     @post = Post.new
   end
 
   def create
-    post = current_user.posts.build(post_params)
+    post = @user.posts.build(post_params)
 
     # If user posted on other user's profile
 
@@ -19,12 +19,13 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = current_user.posts.find_by(id: params[:id])
+    @post = @user.posts.find_by(id: params[:id])
+
     @comment = Comment.new
   end
 
   def update
-    post = current_user.posts.find_by(id: params[:id])
+    post = @user.posts.find_by(id: params[:id])
 
     post.update(post_params)
 
@@ -32,7 +33,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = current_user.posts.find_by(id: params[:id])
+    post = @user.posts.find_by(id: params[:id])
 
     post.destroy
 

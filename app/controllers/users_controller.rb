@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
   include SessionsHelper
 
-  before_action :redirect_if_logged_out
   # before_action :redirect_if_unauthorized, only: [:edit, :update, :destroy]
-  before_action :set_user, only: [:edit, :destroy]
+  before_action :redirect_if_logged_out, except: [:new, :create]
+  before_action :redirect_if_logged_in, only: [:new, :create]
+  before_action :set_user, only: [:index, :edit, :update] #:destroy
 
   def index
-    @users = current_user.available_friends
-    @sent_requests = current_user.sent_requests
-    @received_requests = current_user.received_requests
+    @users = @user.available_friends
+    @sent_requests = @user.sent_requests
+    @received_requests = @user.received_requests
   end
 
   def new
@@ -46,16 +47,16 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    current_user.update(user_params)
+    @user.update(user_params)
 
     redirect_back(fallback_location: root_path)
   end
 
-  def destroy
-    @user.destroy
+  # def destroy
+  #   @user.destroy
 
-    log_out
-  end
+  #   log_out
+  # end
 
   private
 
