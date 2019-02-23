@@ -3,6 +3,14 @@
 
     <%= flash_message %>
 
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+
     <%= form_for(@user) do |f| %>
       <div class="input-group mb-2">
         <div class="input-group-prepend">

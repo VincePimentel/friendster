@@ -17,14 +17,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
+    @user = User.new(user_params)
 
-    if user.save
-      user.update(avatar: "#{user.gravatar_url}&d=monsterid&size=175")
+    if @user.save
+      @user.update(avatar: "#{@user.gravatar_url}&d=monsterid&size=175")
 
-      session[:user_id] = user.id
+      session[:user_id] = @user.id
 
-      redirect_to user_path(user)
+      redirect_to user_path(@user)
     else
       render :new
     end
@@ -49,9 +49,13 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
 
-    flash[:info] = "Changes successfully saved."
+    if @user.valid?
+      flash[:info] = "Changes successfully saved."
 
-    redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path)
+    else
+      render :edit
+    end
   end
 
   # def destroy

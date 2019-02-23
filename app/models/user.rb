@@ -18,6 +18,10 @@ class User < ApplicationRecord
   # => email
   # => password
 
+  validates :first_name, :last_name, :username, :email, presence: true
+  validates :password, length: { minimum: 6 }, on: :create
+  validates :password_confirmation, presence: true, on: :create
+
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
