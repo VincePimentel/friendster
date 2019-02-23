@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   root 'home#home'
 
-  get 'test', to: 'home#test'
-
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
@@ -13,7 +11,7 @@ Rails.application.routes.draw do
   # Add exceptions
   resources :users do
     resources :posts
-    resources :comments
+    # resources :comments
   end
 
   resources :friendships

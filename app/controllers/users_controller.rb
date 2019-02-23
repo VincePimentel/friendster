@@ -49,6 +49,8 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
 
+    flash[:info] = "Changes successfully saved."
+
     redirect_back(fallback_location: root_path)
   end
 

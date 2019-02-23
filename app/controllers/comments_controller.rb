@@ -1,31 +1,35 @@
 class CommentsController < ApplicationController
+  include SessionsHelper
+
+  before_action :redirect_if_logged_out
+  before_action :set_user, only: [:create, :destroy]
+  before_action :set_post, only: [:create, :destroy]
 
   def create
-    post = Post.find(params[:post_id])
+    comment = @post.comments.build(comment_params)
 
-    comment = post.comments.build(comment_params)
-    comment.user = current_user
+    comment.user = @user
 
     comment.save
 
-    # Create comment activity here
-
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    post = Post.find(params[:post_id])
-
-    comment = post.comments.find(params[:id])
+    comment = @post.comments.find(params[:id])
 
     comment.destroy
 
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   private
 
     def comment_params
       params.require(:comment).permit(:content)
+    end
+
+    def set_post
+      @post = Post.find(params[:post_id])
     end
 end

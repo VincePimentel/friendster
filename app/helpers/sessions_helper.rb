@@ -13,8 +13,6 @@ module SessionsHelper
   end
 
   def redirect_if_logged_out
-    flash[:notice] = "Please log in before you continue."
-
     redirect_to login_path if !logged_in?
   end
 
@@ -37,7 +35,7 @@ module SessionsHelper
 
     @current_user = nil
 
-    flash[:notice] = "You have successfully logged out."
+    flash[:info] = "You have been logged out. See you again soon!"
 
     redirect_to login_path
   end

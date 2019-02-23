@@ -15,6 +15,8 @@ class PostsController < ApplicationController
 
     post.save
 
+    flash[:success] = "Post shared!"
+
     redirect_back(fallback_location: root_path)
   end
 
@@ -29,6 +31,8 @@ class PostsController < ApplicationController
 
     post.update(post_params)
 
+    flash[:info] = "Changes successfully saved."
+
     redirect_back(fallback_location: root_path)
   end
 
@@ -36,6 +40,8 @@ class PostsController < ApplicationController
     post = @user.posts.find_by(id: params[:id])
 
     post.destroy
+
+    flash[:success] = "Post successfully deleted."
 
     redirect_to root_path
   end
