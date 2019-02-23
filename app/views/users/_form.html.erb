@@ -12,7 +12,7 @@
     </ul>
 
     <%= form_for(@user) do |f| %>
-      <div class="input-group mb-2">
+      <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <%= icon("fas", "user-alt fa-fw") %>
@@ -22,7 +22,29 @@
         <%= f.text_field :last_name, placeholder: "Last name", class: "form-control" %>
       </div>
 
-      <div class="input-group mb-2">
+      <div class="row no-gutters mb-2">
+        <% if @user.errors[:first_name].size > 0 || @user.errors[:last_name].size > 0 %>
+            <div class="col-1 mr-3"></div>
+
+            <div class="col text-danger">
+              <% if @user.errors[:first_name].size > 0 %>
+                <% @user.errors[:first_name].each do |error| %>
+                  <small><%= icon("fas", "times") %>  First name <%= error %></small><br>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="col text-danger">
+              <% if @user.errors[:last_name].size > 0 %>
+                <% @user.errors[:last_name].each do |error| %>
+                  <small><%= icon("fas", "times") %> Last name <%= error %></small><br>
+                <% end %>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <%= icon("fas", "at fa-fw") %>
@@ -31,16 +53,44 @@
         <%= f.text_field :username, placeholder: "Username", class: "form-control" %>
       </div>
 
-      <div class="input-group mb-2">
+      <div class="row no-gutters mb-2">
+        <% if @user.errors[:username].size > 0 %>
+            <div class="col-1 mr-3"></div>
+
+            <div class="col text-danger">
+              <% if @user.errors[:username].size > 0 %>
+                <% @user.errors[:username].each do |error| %>
+                  <small><%= icon("fas", "times") %> Username <%= error %></small><br>
+                <% end %>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <%= icon("fas", "envelope fa-fw") %>
           </span>
         </div>
-        <%= f.text_field :email, placeholder: "E-mail", class: "form-control" %>
+        <%= f.text_field :email, placeholder: "E-mail address", class: "form-control" %>
       </div>
 
-      <div class="input-group mb-2">
+      <div class="row no-gutters mb-2">
+        <% if @user.errors[:email].size > 0 %>
+            <div class="col-1 mr-3"></div>
+
+            <div class="col text-danger">
+              <% if @user.errors[:email].size > 0 %>
+                <% @user.errors[:email].each do |error| %>
+                  <small><%= icon("fas", "times") %> E-mail address <%= error %></small><br>
+                <% end %>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <%= icon("fas", "key fa-fw") %>
@@ -48,6 +98,28 @@
         </div>
         <%= f.password_field :password, placeholder: "•••••••", class: "form-control" %>
         <%= f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control" %>
+      </div>
+
+      <div class="row no-gutters mb-2">
+        <% if @user.errors[:password].size > 0 || @user.errors[:password_confirmation].size > 0 %>
+            <div class="col-1 mr-3"></div>
+
+            <div class="col text-danger">
+              <% if @user.errors[:password].size > 0 %>
+                <% @user.errors[:password].each do |error| %>
+                  <small><%= icon("fas", "times") %> Password <%= error %></small><br>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="col text-danger">
+              <% if @user.errors[:password_confirmation].size > 0 %>
+                <% @user.errors[:password_confirmation].each do |error| %>
+                  <small><%= icon("fas", "times") %> Password <%= error %></small><br>
+                <% end %>
+              <% end %>
+            </div>
+        <% end %>
       </div>
 
       <% if @user.id %>
