@@ -1,7 +1,10 @@
 class PostsController < ApplicationController
+  include SessionsHelper
+
+  before_action :redirect_if_logged_out
+  before_action :set_user, only: [:new, :edit]
 
   def new
-    @user = current_user
     @post = Post.new
   end
 
@@ -12,13 +15,10 @@ class PostsController < ApplicationController
 
     post.save
 
-    # @post.create_activity(:create, owner: current_user)
-
     redirect_back(fallback_location: root_path)
   end
 
   def edit
-    @user = current_user
     @post = current_user.posts.find_by(id: params[:id])
     @comment = Comment.new
   end
@@ -33,8 +33,6 @@ class PostsController < ApplicationController
 
   def destroy
     post = current_user.posts.find_by(id: params[:id])
-
-    # @post.create_activity(:destroy, owner: current_user)
 
     post.destroy
 

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:session][:password])
       session[:user_id] = user.id
 
-      redirect_to user_path(user)
+      redirect_back(fallback_location: root_path)
     else
       render :new
     end
@@ -19,7 +19,5 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-
-    redirect_to login_path
   end
 end

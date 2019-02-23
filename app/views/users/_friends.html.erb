@@ -1,31 +1,35 @@
 <% if current_user? %>
-  <div class="col-12">
-    <h5 class="mb-3">
-      Friend Requests
-    </h5>
+  <% if @received_requests.size > 0 %>
+    <div class="col-12">
+      <h5 class="mb-3">
+        Friend Requests
+      </h5>
 
-    <div class="row">
-      <%= render partial: "user",
-        collection: @received_requests,
-        locals: {
-          action: "accept"
-        } %>
+      <div class="row">
+        <%= render partial: "user",
+          collection: @received_requests,
+          locals: {
+            action: "accept"
+          } %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
-  <div class="col-12">
-    <h5 class="mb-3">
-      Pending Requests
-    </h5>
+  <% if @sent_requests.size > 0 %>
+    <div class="col-12">
+      <h5 class="mb-3">
+        Pending Requests
+      </h5>
 
-    <div class="row">
-      <%= render partial: "user",
-        collection: @sent_requests,
-        locals: {
-          action: "cancel"
-        } %>
+      <div class="row">
+        <%= render partial: "user",
+          collection: @sent_requests,
+          locals: {
+            action: "cancel"
+          } %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <div class="col-12">
@@ -44,7 +48,6 @@
   <% else %>
     <%= current_user? ? "You have" : "#{@user.first_name} has" %> not added any friends yet.
   <% end %>
-
 </div>
 
 

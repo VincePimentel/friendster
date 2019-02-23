@@ -1,14 +1,13 @@
 class HomeController < ApplicationController
+  include SessionsHelper
+
+  before_action :redirect_if_logged_out
+  before_action :set_user, only: [:index]
 
   def index
-    if logged_in?
-      @user = current_user
-      @post = Post.new
-      @posts = Post.by_friends(current_user)# if logged_in?
-      @comment = Comment.new
-    else
-      redirect_to login_path
-    end
+    @post = Post.new
+    @posts = Post.by_friends(@user)
+    @comment = Comment.new
   end
 
   def test; end

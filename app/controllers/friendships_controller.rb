@@ -1,4 +1,10 @@
 class FriendshipsController < ApplicationController
+  include SessionsHelper
+
+  before_action :redirect_if_logged_out
+  before_action :set_user, only: [:edit]
+  before_action :set_friendship, only: [:update, :destroy]
+
   def create
     # Retrieve any existing friendship to avoid duplicates
     # when another user has already added current user.
@@ -37,32 +43,26 @@ class FriendshipsController < ApplicationController
   end
 
   def edit
-    @user = current_user
     @friendship = @user.friendships.find_by(id: params[:id])
     @friend = @user.friends.find_by(id: @friendship.friend_id)
   end
 
   def update
-    friendship = Friendship.find(params[:id])
+    @friendship.update(friendship_params)
 
-    friendship.update(friendship_params)
-
-    redirect_to edit_friendship_path(friendship)
+    redirect_to edit_friendship_path(@friendship)
   end
 
   def destroy
-    # Current user's friendship with other user
-    friendship = Friendship.find(params[:id])
-
     # Other user's friendship with current user
     referenced_friendship =
       Friendship.find_by(
-        friend_id: friendship.user.id,
-        user_id: friendship.friend.id
+        friend_id: @friendship.user.id,
+        user_id: @friendship.friend.id
         )
 
     # Destroy current user's friendship with other user
-    friendship.destroy
+    @friendship.destroy
 
     # Destroy other user's friendship with current user
     # if other user has added current user prior to deletion
@@ -77,5 +77,9 @@ class FriendshipsController < ApplicationController
 
     def friendship_params
       params.require(:friendship).permit(:relationship)
+    end
+
+    def set_friendship
+      @friendship = Friendship.find(params[:id])
     end
 end

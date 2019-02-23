@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   include SessionsHelper
 
-  before_action :set_user, only: [:show, :edit, :destroy]
   before_action :redirect_if_logged_out
-  before_action :redirect_if_unauthorized, only: [:edit, :update, :destroy]
+  # before_action :redirect_if_unauthorized, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :destroy]
 
   def index
     @users = current_user.available_friends
@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     @post = Post.new
     @comment = Comment.new
 
@@ -54,8 +55,6 @@ class UsersController < ApplicationController
     @user.destroy
 
     log_out
-
-    redirect_to root_path
   end
 
   private
@@ -74,9 +73,5 @@ class UsersController < ApplicationController
         :instagram,
         :twitter
         )
-    end
-
-    def set_user
-      @user = User.find(params[:id])
     end
 end
