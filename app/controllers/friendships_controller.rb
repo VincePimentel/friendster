@@ -2,7 +2,7 @@ class FriendshipsController < ApplicationController
   include SessionsHelper
 
   # before_action :redirect_if_logged_out
-  before_action :set_user, only: [:edit]
+  before_action :set_user, only: [:create, :edit]
   before_action :set_friendship, only: [:update, :destroy]
 
   def create
@@ -14,12 +14,16 @@ class FriendshipsController < ApplicationController
         friend_id: params[:friend_id]
         )
 
+    friend = User.find_by(id: params[:friend_id])
+
     # If no record exists, create a new one for current user.
     if friendship.nil?
       friendship =
         current_user.friendships.build(
           friend_id: params[:friend_id]
           )
+
+      flash[:info] = "Friend request sent to #{friend.first_name}."
     end
 
     # If the other user has added the current user
@@ -36,6 +40,8 @@ class FriendshipsController < ApplicationController
       if referenced_friendship
         friendship.update(status: 1)
         referenced_friendship.update(status: 1)
+
+        flash[:info] = "You and #{friend.first_name} are now friends."
       end
     end
 
@@ -68,6 +74,10 @@ class FriendshipsController < ApplicationController
     # if other user has added current user prior to deletion
     if referenced_friendship
       referenced_friendship.destroy
+
+      friend = User.find_by(id: @friendship.user)
+
+      flash[:info] = "You and #{friend.first_name} are no longer friends."
     end
 
     redirect_to users_path
