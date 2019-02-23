@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   include SessionsHelper
 
-  # before_action :redirect_if_logged_out
-  before_action :set_user, only: [:new, :create, :update, :edit]
+  before_action :redirect_if_logged_out
+  before_action :set_user, except: [:index, :show]
 
   def new
     @post = Post.new
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
 
     post.update(post_params)
 
-    redirect_to edit_post_path(post)
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
     post.destroy
 
-    redirect_back(fallback_location: root_path)
+    redirect_to root_path
   end
 
   private
