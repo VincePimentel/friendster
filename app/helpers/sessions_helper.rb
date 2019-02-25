@@ -21,7 +21,7 @@ module SessionsHelper
   end
 
   # def redirect_if_unauthorized
-  #   flash[:alert] = "You are not authorized to perform this action."
+  #   flash[:danger] = "You are not authorized to perform this action."
 
   #   redirect_back(fallback_location: root_path) if !current_user?
   # end
@@ -35,7 +35,7 @@ module SessionsHelper
 
     @current_user = nil
 
-    flash[:info] = "You have been logged out. See you again soon!"
+    flash[:info] = "You have been logged out. See you soon!"
 
     redirect_to login_path
   end

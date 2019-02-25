@@ -1,16 +1,17 @@
 class FriendshipsController < ApplicationController
   #include SessionsHelper
 
-  # before_action :redirect_if_logged_out
+  before_action :redirect_if_logged_out
   before_action :set_user, only: [:create, :edit]
-  before_action :set_friendship, only: [:update, :destroy]
+  before_action :set_friendship, only: [:edit, :update, :destroy]
+  before_action :redirect_if_no_friendship, only: [:edit, :update, :destroy]
 
   def create
     # Retrieve any existing friendship to avoid duplicates
     # when another user has already added current user.
     friendship =
       Friendship.find_by(
-        user_id: current_user,
+        user_id: @user,
         friend_id: params[:friend_id]
         )
 
@@ -19,7 +20,7 @@ class FriendshipsController < ApplicationController
     # If no record exists, create a new one for current user.
     if friendship.nil?
       friendship =
-        current_user.friendships.build(
+        @user.friendships.build(
           friend_id: params[:friend_id]
           )
 
@@ -49,8 +50,13 @@ class FriendshipsController < ApplicationController
   end
 
   def edit
-    @friendship = @user.friendships.find_by(id: params[:id])
-    @friend = @user.friends.find_by(id: @friendship.friend_id)
+    if @user.friendships.find_by(id: @friendship)
+      @friend = @user.friends.find_by(id: @friendship.friend_id)
+    else
+      flash[:danger] = "You are not authorized to perform this action."
+
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def update
@@ -90,6 +96,14 @@ class FriendshipsController < ApplicationController
     end
 
     def set_friendship
-      @friendship = Friendship.find(params[:id])
+      @friendship = Friendship.find_by(id: params[:id])
+    end
+
+    def redirect_if_no_friendship
+      if !@friendship
+        flash[:danger] = "Friendship does not exist. Please try again."
+
+        redirect_back(fallback_location: root_path)
+      end
     end
 end
