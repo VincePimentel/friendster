@@ -34,7 +34,7 @@ module FriendshipsHelper
       link_to friendships_path(friend_id: user),
         method: :post,
         role: "button",
-        class: "btn btn-primary btn-sm" do
+        class: "btn btn-dark btn-sm" do
 
         icon_label("plus", action)
       end
@@ -47,7 +47,7 @@ module FriendshipsHelper
         method: :delete,
         data: { confirm: "Are you sure?" },
         role: "button",
-        class: "btn btn-primary btn-sm" do
+        class: "btn btn-dark btn-sm" do
 
         icon_label("minus", action)
       end
@@ -59,7 +59,7 @@ module FriendshipsHelper
       method: :delete,
       data: { confirm: "Are you sure?" },
       role: "button",
-      class: "btn btn-primary btn-sm" do
+      class: "btn btn-dark btn-sm" do
 
       icon_label("minus", "reject")
     end
@@ -77,12 +77,12 @@ module FriendshipsHelper
   end
 
   def relationship_badge(friend, user)
-    tag.small user.friendship(friend).relationship, class: "badge badge-pill badge-primary"
+    tag.small user.friendship(friend).relationship, class: "badge badge-pill badge-dark"
   end
 
   def edit_friendship_link(user)
     if current_user != user
-      link_to edit_friendship_path(current_user.friendship(user)), class: "text-decoration-none" do
+      link_to edit_friendship_path(current_user.friendship(user)), class: "text-decoration-none text-dark" do
 
         icon_label("edit", "")
       end
@@ -96,7 +96,7 @@ module FriendshipsHelper
   def timeline_friends(user, friend)
     tag.div class: "col-4 px-1 py-0 text-center" do
       link_to user_path(friend), class: "text-decoration-none" do
-        image_tag(friend.avatar, id: "friends-avatar", class: "img-fluid") + tag.p(tag.small(friend.first_name), id: "friends-name", class: "badge badge-pill badge-primary")
+        image_tag(friend.avatar, id: "friends-avatar", class: "img-fluid") + tag.p(tag.small(friend.first_name), id: "friends-name", class: "badge badge-pill badge-dark")
       end
     end
   end

@@ -16,10 +16,14 @@ module PostsHelper
     if current_user == post.user
       tag.span class: "float-right" do
         link_to(icon("fas", "edit"),
-          edit_user_post_path(post.user.id, post)) + " " + link_to(icon("fas", "trash"),
+          edit_user_post_path(post.user.id, post),
+          class: "text-dark") +
+        " " +
+        link_to(icon("fas", "trash"),
           user_post_path(post.user.id, post),
           method: :delete,
-          data: { confirm: "Are you sure?" })
+          data: { confirm: "Are you sure?" },
+          class: "text-dark")
       end
     end
   end
