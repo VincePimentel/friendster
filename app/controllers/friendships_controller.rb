@@ -62,7 +62,13 @@ class FriendshipsController < ApplicationController
   def update
     @friendship.update(friendship_params)
 
-    redirect_to edit_friendship_path(@friendship)
+    if @friendship.valid?
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:danger] = "Invalid relationship. Please try again."
+
+      render :edit
+    end
   end
 
   def destroy
