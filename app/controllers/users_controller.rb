@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  #include SessionsHelper
-
-  # before_action :redirect_if_unauthorized, only: [:edit, :update, :destroy]
   before_action :redirect_if_logged_out, except: [:new, :create]
   before_action :redirect_if_logged_in, only: [:new, :create]
   before_action :set_user, only: [:index, :edit, :update] #:destroy

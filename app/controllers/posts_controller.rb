@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  #include SessionsHelper
-
   before_action :redirect_if_logged_out, except: [:index, :show]
   before_action :set_user, except: [:index, :show]
 
