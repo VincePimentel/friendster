@@ -5,12 +5,16 @@ class Post < ApplicationRecord
   has_many :users, through: :comments
   # has_many :commenters, through: :comments
 
-  # ADD SCOPES
-  #scope :by_friends, -> {}
+  validates :content, presence: true
 
   def self.by_friends(user)
+    # Get all IDs of user's friends and self
     ids = user.friends.pluck(:id) << user.id
 
-    self.where(user_id: ids).where(audience: 1).order("created_at DESC")
+    where(user_id: ids, audience: 1).order("created_at DESC")
+  end
+
+  def self.on_timeline(user)
+    where(recipient_id: user).order("created_at DESC")
   end
 end

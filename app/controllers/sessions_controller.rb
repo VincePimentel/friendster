@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  include SessionsHelper
+  #include SessionsHelper
 
   before_action :redirect_if_logged_in, only: [:new, :create]
 

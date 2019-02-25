@@ -13,14 +13,19 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, through: :posts, dependent: :destroy
 
-  # ADD VALIDATIONS FOR
-  # => username
-  # => email
-  # => password
+  validates :first_name,
+            :last_name,
+            :username,
+            :email,
+            presence: true
 
-  validates :first_name, :last_name, :username, :email, presence: true
-  validates :password, length: { minimum: 6 }, on: :create
-  validates :password_confirmation, presence: true, on: :create
+  validates :password,
+            length: { minimum: 6 },
+            on: :create
+
+  validates :password_confirmation,
+            presence: true,
+            on: :create
 
   def full_name
     "#{self.first_name} #{self.last_name}"
@@ -32,7 +37,7 @@ class User < ApplicationRecord
     # 2) current user has sent a friend request to
     # 3) current user has received a friend request from
     # 4) and self
-    ids = current_friend_ids + sent_request_ids + received_request_ids << self.id
+    ids = current_friends_ids + sent_requests_ids + received_requests_ids << self.id
 
     # Retrieve all users that are not included in the array of user IDs
     User.where.not(id: ids)
@@ -41,17 +46,17 @@ class User < ApplicationRecord
   # Retrieve all users current user is
   # confirmed friends with (status: 1)
   def current_friends
-    User.where(id: current_friend_ids)
+    User.where(id: current_friends_ids)
   end
 
   # Retrieve outgoing friend requests to other users
   def sent_requests
-    User.where(id: sent_request_ids)
+    User.where(id: sent_requests_ids)
   end
 
   # Retrieve incoming friend requests from other users
   def received_requests
-    User.where(id: received_request_ids)
+    User.where(id: received_requests_ids)
   end
 
   # Retrieve friendship from friend
@@ -66,15 +71,15 @@ class User < ApplicationRecord
 
   private
 
-    def current_friend_ids
+    def current_friends_ids
       self.friendships.where(status: 1).pluck(:friend_id)
     end
 
-    def sent_request_ids
+    def sent_requests_ids
       self.friendships.where(status: 0).pluck(:friend_id)
     end
 
-    def received_request_ids
+    def received_requests_ids
       self.referenced_friendships.where(status: 0).pluck(:user_id)
     end
 end

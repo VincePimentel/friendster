@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  include SessionsHelper
+  #include SessionsHelper
 
   # before_action :redirect_if_unauthorized, only: [:edit, :update, :destroy]
   before_action :redirect_if_logged_out, except: [:new, :create]
@@ -36,7 +36,8 @@ class UsersController < ApplicationController
     @comment = Comment.new
 
     # Retrieve all posts posted on @user's timeline
-    @posts = Post.where(recipient_id: @user).order("created_at DESC")
+    @posts = Post.on_timeline(@user)
+    # @posts = Post.where(recipient_id: @user).order("created_at DESC")
 
     @friends = @user.current_friends
 
