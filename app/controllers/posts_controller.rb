@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   #include SessionsHelper
 
-  before_action :redirect_if_logged_out
+  before_action :redirect_if_logged_out, except: [:index, :show]
   before_action :set_user, except: [:index, :show]
 
   def new
@@ -11,19 +11,25 @@ class PostsController < ApplicationController
   def create
     post = @user.posts.build(post_params)
 
-    # If user posted on other user's profile
+    if post.save
+      flash[:success] = "Post shared!"
 
-    post.save
-
-    flash[:success] = "Post shared!"
-
-    redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path)
+    else
+      render :new
+    end
   end
 
   def edit
     @post = @user.posts.find_by(id: params[:id])
 
     @comment = Comment.new
+
+    if !@post
+      flash[:danger] = "Post does not exist. Please try again"
+
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def update
@@ -31,9 +37,13 @@ class PostsController < ApplicationController
 
     post.update(post_params)
 
-    flash[:info] = "Changes successfully saved."
+    if post.valid?
+      flash[:info] = "Changes successfully saved."
 
-    redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path)
+    else
+      render :edit
+    end
   end
 
   def destroy

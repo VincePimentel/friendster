@@ -1,6 +1,4 @@
 class FriendshipsController < ApplicationController
-  #include SessionsHelper
-
   before_action :redirect_if_logged_out
   before_action :set_user, only: [:create, :edit]
   before_action :set_friendship, only: [:edit, :update, :destroy]
@@ -18,7 +16,7 @@ class FriendshipsController < ApplicationController
     friend = User.find_by(id: params[:friend_id])
 
     # If no record exists, create a new one for current user.
-    if friendship.nil?
+    if !friendship
       friendship =
         @user.friendships.build(
           friend_id: params[:friend_id]
