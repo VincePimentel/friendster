@@ -2,14 +2,14 @@
 <div class="col-md-5">
   <div class="card mb-4">
     <div class="card-body">
-      <h5 class="card-title">Intro</h5>
+      <h5 class="card-title"><b>Intro</b></h5>
       <p class="card-text"><%= @user.bio %></p>
     </div>
   </div>
 
   <div class="card mb-4">
     <div class="card-body pb-0">
-      <h5 class="card-title">Friends</h5>
+      <h5 class="card-title"><b>Friends</b></h5>
 
       <div class="row">
         <%= render partial: "friendships/friend", collection: @friends,
@@ -44,7 +44,7 @@
 
   <div class="row">
     <div class="col">
-      <h5 class="mt-4 mb-3">Posts</h5>
+      <h5 class="mt-4 mb-3"><b>Posts</b></h5>
 
       <%= render partial: "posts/post",
         collection: @posts,

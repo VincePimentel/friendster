@@ -28,11 +28,11 @@ class User < ApplicationRecord
             on: :create
 
   def full_name
-    "#{self.first_name} #{self.last_name}"
+    "#{first_name} #{last_name}"
   end
 
   def default_avatar
-    "#{self.gravatar_url}&d=robohash&size=175"
+    gravatar_url + "&d=robohash&size=175"
   end
 
   def available_friends
@@ -41,7 +41,7 @@ class User < ApplicationRecord
     # 2) current user has sent a friend request to
     # 3) current user has received a friend request from
     # 4) and self
-    ids = current_friends_ids + sent_requests_ids + received_requests_ids << self.id
+    ids = current_friends_ids + sent_requests_ids + received_requests_ids << id
 
     # Retrieve all users that are not included in the array of user IDs
     User.where.not(id: ids)
@@ -65,25 +65,25 @@ class User < ApplicationRecord
 
   # Retrieve friendship from friend
   def friendship(friend)
-    self.friendships.find_by(friend_id: friend)
+    friendships.find_by(friend_id: friend)
   end
 
   # Retrieve friendship from friend's friendship table
   def referenced_friendship
-    self.referenced_friendships.find_by(friend_id: self)
+    referenced_friendships.find_by(friend_id: id)
   end
 
   private
 
     def current_friends_ids
-      self.friendships.where(status: 1).pluck(:friend_id)
+      friendships.where(status: 1).pluck(:friend_id)
     end
 
     def sent_requests_ids
-      self.friendships.where(status: 0).pluck(:friend_id)
+      friendships.where(status: 0).pluck(:friend_id)
     end
 
     def received_requests_ids
-      self.referenced_friendships.where(status: 0).pluck(:user_id)
+      referenced_friendships.where(status: 0).pluck(:user_id)
     end
 end

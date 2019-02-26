@@ -17,10 +17,8 @@
 
       <div class="col col-sm">
         <div class="h-100 justify-content-center flex-column d-flex text-white">
-          <h3 class="shadow-sm">
-            <%= @user.full_name %>
-          </h3>
-          <span>(<%= @user.username %>)</span>
+          <h3 id="profile-name"><%= @user.full_name %></h3>
+          <span id="profile-name">(<%= @user.username %>)</span>
         </div>
       </div>
 

@@ -6,6 +6,11 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def index
+    # Index for posts located in root_path
+    redirect_to root_path
+  end
+
   def create
     @post = @user.posts.build(post_params)
 
