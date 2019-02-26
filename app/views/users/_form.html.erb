@@ -1,203 +1,197 @@
-<div class="row justify-content-center mt-4">
-  <div class="col-10 col-sm-9 col-md-7 col-lg-6">
+<%= flash_message %>
 
-    <%= flash_message %>
-
-    <%= form_for(@user) do |f| %>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <%= icon("fas", "user-alt fa-fw") %>
-          </span>
-        </div>
-        <%= f.text_field :first_name, placeholder: "First name", class: "form-control" %>
-        <%= f.text_field :last_name, placeholder: "Last name", class: "form-control" %>
-      </div>
-
-      <div class="row no-gutters mb-2">
-        <% if @user.errors[:first_name].size > 0 || @user.errors[:last_name].size > 0 %>
-            <div class="col-1 mr-3"></div>
-
-            <div class="col text-danger">
-              <% if @user.errors[:first_name].size > 0 %>
-                <% @user.errors[:first_name].each do |error| %>
-                  <small><%= icon("fas", "times") %>  First name <%= error %></small><br>
-                <% end %>
-              <% end %>
-            </div>
-
-            <div class="col text-danger">
-              <% if @user.errors[:last_name].size > 0 %>
-                <% @user.errors[:last_name].each do |error| %>
-                  <small><%= icon("fas", "times") %> Last name <%= error %></small><br>
-                <% end %>
-              <% end %>
-            </div>
-        <% end %>
-      </div>
-
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <%= icon("fas", "at fa-fw") %>
-          </span>
-        </div>
-        <%= f.text_field :username, placeholder: "Username", class: "form-control" %>
-      </div>
-
-      <div class="row no-gutters mb-2">
-        <% if @user.errors[:username].size > 0 %>
-            <div class="col-1 mr-3"></div>
-
-            <div class="col text-danger">
-              <% if @user.errors[:username].size > 0 %>
-                <% @user.errors[:username].each do |error| %>
-                  <small><%= icon("fas", "times") %> Username <%= error %></small><br>
-                <% end %>
-              <% end %>
-            </div>
-        <% end %>
-      </div>
-
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <%= icon("fas", "envelope fa-fw") %>
-          </span>
-        </div>
-        <%= f.text_field :email, placeholder: "E-mail address", class: "form-control" %>
-      </div>
-
-      <div class="row no-gutters mb-2">
-        <% if @user.errors[:email].size > 0 %>
-            <div class="col-1 mr-3"></div>
-
-            <div class="col text-danger">
-              <% if @user.errors[:email].size > 0 %>
-                <% @user.errors[:email].each do |error| %>
-                  <small><%= icon("fas", "times") %> E-mail address <%= error %></small><br>
-                <% end %>
-              <% end %>
-            </div>
-        <% end %>
-      </div>
-
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <%= icon("fas", "key fa-fw") %>
-          </span>
-        </div>
-        <%= f.password_field :password, placeholder: "•••••••", class: "form-control" %>
-        <%= f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control" %>
-      </div>
-
-      <div class="row no-gutters mb-2">
-        <% if @user.errors[:password].size > 0 || @user.errors[:password_confirmation].size > 0 %>
-            <div class="col-1 mr-3"></div>
-
-            <div class="col text-danger">
-              <% if @user.errors[:password].size > 0 %>
-                <% @user.errors[:password].each do |error| %>
-                  <small><%= icon("fas", "times") %> Password <%= error %></small><br>
-                <% end %>
-              <% end %>
-            </div>
-
-            <div class="col text-danger">
-              <% if @user.errors[:password_confirmation].size > 0 %>
-                <% @user.errors[:password_confirmation].each do |error| %>
-                  <small><%= icon("fas", "times") %> Password <%= error %></small><br>
-                <% end %>
-              <% end %>
-            </div>
-        <% end %>
-      </div>
-
-      <% if @user.id %>
-
-        <div class="row mb-2">
-          <div class="input-group justify-content-center">
-            <div class="custom-control custom-radio custom-control-inline">
-              <%= f.radio_button :gender, "male", class: "custom-control-input" %>
-              <%= f.label :gender, "Male", value: "male", class: "custom-control-label" %>
-            </div>
-
-            <div class="custom-control custom-radio custom-control-inline">
-              <%= f.radio_button :gender, "female", class: "custom-control-input" %>
-              <%= f.label :gender, "Female", value: "female", class: "custom-control-label" %>
-            </div>
-
-            <div class="custom-control custom-radio custom-control-inline">
-              <%= f.radio_button :gender, "other", class: "custom-control-input" %>
-              <%= f.label :gender, "Other", value: "other", class: "custom-control-label" %>
-            </div>
-
-            <div class="custom-control custom-radio custom-control-inline">
-              <%= f.radio_button :gender, "rather not say", class: "custom-control-input" %>
-              <%= f.label :gender, "Rather not say", value: "rather not say", class: "custom-control-label" %>
-            </div>
-          </div>
-        </div>
-
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <%= icon("fas", "user-circle fa-fw") %>
-            </span>
-          </div>
-          <%= f.text_field :avatar, placeholder: "Avatar (image URL)", class: "form-control" %>
-        </div>
-
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <%= icon("fas", "image fa-fw") %>
-            </span>
-          </div>
-          <%= f.text_field :cover, placeholder: "Cover (image URL)", class: "form-control" %>
-        </div>
-
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <%= icon("fas", "book fa-fw") %>
-            </span>
-          </div>
-          <%= f.text_area :bio, placeholder: "Bio", rows: "10", class: "form-control" %>
-        </div>
-
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <%= icon("fas", "link fa-fw") %>
-            </span>
-          </div>
-          <%= f.text_field :website, placeholder: "Website", class: "form-control" %>
-        </div>
-
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <%= icon("fab", "instagram fa-fw") %>
-            </span>
-          </div>
-          <%= f.text_field :instagram, placeholder: "Instagram (username)", class: "form-control" %>
-        </div>
-
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <%= icon("fab", "twitter fa-fw") %>
-            </span>
-          </div>
-          <%= f.text_field :twitter, placeholder: "Twitter (username)", class: "form-control" %>
-        </div>
-
-      <% end %>
-
-      <%= f.submit class: "btn btn-dark btn-block" %>
-    <% end %>
-
+<%= form_for(@user) do |f| %>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <%= icon("fas", "user-alt fa-fw") %>
+      </span>
+    </div>
+    <%= f.text_field :first_name, placeholder: "First name", class: "form-control" %>
+    <%= f.text_field :last_name, placeholder: "Last name", class: "form-control" %>
   </div>
-</div>
+
+  <div class="row no-gutters mb-2">
+    <% if @user.errors[:first_name].size > 0 || @user.errors[:last_name].size > 0 %>
+        <div class="col-1 mr-3"></div>
+
+        <div class="col text-danger">
+          <% if @user.errors[:first_name].size > 0 %>
+            <% @user.errors[:first_name].each do |error| %>
+              <small><%= icon("fas", "times") %>  First name <%= error %></small><br>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="col text-danger">
+          <% if @user.errors[:last_name].size > 0 %>
+            <% @user.errors[:last_name].each do |error| %>
+              <small><%= icon("fas", "times") %> Last name <%= error %></small><br>
+            <% end %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <%= icon("fas", "at fa-fw") %>
+      </span>
+    </div>
+    <%= f.text_field :username, placeholder: "Username", class: "form-control" %>
+  </div>
+
+  <div class="row no-gutters mb-2">
+    <% if @user.errors[:username].size > 0 %>
+        <div class="col-1 mr-3"></div>
+
+        <div class="col text-danger">
+          <% if @user.errors[:username].size > 0 %>
+            <% @user.errors[:username].each do |error| %>
+              <small><%= icon("fas", "times") %> Username <%= error %></small><br>
+            <% end %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <%= icon("fas", "envelope fa-fw") %>
+      </span>
+    </div>
+    <%= f.text_field :email, placeholder: "E-mail address", class: "form-control" %>
+  </div>
+
+  <div class="row no-gutters mb-2">
+    <% if @user.errors[:email].size > 0 %>
+        <div class="col-1 mr-3"></div>
+
+        <div class="col text-danger">
+          <% if @user.errors[:email].size > 0 %>
+            <% @user.errors[:email].each do |error| %>
+              <small><%= icon("fas", "times") %> E-mail address <%= error %></small><br>
+            <% end %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <%= icon("fas", "key fa-fw") %>
+      </span>
+    </div>
+    <%= f.password_field :password, placeholder: "•••••••", class: "form-control" %>
+    <%= f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control" %>
+  </div>
+
+  <div class="row no-gutters mb-2">
+    <% if @user.errors[:password].size > 0 || @user.errors[:password_confirmation].size > 0 %>
+        <div class="col-1 mr-3"></div>
+
+        <div class="col text-danger">
+          <% if @user.errors[:password].size > 0 %>
+            <% @user.errors[:password].each do |error| %>
+              <small><%= icon("fas", "times") %> Password <%= error %></small><br>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="col text-danger">
+          <% if @user.errors[:password_confirmation].size > 0 %>
+            <% @user.errors[:password_confirmation].each do |error| %>
+              <small><%= icon("fas", "times") %> Password <%= error %></small><br>
+            <% end %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+
+  <% if @user.id %>
+
+    <div class="row mb-2">
+      <div class="input-group justify-content-center">
+        <div class="custom-control custom-radio custom-control-inline">
+          <%= f.radio_button :gender, "male", class: "custom-control-input" %>
+          <%= f.label :gender, "Male", value: "male", class: "custom-control-label" %>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <%= f.radio_button :gender, "female", class: "custom-control-input" %>
+          <%= f.label :gender, "Female", value: "female", class: "custom-control-label" %>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <%= f.radio_button :gender, "other", class: "custom-control-input" %>
+          <%= f.label :gender, "Other", value: "other", class: "custom-control-label" %>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <%= f.radio_button :gender, "rather not say", class: "custom-control-input" %>
+          <%= f.label :gender, "Rather not say", value: "rather not say", class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <%= icon("fas", "user-circle fa-fw") %>
+        </span>
+      </div>
+      <%= f.text_field :avatar, placeholder: "Avatar (image URL)", class: "form-control" %>
+    </div>
+
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <%= icon("fas", "image fa-fw") %>
+        </span>
+      </div>
+      <%= f.text_field :cover, placeholder: "Cover (image URL)", class: "form-control" %>
+    </div>
+
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <%= icon("fas", "book fa-fw") %>
+        </span>
+      </div>
+      <%= f.text_area :bio, placeholder: "Bio", rows: "10", class: "form-control" %>
+    </div>
+
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <%= icon("fas", "link fa-fw") %>
+        </span>
+      </div>
+      <%= f.text_field :website, placeholder: "Website", class: "form-control" %>
+    </div>
+
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <%= icon("fab", "instagram fa-fw") %>
+        </span>
+      </div>
+      <%= f.text_field :instagram, placeholder: "Instagram (username)", class: "form-control" %>
+    </div>
+
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <%= icon("fab", "twitter fa-fw") %>
+        </span>
+      </div>
+      <%= f.text_field :twitter, placeholder: "Twitter (username)", class: "form-control" %>
+    </div>
+
+  <% end %>
+
+  <%= f.submit class: "btn btn-dark btn-block" %>
+<% end %>
