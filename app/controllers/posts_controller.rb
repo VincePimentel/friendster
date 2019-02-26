@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :redirect_if_logged_out, except: [:index, :show]
   before_action :set_user, except: [:index, :show]
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -24,8 +25,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = @user.posts.find_by(id: params[:id])
-
     @comment = Comment.new
 
     if !@post
@@ -36,8 +35,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = @user.posts.find_by(id: params[:id])
-
     @post.update(post_params)
 
     if @post.valid?
@@ -50,9 +47,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = @user.posts.find_by(id: params[:id])
-
-    post.destroy
+    @post.destroy
 
     flash[:success] = "Post successfully deleted."
 
@@ -63,5 +58,9 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:content, :link, :audience, :recipient_id)
+    end
+
+    def set_post
+      @post = @user.posts.find_by(id: params[:id])
     end
 end

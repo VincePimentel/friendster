@@ -1,13 +1,7 @@
 <%= form_for [post, comment] do |f| %>
-  <!-- <div class="form-row"> -->
-    <div class="col-12 p-0"> <!-- col-12 -->
-      <%= f.text_field :content, placeholder: "Leave a comment...", class: "form-control form-control-sm" %>
-    </div>
-
-    <!-- <div class="col-3"> -->
-      <%#= f.submit :post, class: "btn btn-dark btn-block btn-sm" %>
-    <!-- </div> -->
-  <!--/div> form-row -->
+  <div class="col-12 p-0">
+    <%= f.text_field :content, placeholder: "Leave a comment...", class: "form-control form-control-sm" %>
+  </div>
 <% end %>
 
 <% if post.comments.size > 0 %>
@@ -15,15 +9,16 @@
     <div class="card">
 
       <div class="card-header p-0" id="heading_<%= post.id %>">
-        <button class="btn btn-link py-0" type="button" data-toggle="collapse" data-target="#collapse_<%= post.id %>">
+        <button class="btn btn-link py-0<%= " collapsed" if session[:target_post] == post.id %>" type="button" data-toggle="collapse" data-target="#collapse_<%= post.id %>">
           <small>show comments (<%= post.comments.size %>)</small>
         </button>
       </div>
 
-      <div id="collapse_<%= post.id %>" class="collapse" data-parent="#accordion">
+      <div id="collapse_<%= post.id %>" class="collapse<%= " show" if session[:target_post] == post.id %>" data-parent="#accordion">
         <div class="card-body p-1">
           <ul class="list-group">
-            <% post.comments.each do |comment| %>
+
+            <% post.comments.reverse_each do |comment| %>
               <li class="list-group-item">
                 <%= link_to comment.user.full_name, user_path(comment.user) %>
                 <%= comment.content %>
@@ -38,6 +33,7 @@
                 <% end %>
               </li>
             <% end %>
+
           </ul>
         </div>
       </div>

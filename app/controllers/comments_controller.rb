@@ -8,9 +8,13 @@ class CommentsController < ApplicationController
 
     comment.user = @user
 
-    comment.save
+    if !comment.save
+      flash[:danger] = "Comment cannot be blank."
+    end
 
-    redirect_back(fallback_location: root_path)
+    session[:target_post] = @post.id
+
+    redirect_to request.referrer + "#post_#{@post.id}"
   end
 
   def destroy
@@ -18,7 +22,9 @@ class CommentsController < ApplicationController
 
     comment.destroy
 
-    redirect_back(fallback_location: root_path)
+    session[:target_post] = @post.id
+
+    redirect_to request.referrer + "#post_#{@post.id}"
   end
 
   private
