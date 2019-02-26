@@ -11,7 +11,9 @@ class User < ApplicationRecord
   has_many :referenced_friends, through: :referenced_friendships, source: :user
 
   has_many :posts, dependent: :destroy
-  has_many :comments, through: :posts, dependent: :destroy
+
+  has_many :comments, dependent: :destroy
+  has_many :commented_posts, through: :comments, source: :post
 
   validates :first_name,
             :last_name,

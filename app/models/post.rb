@@ -2,8 +2,8 @@ class Post < ApplicationRecord
   belongs_to :user
 
   has_many :comments, dependent: :destroy
-  has_many :users, through: :comments
-  # has_many :commenters, through: :comments
+  # has_many :users, through: :comments
+  has_many :commenters, through: :comments, source: :user
 
   validate :content_can_be_blank_if_image_exists
   validate :link_must_be_valid_image
