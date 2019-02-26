@@ -40,7 +40,7 @@ class FriendshipsController < ApplicationController
         friendship.update(status: 1)
         referenced_friendship.update(status: 1)
 
-        flash[:info] = "You and #{friend.first_name} are now friends."
+        flash[:info] = "You and #{friend.first_name} are now friends. Hooray!"
       end
     end
 

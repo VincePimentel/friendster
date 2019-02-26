@@ -33,8 +33,8 @@ class UsersController < ApplicationController
     @comment = Comment.new
 
     # Retrieve all posts posted on @user's timeline
+    # TO-DO: Include posts on other user profiles
     @posts = Post.on_timeline(@user)
-    # @posts = Post.where(recipient_id: @user).order("created_at DESC")
 
     @friends = @user.current_friends
 

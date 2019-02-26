@@ -18,6 +18,7 @@ vince = User.create(
   instagram: "vinceinstagram",
   twitter: "vincetwitter",
   gender: "male",
+  cover: "https://i.imgur.com/1dQc7UK.jpg",
   bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget metus eros. Duis pellentesque in odio eu lacinia. Etiam et elit non lorem semper vulputate. Curabitur justo augue, lacinia sed felis in, placerat feugiat arcu. Integer interdum tincidunt finibus. Maecenas et risus maximus, vestibulum lectus ut, viverra arcu."
   )
 
