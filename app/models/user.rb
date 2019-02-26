@@ -31,6 +31,10 @@ class User < ApplicationRecord
     "#{self.first_name} #{self.last_name}"
   end
 
+  def default_avatar
+    "#{self.gravatar_url}&d=robohash&size=175"
+  end
+
   def available_friends
     # Get user IDs of all users:
     # 1) current user is friends with
