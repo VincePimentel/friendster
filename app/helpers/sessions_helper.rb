@@ -40,15 +40,11 @@ module SessionsHelper
     redirect_to login_path
   end
 
-  def facebook_login
-    facebook_p + facebook_link_to
+  def or_divider(spacing = 3)
+    tag.p("- OR -", class: "text-center my-#{spacing}")
   end
 
-  def facebook_p
-    tag.p("- OR -", class: "text-center my-2")
-  end
-
-  def facebook_link_to
+  def facebook_link
     link_to "/auth/facebook" do
       image_tag "https://i.imgur.com/F5UeJ1T.png", id: "fb-button", class: "img-fluid"
     end

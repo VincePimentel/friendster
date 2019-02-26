@@ -1,11 +1,62 @@
 <div class="row justify-content-center pt-4">
-  <div class="col-6">
+  <div class="col">
+    <div class="jumbotron py-4">
+      <h1 class="display-4">Welcome!</h1>
+
+      <p class="lead">Like Facebook but without the privacy concerns!</p>
+
+      <hr class="my-4">
+
+      <p>
+        <div class="media">
+          <%= icon("fas", "newspaper fa-3x fa-fw", class: "align-self-start mr-3") %>
+          <div class="media-body">
+            <h5 class="mt-0">News and Updates</h5>
+            <p>See photos and updates from friends in the news feed.</p>
+          </div>
+        </div>
+      </p>
+
+      <p>
+        <div class="media">
+          <%= icon("fas", "user-friends fa-3x fa-fw", class: "align-self-start mr-3") %>
+          <div class="media-body">
+            <h5 class="mt-0">Friends and Families</h5>
+            <p>Connect with friends, relatives and the world around you.</p>
+          </div>
+        </div>
+      </p>
+
+      <p>
+        <div class="media">
+          <%= icon("fab", "facebook fa-3x fa-fw", class: "align-self-start mr-3") %>
+          <div class="media-body">
+            <h5 class="mt-0">Connect your Facebook</h5>
+            <p>Skip registration or manual login by connecting your Facebook account.</p>
+
+            <div class="row">
+              <div class="col-6">
+                <%= facebook_link %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p>
+
+
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <h3>Log In</h3>
     <%= render partial: "sessions/form" %>
 
-    <%= facebook_login %>
-  </div>
+    <%= or_divider(4) %>
 
-  <div class="col-6">
+    <h3>Sign Up</h3>
     <%= render partial: "users/form" %>
+
   </div>
 </div>
+
+
