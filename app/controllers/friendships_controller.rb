@@ -90,7 +90,7 @@ class FriendshipsController < ApplicationController
       flash[:info] = "You and #{friend.first_name} are no longer friends."
     end
 
-    redirect_to users_path
+    redirect_to user_path(friend)
   end
 
   private

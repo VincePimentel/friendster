@@ -1,37 +1,9 @@
 <div class="row justify-content-center mt-4">
   <div class="col-9 col-sm-8 col-md-6 col-lg-4">
 
-    <%= flash_message %>
+    <%= render "form" %>
 
-    <%= form_for :session, url: login_path do |f| %>
-      <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <%= icon("fas", "at fa-fw") %>
-          </span>
-        </div>
-        <%= f.text_field :username, placeholder: "Username", class: "form-control" %>
-      </div>
-
-      <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <%= icon("fas", "key fa-fw") %>
-          </span>
-        </div>
-        <%= f.password_field :password, placeholder: "•••••••", class: "form-control" %>
-      </div>
-
-      <%= f.submit "Log In", class: "btn btn-dark btn-block" %>
-    <% end %>
-
-    <div class="text-center my-2">
-      - OR -
-    </div>
-
-    <%= link_to "/auth/facebook" do %>
-      <%= image_tag "https://i.imgur.com/F5UeJ1T.png", id: "fb-button", class: "img-fluid" %>
-    <% end %>
+    <%= facebook_login %>
 
   </div>
 </div>

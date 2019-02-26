@@ -85,7 +85,7 @@
         <%= icon("fas", "key fa-fw") %>
       </span>
     </div>
-    <%= f.password_field :password, placeholder: "•••••••", class: "form-control" %>
+    <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
     <%= f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control" %>
   </div>
 
@@ -104,7 +104,7 @@
         <div class="col text-danger">
           <% if @user.errors[:password_confirmation].size > 0 %>
             <% @user.errors[:password_confirmation].each do |error| %>
-              <small><%= icon("fas", "times") %> Password <%= error %></small><br>
+              <small><%= icon("fas", "times") %> Password confirmation <%= error %></small><br>
             <% end %>
           <% end %>
         </div>

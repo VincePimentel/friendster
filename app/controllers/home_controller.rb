@@ -8,7 +8,9 @@ class HomeController < ApplicationController
       @comment = Comment.new
     else
       @user = User.new
-      render 'users/_form'
+      render :welcome
     end
   end
+
+  def welcome; end
 end

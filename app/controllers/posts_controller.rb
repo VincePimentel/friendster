@@ -7,9 +7,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = @user.posts.build(post_params)
+    @post = @user.posts.build(post_params)
 
-    if post.save
+    if @post.save
       flash[:success] = "Post shared!"
 
       redirect_back(fallback_location: root_path)
@@ -31,11 +31,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    post = @user.posts.find_by(id: params[:id])
+    @post = @user.posts.find_by(id: params[:id])
 
-    post.update(post_params)
+    @post.update(post_params)
 
-    if post.valid?
+    if @post.valid?
       flash[:info] = "Changes successfully saved."
 
       redirect_back(fallback_location: root_path)

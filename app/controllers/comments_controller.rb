@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :redirect_if_logged_out
+  before_action :redirect_if_logged_out, only: [:create, :destroy]
   before_action :set_user, only: [:create, :destroy]
   before_action :set_post, only: [:create, :destroy]
 

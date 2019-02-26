@@ -16,9 +16,13 @@ class SessionsController < ApplicationController
           u.avatar = auth[:info][:image] || u.default_avatar
         end
 
-      session[:user_id] = user.id
+      if user.valid?
+        session[:user_id] = user.id
 
-      redirect_to root_path
+        redirect_to root_path
+      else
+        render :new
+      end
     else
       user = User.find_by(username: params[:session][:username].downcase)
 
@@ -29,7 +33,7 @@ class SessionsController < ApplicationController
       else
         flash[:danger] = "Username or password is incorrect. Please try again."
 
-        redirect_to login_path
+        render :new
       end
     end
   end
