@@ -9,21 +9,16 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
 
   get '/auth/:strategy/callback', to: 'sessions#create'
-  get '/auth/failure', to: redirect('/')
-
-  # Add exceptions
-  resources :users do
-    resources :posts
-    # resources :comments
-  end
 
   resources :friendships
+
+  resources :users do
+    resources :posts
+  end
 
   resources :posts do
     resources :comments
   end
-
-  # resources :activities
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
