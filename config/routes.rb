@@ -2,11 +2,14 @@ Rails.application.routes.draw do
 
   root 'home#home'
 
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 
-  get 'signup', to: 'users#new'
+  get '/signup', to: 'users#new'
+
+  get '/auth/:strategy/callback', to: 'sessions#create'
+  get '/auth/failure', to: redirect('/')
 
   # Add exceptions
   resources :users do
