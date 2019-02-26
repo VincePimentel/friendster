@@ -1,7 +1,13 @@
 <div class="row">
   <div class="col-12">
 
-    <%= image_tag "https://via.placeholder.com/1280x350/000000/000000", class: "img-fluid" %>
+    <div id="profile-cover">
+      <% if @user.cover %>
+        <%= image_tag @user.cover, class: "img-fluid" %>
+      <% else %>
+        <%= image_tag "https://via.placeholder.com/1280x250/000000/000000", class: "img-fluid" %>
+      <% end %>
+    </div>
 
     <div id="profile-header" class="row">
 
@@ -18,7 +24,7 @@
         </div>
       </div>
 
-      <div class="col-auto col-sm-auto pr-5">
+      <div id="profile-control" class="col-auto col-sm-auto pr-5">
         <div class="h-100 justify-content-center flex-column d-flex">
           <% if current_user? %>
             <%= edit_profile_button %>

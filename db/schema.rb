@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_02_17_215036) do
     t.string "instagram"
     t.string "twitter"
     t.string "gender"
-    t.string "header"
+    t.string "cover"
     t.string "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

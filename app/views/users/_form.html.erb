@@ -143,6 +143,24 @@
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text">
+              <%= icon("fas", "user-circle fa-fw") %>
+            </span>
+          </div>
+          <%= f.text_field :avatar, placeholder: "Avatar (image URL)", class: "form-control" %>
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <%= icon("fas", "image fa-fw") %>
+            </span>
+          </div>
+          <%= f.text_field :cover, placeholder: "Cover (image URL)", class: "form-control" %>
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
               <%= icon("fas", "book fa-fw") %>
             </span>
           </div>
@@ -178,7 +196,7 @@
 
       <% end %>
 
-      <%= f.submit class: "btn btn-primary btn-block" %>
+      <%= f.submit class: "btn btn-dark btn-block" %>
     <% end %>
 
   </div>

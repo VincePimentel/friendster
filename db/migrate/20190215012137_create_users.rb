@@ -12,7 +12,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :instagram
       t.string :twitter
       t.string :gender
-      t.string :header
+      t.string :cover
       t.string :avatar
 
       t.timestamps

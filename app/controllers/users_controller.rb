@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      @user.update(avatar: "#{@user.gravatar_url}&d=monsterid&size=175")
+      @user.update(avatar: "#{@user.gravatar_url}&d=robohash&size=175")
 
       session[:user_id] = @user.id
 
@@ -76,7 +76,9 @@ class UsersController < ApplicationController
         :bio,
         :website,
         :instagram,
-        :twitter
+        :twitter,
+        :avatar,
+        :cover
         )
     end
 end

@@ -6,17 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.destroy_all
-Post.destroy_all
-Comment.destroy_all
-Friendship.destroy_all
-
 vince = User.create(
   first_name: "Vince",
   last_name: "Pimentel",
   username: "vince",
   email: "vince_pimentel@email.com",
   password: "123456",
+  password_confirmation: "123456",
   location: "California",
   website: "https://vincepimentel.com",
   instagram: "vinceinstagram",
@@ -25,7 +21,7 @@ vince = User.create(
   bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget metus eros. Duis pellentesque in odio eu lacinia. Etiam et elit non lorem semper vulputate. Curabitur justo augue, lacinia sed felis in, placerat feugiat arcu. Integer interdum tincidunt finibus. Maecenas et risus maximus, vestibulum lectus ut, viverra arcu."
   )
 
-vince.update(avatar: "#{vince.gravatar_url}&d=monsterid&size=175")
+vince.update(avatar: "#{vince.gravatar_url}&d=robohash&size=175")
 
 alice = User.create(
   first_name: "Alice",
@@ -33,6 +29,7 @@ alice = User.create(
   username: "alice",
   email: "alice_chan@email.com",
   password: "123456",
+  password_confirmation: "123456",
   location: "California",
   website: "https://alicechan.com",
   instagram: "aliceinstagram",
@@ -41,7 +38,7 @@ alice = User.create(
   bio: "In finibus dui eget iaculis pulvinar. Nam ac ipsum maximus quam aliquet vehicula vitae sit amet est. Maecenas semper lectus diam, non egestas orci tincidunt et. Integer mollis, massa nec efficitur tincidunt, augue ipsum dignissim elit, vel lobortis est diam eget tortor. Nam gravida, risus ullamcorper interdum euismod, nulla ligula semper erat, eu pharetra enim libero at enim. Nulla lacinia molestie libero. Nullam vel erat finibus, fermentum felis et, viverra nulla. Integer nisl orci, blandit non posuere ut, laoreet in nisi."
   )
 
-alice.update(avatar: "#{alice.gravatar_url}&d=monsterid&size=175")
+alice.update(avatar: "#{alice.gravatar_url}&d=robohash&size=175")
 
 people = [
   ["Pat Wolfe", "male"],
@@ -69,6 +66,7 @@ people.each do |person|
     username: join,
     email: email,
     password: "123456",
+    password_confirmation: "123456",
     location: "California",
     website: "https://#{join}.com",
     instagram: "#{join}instagram",
@@ -77,23 +75,13 @@ people.each do |person|
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget metus eros. Duis pellentesque in odio eu lacinia. Etiam et elit non lorem semper vulputate. Curabitur justo augue, lacinia sed felis in, placerat feugiat arcu. Integer interdum tincidunt finibus. Maecenas et risus maximus, vestibulum lectus ut, viverra arcu."
     )
 
-  user.update(avatar: "#{user.gravatar_url}&d=monsterid&size=175")
+  user.update(avatar: "#{user.gravatar_url}&d=robohash&size=175")
 
-  # vince_friendship = vince.friendships.build(
-  #   relationship: "friends",
-  #   friend_id: user.id,
-  #   status: 1
-  #   )
+  next if %w[Kelly Rachael Erma Nelson Willie].include?(user.first_name)
 
-  # vince_friendship.save
+  user_friendship = user.friendships.build(friend_id: vince.id)
 
-  # user_friendship = user.friendships.build(
-  #   relationship: "friends",
-  #   friend_id: user.id,
-  #   status: 1
-  #   )
-
-  # user_friendship.save
+  user_friendship.save
 end
 
 
