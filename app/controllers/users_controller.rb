@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :redirect_if_logged_out, except: [:new, :create]
   before_action :redirect_if_logged_in, only: [:new, :create]
   before_action :set_user, only: [:index, :edit, :update] #:destroy
+  before_action :new_comment, only: :show
 
   def index
     @users = @user.available_friends
@@ -30,7 +31,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post = Post.new
-    @comment = Comment.new
 
     # Retrieve all posts posted on @user's timeline
     # TO-DO: Include posts on other user profiles

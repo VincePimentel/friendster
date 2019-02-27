@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_action :set_user, only: [:home]
+  before_action :new_comment, only: [:home, :top]
 
   def welcome; end
 
@@ -7,7 +8,7 @@ class HomeController < ApplicationController
     if logged_in?
       @post = Post.new
       @posts = Post.by_friends(@user)
-      @comment = Comment.new
+
     else
       @user = User.new
       render :welcome
@@ -17,7 +18,5 @@ class HomeController < ApplicationController
   def top
     @user = User.friendliest
     @post = Post.trending
-    @comment = Comment.new
   end
-
 end

@@ -18,6 +18,11 @@
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
+            <%= link_to '/top', class: "nav-link" do %>
+              Top <%= icon("fas", "fire", class: "text-danger") %>
+            <% end %>
+          </li>
+          <li class="nav-item">
             <%= link_to current_user.first_name, user_path(current_user), class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">

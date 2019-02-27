@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :redirect_if_logged_out, except: [:index, :show]
   before_action :set_user, except: [:index, :show]
   before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :new_comment, only: :edit
 
   def new
     @post = Post.new
@@ -25,8 +26,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.new
-
     if !@post
       flash[:danger] = "Post does not exist. Please try again"
 
