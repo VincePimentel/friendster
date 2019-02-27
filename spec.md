@@ -85,18 +85,18 @@ Specs:
   
 - [x] Include nested resource show or index (URL e.g. users/2/recipes)
   * User post(s) can be seen in:
-    * http://localhost:3000/users/1 (`user_path` for index)
-    * http://localhost:3000/users/1/posts/1 (for show)
+    * http://localhost:3000/users/1
+    * TBD: http://localhost:3000/users/1/posts/1
 
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
   * Creating a new post can be done via the following:
-    * http://localhost:3000/users/1/posts/new
-    * http://localhost:3000 (`root_path`)
-    * http://localhost:3000/users/1 (`user_path`)
+    * TBD: http://localhost:3000/users/1/posts/new
+    * http://localhost:3000
+    * http://localhost:3000/users/1
   
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)
-  * During `user` creation: http://localhost:3000/signup
-  * During `post` creation: http://localhost:3000/users/1/posts/new
+  * `User` CREATE: http://localhost:3000/signup
+  * TBD: `Post` CREATE: http://localhost:3000/users/1/posts/new
 
 Confirm:
 - [x] The application is pretty DRY
