@@ -4,9 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :new_comment, only: :edit
 
-  def new
-    @post = Post.new
-  end
+  # def new; end
 
   def index
     # Index for posts located in root_path
@@ -24,6 +22,8 @@ class PostsController < ApplicationController
       render :new
     end
   end
+
+  # def show; end
 
   def edit
     if !@post
