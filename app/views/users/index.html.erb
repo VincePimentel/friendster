@@ -3,6 +3,7 @@
     <div class="col-12">
       <h5 class="mb-3">
         Friend Requests
+        <%= "(#{@received_requests.size})" %>
       </h5>
 
       <div class="row">
@@ -21,6 +22,7 @@
     <div class="col-12">
       <h5 class="mb-3">
         Pending Requests
+        <%= "(#{@sent_requests.size})" %>
       </h5>
 
       <div class="row">
@@ -42,6 +44,7 @@
 
       <h5 class="mb-3">
         Find Friends
+        <%= "(#{@users.size})" if @users.size > 0 %>
       </h5>
 
       <div class="row">

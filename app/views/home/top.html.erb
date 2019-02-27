@@ -20,10 +20,8 @@
               </h5>
 
               <p class="card-text">
-                <% if status_pending?(@user) %>
-                  <%= button(@user, "cancel") %>
-                <% elsif !friends?(@user) %>
-                  <%= button(@user, "add friend") %>
+                <%= button_tag class: "btn btn-dark btn-sm" do %>
+                  Friends <span class="badge badge-light"><%= @user.friends_count %></span>
                 <% end %>
               </p>
 

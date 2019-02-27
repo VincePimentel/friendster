@@ -5,7 +5,7 @@ module FriendshipsHelper
   end
 
   def friends?(user)
-    current_user.friends.find_by(id: user)
+    !!current_user.friendship(user)
   end
 
   def request_notification
@@ -66,10 +66,10 @@ module FriendshipsHelper
   end
 
   def edit_friendship_button(user)
-    if current_user != user
+    if current_user != user && friends?(user)
       link_to edit_friendship_path(current_user.friendship(user)),
         role: "button",
-        class: "btn btn-light btn-sm float-right" do
+        class: "btn btn-light btn-sm" do
 
         icon_label("edit", "edit")
       end
@@ -83,7 +83,7 @@ module FriendshipsHelper
   end
 
   def edit_friendship_link(user)
-    if current_user != user
+    if current_user != user && friends?(user)
       link_to edit_friendship_path(current_user.friendship(user)), class: "text-decoration-none text-dark" do
 
         icon_label("edit", "")
