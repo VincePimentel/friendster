@@ -29,6 +29,11 @@ class User < ApplicationRecord
             presence: true,
             on: :create
 
+  # SCOPE
+  def self.friendliest
+    order("friends_count DESC").first
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

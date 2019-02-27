@@ -8,6 +8,11 @@ class Post < ApplicationRecord
   validate :content_can_be_blank_if_image_exists
   validate :link_must_be_valid_image
 
+  # SCOPE
+  def self.trending
+    order("comments_count DESC").first
+  end
+
   def content_can_be_blank_if_image_exists
     if content.empty? && link.empty?
       errors.add(:content, "cannot be blank")

@@ -77,7 +77,9 @@ module FriendshipsHelper
   end
 
   def relationship_badge(friend, user)
-    tag.small user.friendship(friend).relationship, class: "badge badge-pill badge-dark"
+    if user.friendship(friend)
+      tag.small user.friendship(friend).relationship, class: "badge badge-pill badge-dark"
+    end
   end
 
   def edit_friendship_link(user)

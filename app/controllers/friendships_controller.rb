@@ -77,20 +77,20 @@ class FriendshipsController < ApplicationController
         user_id: @friendship.friend.id
         )
 
-    # Destroy current user's friendship with other user
-    @friendship.destroy
-
     # Destroy other user's friendship with current user
     # if other user has added current user prior to deletion
     if referenced_friendship
       referenced_friendship.destroy
 
-      friend = User.find_by(id: @friendship.user)
+      friend = User.find_by(id: @friendship.friend_id)
 
       flash[:info] = "You and #{friend.first_name} are no longer friends."
     end
 
-    redirect_to user_path(friend)
+    # Destroy current user's friendship with other user
+    @friendship.destroy
+
+    redirect_to users_path
   end
 
   private

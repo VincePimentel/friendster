@@ -1,0 +1,58 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-6 col-lg-4">
+    <h5 class="mb-3 text-center">
+      <b>Friendliest User</b>
+    </h5>
+
+    <% if @user %>
+      <div class="card">
+        <div class="row no-gutters">
+
+          <div class="col-md-4 text-center">
+            <%= image_tag @user.avatar, class: "img-fluid" %>
+          </div>
+
+          <div class="col-md-8 mb-n1">
+            <div class="card-body">
+
+              <h5 class="card-title">
+                <%= link_to @user.full_name, user_path(@user) %>
+              </h5>
+
+              <p class="card-text">
+                <% if status_pending?(@user) %>
+                  <%= button(@user, "cancel") %>
+                <% elsif !friends?(@user) %>
+                  <%= button(@user, "add friend") %>
+                <% end %>
+              </p>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    <% else %>
+      Nothing to see here!
+    <% end %>
+  </div>
+</div>
+
+<div class="row justify-content-center mt-5">
+  <div class="col-10 col-sm-9 col-md-7 col-lg-6">
+    <h5 class="mb-3 text-center">
+      <b>Trending Post</b>
+    </h5>
+
+    <% if @post %>
+      <%= render partial: "posts/post",
+        locals: {
+          post: @post,
+          comment: @comment
+        } %>
+    <% else %>
+      Nothing to see here!
+    <% end %>
+
+  </div>
+</div>
